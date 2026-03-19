@@ -168,7 +168,7 @@ export default function GameBoard({ puzzle, onNewGame }) {
           <div className="flex gap-3 flex-wrap justify-center">
             <button
               onClick={handleShuffle}
-              className="px-5 py-2 rounded-full text-sm font-black transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-95"
+              className="px-6 py-2 rounded-full text-sm font-black whitespace-nowrap transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-95"
               style={{ background: "rgba(255,255,255,0.8)", color: "#7c3aed", border: "2px solid #ddd6fe", boxShadow: "0 2px 6px rgba(167,139,250,0.15)" }}
             >
               🔀 Shuffle
@@ -176,7 +176,7 @@ export default function GameBoard({ puzzle, onNewGame }) {
             <button
               onClick={handleDeselectAll}
               disabled={selected.length === 0}
-              className="px-5 py-2 rounded-full text-sm font-black transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
+              className="px-6 py-2 rounded-full text-sm font-black whitespace-nowrap transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
               style={{ background: "rgba(255,255,255,0.8)", color: "#7c3aed", border: "2px solid #ddd6fe", boxShadow: "0 2px 6px rgba(167,139,250,0.15)" }}
             >
               ✕ Deselect All
