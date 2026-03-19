@@ -105,31 +105,23 @@ export const puzzles = [
 
 export const COLOR_STYLES = {
   yellow: {
-    bg: "bg-yellow-300",
-    hover: "hover:bg-yellow-200",
-    selected: "bg-yellow-400",
-    text: "text-yellow-900",
-    revealed: "bg-yellow-300",
+    revealed: "bg-amber-200",
+    text: "text-amber-800",
+    emoji: "🌼",
   },
   green: {
-    bg: "bg-green-400",
-    hover: "hover:bg-green-300",
-    selected: "bg-green-500",
-    text: "text-green-900",
-    revealed: "bg-green-400",
+    revealed: "bg-emerald-200",
+    text: "text-emerald-800",
+    emoji: "🌿",
   },
   blue: {
-    bg: "bg-blue-400",
-    hover: "hover:bg-blue-300",
-    selected: "bg-blue-500",
-    text: "text-blue-900",
-    revealed: "bg-blue-400",
+    revealed: "bg-sky-200",
+    text: "text-sky-800",
+    emoji: "💙",
   },
   purple: {
-    bg: "bg-purple-400",
-    hover: "hover:bg-purple-300",
-    selected: "bg-purple-500",
-    text: "text-purple-900",
-    revealed: "bg-purple-400",
+    revealed: "bg-violet-200",
+    text: "text-violet-800",
+    emoji: "🔮",
   },
 };

@@ -7,16 +7,17 @@ export default function RevealedCategory({ category }) {
   return (
     <div
       className={clsx(
-        "bounce-in rounded-lg p-4 flex flex-col items-center justify-center gap-1",
+        "bounce-in rounded-2xl p-3 flex flex-col items-center justify-center gap-0.5",
         "w-full h-16",
         styles.revealed
       )}
+      style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}
     >
       <p className={clsx("text-xs font-black tracking-widest uppercase", styles.text)}>
-        {category.title}
+        {styles.emoji} {category.title}
       </p>
-      <p className={clsx("text-xs font-semibold tracking-wide uppercase opacity-80", styles.text)}>
-        {category.words.join(", ")}
+      <p className={clsx("text-xs font-semibold tracking-wide uppercase", styles.text)} style={{ opacity: 0.7 }}>
+        {category.words.join("  ·  ")}
       </p>
     </div>
   );

@@ -16,10 +16,11 @@ export default function Toast({ message, onDone }) {
     <div
       className={clsx(
         "fixed top-20 left-1/2 -translate-x-1/2 z-50",
-        "bg-gray-900 text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg",
+        "text-white text-sm font-black px-6 py-2.5 rounded-full shadow-lg",
         "transition-all duration-300",
         visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
       )}
+      style={{ background: "linear-gradient(135deg, #f472b6, #a78bfa)", boxShadow: "0 4px 20px rgba(167,139,250,0.4)" }}
     >
       {message}
     </div>

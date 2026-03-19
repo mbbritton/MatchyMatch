@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 * {
@@ -7,8 +8,12 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: #f9fafb;
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  background-color: #fdf6ff;
+  background-image:
+    radial-gradient(circle at 20% 20%, #fce4f3 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, #e4f0fc 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #f0fce4 0%, transparent 60%);
   min-height: 100vh;
 }
 
