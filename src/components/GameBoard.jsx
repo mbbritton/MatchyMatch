@@ -166,27 +166,13 @@ export default function GameBoard({ puzzle, onNewGame }) {
           <LivesDisplay lives={lives} maxLives={MAX_LIVES} />
 
           <div className="flex gap-3 flex-wrap justify-center">
-            <button
-              onClick={handleShuffle}
-              className="px-6 py-2 rounded-full text-sm font-black whitespace-nowrap transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-95"
-              style={{ background: "rgba(255,255,255,0.8)", color: "#7c3aed", border: "2px solid #ddd6fe", boxShadow: "0 2px 6px rgba(167,139,250,0.15)" }}
-            >
+            <button onClick={handleShuffle} className="btn-outline">
               🔀 Shuffle
             </button>
-            <button
-              onClick={handleDeselectAll}
-              disabled={selected.length === 0}
-              className="px-6 py-2 rounded-full text-sm font-black whitespace-nowrap transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
-              style={{ background: "rgba(255,255,255,0.8)", color: "#7c3aed", border: "2px solid #ddd6fe", boxShadow: "0 2px 6px rgba(167,139,250,0.15)" }}
-            >
+            <button onClick={handleDeselectAll} disabled={selected.length === 0} className="btn-outline">
               ✕ Deselect All
             </button>
-            <button
-              onClick={handleSubmit}
-              disabled={selected.length !== MAX_SELECTED}
-              className="px-5 py-2 rounded-full text-sm font-black text-white transition-all duration-150 hover:-translate-y-0.5 hover:shadow-lg active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
-              style={{ background: selected.length === MAX_SELECTED ? "linear-gradient(135deg, #f472b6, #a78bfa)" : "#d1d5db", boxShadow: selected.length === MAX_SELECTED ? "0 4px 14px rgba(167,139,250,0.4)" : "none" }}
-            >
+            <button onClick={handleSubmit} disabled={selected.length !== MAX_SELECTED} className="btn-primary">
               Submit ✨
             </button>
           </div>
@@ -201,11 +187,7 @@ export default function GameBoard({ puzzle, onNewGame }) {
           <p className="font-semibold text-sm" style={{ color: "#9ca3af" }}>
             Solved with {lives} 💜 remaining!
           </p>
-          <button
-            onClick={onNewGame}
-            className="px-6 py-2.5 rounded-full text-white text-sm font-black transition-all duration-150 hover:-translate-y-0.5 hover:shadow-lg mt-1"
-            style={{ background: "linear-gradient(135deg, #f472b6, #a78bfa)", boxShadow: "0 4px 14px rgba(167,139,250,0.4)" }}
-          >
+          <button onClick={onNewGame} className="btn-primary mt-1">
             Play Again 🌟
           </button>
         </div>
@@ -219,11 +201,7 @@ export default function GameBoard({ puzzle, onNewGame }) {
           <p className="font-semibold text-sm" style={{ color: "#9ca3af" }}>
             The answers are revealed above.
           </p>
-          <button
-            onClick={onNewGame}
-            className="px-6 py-2.5 rounded-full text-white text-sm font-black transition-all duration-150 hover:-translate-y-0.5 hover:shadow-lg mt-1"
-            style={{ background: "linear-gradient(135deg, #a78bfa, #60a5fa)", boxShadow: "0 4px 14px rgba(167,139,250,0.4)" }}
-          >
+          <button onClick={onNewGame} className="btn-primary mt-1">
             Try Again 🌈
           </button>
         </div>

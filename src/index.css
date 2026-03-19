@@ -57,3 +57,71 @@ body {
 .tile-transition {
   transition: background-color 0.3s ease, transform 0.1s ease;
 }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  border: 2px solid #ddd6fe;
+  background: rgba(255, 255, 255, 0.85);
+  color: #7c3aed;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  box-shadow: 0 2px 8px rgba(167, 139, 250, 0.15);
+}
+
+.btn-outline:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(167, 139, 250, 0.25);
+}
+
+.btn-outline:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.btn-outline:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 24px;
+  border-radius: 9999px;
+  border: none;
+  background: linear-gradient(135deg, #f472b6, #a78bfa);
+  color: #fff;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  box-shadow: 0 4px 14px rgba(167, 139, 250, 0.4);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(167, 139, 250, 0.5);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.btn-primary:disabled {
+  background: #d1d5db;
+  box-shadow: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
