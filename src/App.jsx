@@ -3,13 +3,16 @@ import Header from './components/Header'
 import GameBoard from './components/GameBoard'
 import { puzzles } from './data/puzzles'
 
+const envIndex = parseInt(import.meta.env.VITE_PUZZLE_INDEX, 10)
+const PUZZLE_INDEX =
+  Number.isFinite(envIndex) && envIndex >= 0 && envIndex < puzzles.length
+    ? envIndex
+    : 0
+
 function App() {
-  const [puzzleIndex, setPuzzleIndex] = useState(0)
   const [gameKey, setGameKey] = useState(0)
 
   const handleNewGame = () => {
-    const nextIndex = (puzzleIndex + 1) % puzzles.length
-    setPuzzleIndex(nextIndex)
     setGameKey((k) => k + 1)
   }
 
@@ -19,7 +22,7 @@ function App() {
       <main className="flex-1 flex flex-col items-center">
         <GameBoard
           key={gameKey}
-          puzzle={puzzles[puzzleIndex]}
+          puzzle={puzzles[PUZZLE_INDEX]}
           onNewGame={handleNewGame}
         />
       </main>
