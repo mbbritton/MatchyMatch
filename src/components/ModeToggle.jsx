@@ -9,7 +9,7 @@ export default function ModeToggle({ mode, onChange, disabled }) {
         <button
           onClick={() => onChange("normal")}
           disabled={disabled}
-          className="px-4 py-1 rounded-full text-xs font-black transition-all duration-200 disabled:cursor-not-allowed"
+          className="px-5 py-2 rounded-full text-sm font-black whitespace-nowrap transition-all duration-200 disabled:cursor-not-allowed"
           style={
             mode === "normal"
               ? { background: "linear-gradient(135deg, #f9a8d4, #c4b5fd)", color: "#4c1d95" }
@@ -21,7 +21,7 @@ export default function ModeToggle({ mode, onChange, disabled }) {
         <button
           onClick={() => onChange("hard")}
           disabled={disabled}
-          className="px-4 py-1 rounded-full text-xs font-black transition-all duration-200 disabled:cursor-not-allowed"
+          className="px-5 py-2 rounded-full text-sm font-black whitespace-nowrap transition-all duration-200 disabled:cursor-not-allowed"
           style={
             mode === "hard"
               ? { background: "linear-gradient(135deg, #f9a8d4, #c4b5fd)", color: "#4c1d95" }
