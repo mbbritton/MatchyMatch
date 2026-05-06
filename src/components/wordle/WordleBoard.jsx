@@ -17,13 +17,13 @@ function pickAnswer() {
 
 export default function WordleBoard() {
   const [answer]       = useState(pickAnswer);
-  const [guesses,  setGuesses]  = useState([]); // submitted guesses
-  const [current,  setCurrent]  = useState(""); // current input
-  const [gameState, setGameState] = useState("playing"); // "playing" | "won" | "lost"
+  const [guesses,  setGuesses]  = useState([]);
+  const [current,  setCurrent]  = useState("");
+  const [gameState, setGameState] = useState("playing");
   const [toast,    setToast]    = useState(null);
   const [shakeRow, setShakeRow] = useState(false);
   const [bounceRow, setBounceRow] = useState(false);
-  const [revealKey, setRevealKey] = useState(0); // bump to re-trigger flip
+  const [revealKey, setRevealKey] = useState(0);
 
   // Build letter state map from all submitted guesses
   const letterStates = {};
@@ -50,7 +50,6 @@ export default function WordleBoard() {
     guessArr.forEach((letter, i) => {
       const prev = letterStates[letter];
       const next = result[i];
-      // Upgrade: correct > present > absent
       if (!prev || (next === "correct") || (next === "present" && prev === "absent")) {
         letterStates[letter] = next;
       }
@@ -88,7 +87,7 @@ export default function WordleBoard() {
       setCurrent("");
       setRevealKey((k) => k + 1);
 
-      const flipDuration = 5 * 120 + 400; // last tile flip + buffer
+      const flipDuration = 5 * 120 + 400;
 
       if (current === answer) {
         const msgs = ["Genius! 🧠", "Magnificent! ✨", "Impressive! 🌟", "Splendid! 🎉", "Great! 👏", "Phew! 😅"];
@@ -112,7 +111,6 @@ export default function WordleBoard() {
     }
   }, [gameState, current, guesses, answer]);
 
-  // Physical keyboard support
   useEffect(() => {
     const handler = (e) => {
       if (e.ctrlKey || e.metaKey || e.altKey) return;
@@ -126,11 +124,9 @@ export default function WordleBoard() {
   }, [handleKey]);
 
   const handleNewGame = () => {
-    // Reload the page to get a fresh state (answer is day-based, so same word today)
     window.location.reload();
   };
 
-  // Build the 6 rows
   const rows = Array.from({ length: MAX_GUESSES }, (_, i) => {
     if (i < guesses.length) {
       return { guess: guesses[i], submitted: true, isActive: false, bounce: bounceRow && i === guesses.length - 1 };
@@ -142,11 +138,11 @@ export default function WordleBoard() {
   });
 
   return (
-    <div className="flex flex-col items-center gap-5 w-full max-w-lg mx-auto px-4 py-6">
+    <div className="flex flex-col items-center gap-6 w-full max-w-lg mx-auto px-4 py-8">
       {toast && <Toast message={toast} onDone={() => setToast(null)} />}
 
       {/* Grid */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2.5">
         {rows.map((row, i) => (
           <WordleRow
             key={`${i}-${revealKey}`}
@@ -162,21 +158,40 @@ export default function WordleBoard() {
 
       {/* Keyboard */}
       {gameState === "playing" && (
-        <WordleKeyboard onKey={handleKey} letterStates={letterStates} />
+        <div className="w-full pt-2">
+          <WordleKeyboard onKey={handleKey} letterStates={letterStates} />
+        </div>
       )}
 
       {/* Win state */}
       {gameState === "won" && (
-        <div className="bounce-in flex flex-col items-center gap-3 mt-2 p-6 rounded-3xl w-full"
-          style={{ background: "rgba(255,255,255,0.7)", boxShadow: "0 8px 32px rgba(167,139,250,0.15)", backdropFilter: "blur(8px)" }}>
-          <div className="text-5xl">🎉✨🌸</div>
-          <h2 className="text-2xl font-black" style={{ background: "linear-gradient(135deg, #f472b6, #a78bfa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+        <div
+          className="bounce-in flex flex-col items-center gap-4 mt-2 p-8 rounded-3xl w-full"
+          style={{
+            background: "rgba(255,255,255,0.7)",
+            boxShadow: "0 8px 32px rgba(167,139,250,0.15)",
+            backdropFilter: "blur(8px)",
+          }}
+        >
+          <div className="text-6xl">🎉✨🌸</div>
+          <h2
+            className="text-3xl font-black"
+            style={{
+              background: "linear-gradient(135deg, #f472b6, #a78bfa)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
             You got it!
           </h2>
           <p className="font-semibold text-sm" style={{ color: "#9ca3af" }}>
-            The word was <span className="font-black" style={{ color: "#7c3aed" }}>{answer}</span> — solved in {guesses.length} {guesses.length === 1 ? "guess" : "guesses"}!
+            The word was{" "}
+            <span className="font-black" style={{ color: "#7c3aed" }}>
+              {answer}
+            </span>{" "}
+            — solved in {guesses.length} {guesses.length === 1 ? "guess" : "guesses"}!
           </p>
-          <button onClick={handleNewGame} className="btn-primary mt-1">
+          <button onClick={handleNewGame} className="btn-primary mt-2">
             Play Again 🌟
           </button>
         </div>
@@ -184,14 +199,26 @@ export default function WordleBoard() {
 
       {/* Lose state */}
       {gameState === "lost" && (
-        <div className="bounce-in flex flex-col items-center gap-3 mt-2 p-6 rounded-3xl w-full"
-          style={{ background: "rgba(255,255,255,0.7)", boxShadow: "0 8px 32px rgba(167,139,250,0.15)", backdropFilter: "blur(8px)" }}>
-          <div className="text-5xl">🥺💫</div>
-          <h2 className="text-2xl font-black" style={{ color: "#7c3aed" }}>So close!</h2>
+        <div
+          className="bounce-in flex flex-col items-center gap-4 mt-2 p-8 rounded-3xl w-full"
+          style={{
+            background: "rgba(255,255,255,0.7)",
+            boxShadow: "0 8px 32px rgba(167,139,250,0.15)",
+            backdropFilter: "blur(8px)",
+          }}
+        >
+          <div className="text-6xl">🥺💫</div>
+          <h2 className="text-3xl font-black" style={{ color: "#7c3aed" }}>
+            So close!
+          </h2>
           <p className="font-semibold text-sm" style={{ color: "#9ca3af" }}>
-            The word was <span className="font-black" style={{ color: "#7c3aed" }}>{answer}</span>.
+            The word was{" "}
+            <span className="font-black" style={{ color: "#7c3aed" }}>
+              {answer}
+            </span>
+            .
           </p>
-          <button onClick={handleNewGame} className="btn-primary mt-1">
+          <button onClick={handleNewGame} className="btn-primary mt-2">
             Try Again 🌈
           </button>
         </div>

@@ -136,17 +136,19 @@ export default function GameBoard({ puzzle, onNewGame }) {
   const unrevealed = tiles.filter((t) => !isWordRevealed(t.word));
 
   return (
-    <div className="flex flex-col items-center gap-4 w-full max-w-2xl mx-auto px-4 py-6">
+    <div className="flex flex-col items-center gap-6 w-full max-w-2xl mx-auto px-4 py-8">
       {toast && <Toast message={toast} onDone={() => setToast(null)} />}
 
-      <div className="flex flex-col items-center gap-1">
+      {/* Subtitle + mode toggle */}
+      <div className="flex flex-col items-center gap-3">
         <p className="text-sm font-bold tracking-wide" style={{ color: "#c084fc" }}>
-          Group the words into five matching sets 🌸
+          Group the words into four matching sets 🌸
         </p>
         <ModeToggle mode={mode} onChange={handleModeChange} disabled={hasStarted} />
       </div>
 
-      <div className="w-full flex flex-col gap-2">
+      {/* Board */}
+      <div className="w-full flex flex-col gap-2.5">
         {guessedCategories.map((cat) => (
           <RevealedCategory key={cat.id} category={cat} />
         ))}
@@ -155,7 +157,7 @@ export default function GameBoard({ puzzle, onNewGame }) {
           <div
             ref={gridRef}
             className={clsx(
-              "grid gap-2 w-full",
+              "grid gap-2.5 w-full",
               "grid-cols-4 sm:grid-cols-5",
               isShaking && "shake"
             )}
@@ -173,48 +175,80 @@ export default function GameBoard({ puzzle, onNewGame }) {
         )}
       </div>
 
+      {/* Controls */}
       {gameState === "playing" && (
-        <>
+        <div className="flex flex-col items-center gap-4 w-full">
           <LivesDisplay lives={lives} maxLives={LIVES_BY_MODE[mode]} />
           <div className="flex gap-3 flex-wrap justify-center">
             <button onClick={handleShuffle} className="btn-outline">
               🔀 Shuffle
             </button>
-            <button onClick={handleDeselectAll} disabled={selected.length === 0} className="btn-outline">
+            <button
+              onClick={handleDeselectAll}
+              disabled={selected.length === 0}
+              className="btn-outline"
+            >
               ✕ Deselect All
             </button>
-            <button onClick={handleSubmit} disabled={selected.length !== MAX_SELECTED} className="btn-primary">
+            <button
+              onClick={handleSubmit}
+              disabled={selected.length !== MAX_SELECTED}
+              className="btn-primary"
+            >
               Submit ✨
             </button>
           </div>
-        </>
+        </div>
       )}
 
+      {/* Win state */}
       {gameState === "won" && (
-        <div className="bounce-in flex flex-col items-center gap-3 mt-4 p-6 rounded-3xl w-full"
-          style={{ background: "rgba(255,255,255,0.7)", boxShadow: "0 8px 32px rgba(167,139,250,0.15)", backdropFilter: "blur(8px)" }}>
-          <div className="text-5xl">🎉✨🌸</div>
-          <h2 className="text-2xl font-black" style={{ background: "linear-gradient(135deg, #f472b6, #a78bfa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+        <div
+          className="bounce-in flex flex-col items-center gap-4 mt-2 p-8 rounded-3xl w-full"
+          style={{
+            background: "rgba(255,255,255,0.7)",
+            boxShadow: "0 8px 32px rgba(167,139,250,0.15)",
+            backdropFilter: "blur(8px)",
+          }}
+        >
+          <div className="text-6xl">🎉✨🌸</div>
+          <h2
+            className="text-3xl font-black"
+            style={{
+              background: "linear-gradient(135deg, #f472b6, #a78bfa)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
             {mode === "hard" ? "Hard mode conquered! 🔥" : "You nailed it!"}
           </h2>
           <p className="font-semibold text-sm" style={{ color: "#9ca3af" }}>
             Solved with {lives} 💜 remaining!
           </p>
-          <button onClick={onNewGame} className="btn-primary mt-1">
+          <button onClick={onNewGame} className="btn-primary mt-2">
             Play Again 🌟
           </button>
         </div>
       )}
 
+      {/* Lose state */}
       {gameState === "lost" && (
-        <div className="bounce-in flex flex-col items-center gap-3 mt-4 p-6 rounded-3xl w-full"
-          style={{ background: "rgba(255,255,255,0.7)", boxShadow: "0 8px 32px rgba(167,139,250,0.15)", backdropFilter: "blur(8px)" }}>
-          <div className="text-5xl">🥺💫</div>
-          <h2 className="text-2xl font-black" style={{ color: "#7c3aed" }}>So close!</h2>
+        <div
+          className="bounce-in flex flex-col items-center gap-4 mt-2 p-8 rounded-3xl w-full"
+          style={{
+            background: "rgba(255,255,255,0.7)",
+            boxShadow: "0 8px 32px rgba(167,139,250,0.15)",
+            backdropFilter: "blur(8px)",
+          }}
+        >
+          <div className="text-6xl">🥺💫</div>
+          <h2 className="text-3xl font-black" style={{ color: "#7c3aed" }}>
+            So close!
+          </h2>
           <p className="font-semibold text-sm" style={{ color: "#9ca3af" }}>
             The answers are revealed above.
           </p>
-          <button onClick={onNewGame} className="btn-primary mt-1">
+          <button onClick={onNewGame} className="btn-primary mt-2">
             Try Again 🌈
           </button>
         </div>

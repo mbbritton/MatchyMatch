@@ -6,7 +6,6 @@ const ROWS = [
   ["ENTER","Z","X","C","V","B","N","M","⌫"],
 ];
 
-// letterStates: { [letter]: "correct" | "present" | "absent" | undefined }
 export default function WordleKeyboard({ onKey, letterStates = {} }) {
   const stateStyle = (key) => {
     const s = letterStates[key];
@@ -17,7 +16,7 @@ export default function WordleKeyboard({ onKey, letterStates = {} }) {
   };
 
   return (
-    <div className="flex flex-col items-center gap-1.5 w-full max-w-sm mx-auto select-none">
+    <div className="flex flex-col items-center gap-2 w-full max-w-sm mx-auto select-none">
       {ROWS.map((row, ri) => (
         <div key={ri} className="flex gap-1.5 justify-center">
           {row.map((key) => {
@@ -30,7 +29,7 @@ export default function WordleKeyboard({ onKey, letterStates = {} }) {
                   "btn-outline rounded-xl font-black uppercase",
                   "flex items-center justify-center",
                   "transition-all duration-150 active:scale-95",
-                  isWide ? "px-2 text-xs min-w-[52px] h-14" : "w-10 h-14 text-sm p-0"
+                  isWide ? "px-2 text-xs min-w-[56px] h-14" : "w-10 h-14 text-sm p-0"
                 )}
                 style={stateStyle(key)}
               >

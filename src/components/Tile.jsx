@@ -16,9 +16,19 @@ export default function Tile({ word, isSelected, isRevealed, onClick }) {
           "opacity-0 pointer-events-none": isRevealed,
         }
       )}
-      style={isSelected
-        ? { background: "linear-gradient(135deg, #f9a8d4, #c4b5fd)", color: "#4c1d95", boxShadow: "inset 0 2px 4px rgba(0,0,0,0.1)" }
-        : { background: "rgba(255,255,255,0.85)", color: "#374151", boxShadow: "0 2px 6px rgba(167,139,250,0.15), 0 1px 2px rgba(0,0,0,0.06)" }
+      style={
+        isSelected
+          ? {
+              background: "linear-gradient(135deg, #f9a8d4, #c4b5fd)",
+              color: "#4c1d95",
+              boxShadow: "inset 0 2px 4px rgba(0,0,0,0.1)",
+            }
+          : {
+              background: "rgba(255,255,255,0.85)",
+              color: "#374151",
+              boxShadow:
+                "0 2px 6px rgba(167,139,250,0.15), 0 1px 2px rgba(0,0,0,0.06)",
+            }
       }
     >
       {word}
