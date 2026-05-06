@@ -1,4 +1,4 @@
-export default function ModeToggle({ mode, onChange, disabled }) {
+�export default function ModeToggle({ mode, onChange, disabled }) {
   return (
     <div className="flex items-center gap-3">
       <span
@@ -10,7 +10,7 @@ export default function ModeToggle({ mode, onChange, disabled }) {
 
       {/* Segmented control */}
       <div
-        className="flex p-0.5 rounded-full"
+        className="flex gap-1 p-0.5 rounded-full"
         style={{
           background: "rgba(255,255,255,0.05)",
           border: "1px solid rgba(255,255,255,0.08)",

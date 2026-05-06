@@ -1,4 +1,5 @@
-export default function Header({ activeGame, onGameChange }) {
+
+�export default function Header({ activeGame, onGameChange }) {
   return (
     <header
       style={{
@@ -37,7 +38,7 @@ export default function Header({ activeGame, onGameChange }) {
 
         {/* Game switcher — segmented pill */}
         <div
-          className="flex p-1 rounded-full"
+          className="flex gap-1 p-1 rounded-full"
           style={{
             background: "rgba(255,255,255,0.05)",
             border: "1px solid rgba(255,255,255,0.09)",
