@@ -6,19 +6,23 @@ export default function RevealedCategory({ category }) {
 
   return (
     <div
-      className={clsx(
-        "bounce-in rounded-2xl px-4 py-3 flex flex-col items-center justify-center gap-1",
-        "w-full",
-        styles.revealed
-      )}
-      style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)", minHeight: "4.5rem" }}
+      className="bounce-in rounded-2xl px-5 py-4 flex flex-col items-center justify-center gap-1.5 w-full"
+      style={{
+        background: styles.bg,
+        border: `1px solid ${styles.border}`,
+        minHeight: "5rem",
+        boxShadow: `0 4px 24px ${styles.glow}`,
+      }}
     >
-      <p className={clsx("text-sm font-black tracking-widest uppercase", styles.text)}>
-        {styles.emoji} {category.title}
+      <p
+        className="text-xs font-bold tracking-[0.15em] uppercase"
+        style={{ color: styles.titleColor }}
+      >
+        {category.title}
       </p>
       <p
-        className={clsx("text-xs font-semibold tracking-wide uppercase", styles.text)}
-        style={{ opacity: 0.7 }}
+        className="text-xs font-medium tracking-wide"
+        style={{ color: styles.wordsColor }}
       >
         {category.words.join("  ·  ")}
       </p>

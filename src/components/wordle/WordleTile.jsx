@@ -5,12 +5,36 @@ export default function WordleTile({ letter = "", state = "empty", flipDelay = 0
   const isRevealed = state === "correct" || state === "present" || state === "absent";
 
   const stateStyles = {
-    empty:   { background: "rgba(255,255,255,0.6)",  border: "2px solid #e9d5ff", color: "#374151" },
-    active:  { background: "rgba(255,255,255,0.9)",  border: "2px solid #a78bfa", color: "#374151" },
-    filled:  { background: "rgba(255,255,255,0.9)",  border: "2px solid #7c3aed", color: "#374151" },
-    correct: { background: "linear-gradient(135deg, #86efac, #4ade80)", border: "2px solid #22c55e", color: "#14532d" },
-    present: { background: "linear-gradient(135deg, #fde68a, #fbbf24)", border: "2px solid #f59e0b", color: "#78350f" },
-    absent:  { background: "linear-gradient(135deg, #d1d5db, #9ca3af)", border: "2px solid #6b7280", color: "#fff" },
+    empty: {
+      background: "rgba(255,255,255,0.03)",
+      border: "1px solid rgba(255,255,255,0.09)",
+      color: "transparent",
+    },
+    active: {
+      background: "rgba(255,255,255,0.03)",
+      border: "1px solid rgba(255,255,255,0.15)",
+      color: "var(--text-primary)",
+    },
+    filled: {
+      background: "rgba(255,255,255,0.06)",
+      border: "1px solid rgba(156,111,239,0.5)",
+      color: "var(--text-primary)",
+    },
+    correct: {
+      background: "linear-gradient(135deg, rgba(52,211,153,0.25), rgba(16,185,129,0.25))",
+      border: "1px solid rgba(52,211,153,0.5)",
+      color: "#6ee7b7",
+    },
+    present: {
+      background: "linear-gradient(135deg, rgba(251,191,36,0.2), rgba(245,158,11,0.2))",
+      border: "1px solid rgba(251,191,36,0.45)",
+      color: "#fde68a",
+    },
+    absent: {
+      background: "rgba(255,255,255,0.04)",
+      border: "1px solid rgba(255,255,255,0.07)",
+      color: "var(--text-muted)",
+    },
   };
 
   return (
@@ -18,7 +42,7 @@ export default function WordleTile({ letter = "", state = "empty", flipDelay = 0
       className={clsx(
         "wordle-tile relative flex items-center justify-center",
         "w-14 h-14 rounded-xl select-none",
-        "text-xl font-black uppercase tracking-wider",
+        "text-xl font-bold uppercase tracking-wider",
         isRevealed && "wordle-flip",
         bounce && "wordle-bounce",
       )}

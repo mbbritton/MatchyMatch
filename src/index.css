@@ -1,93 +1,164 @@
-L@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
 @import "tailwindcss";
 
-* {
+/* ── Design tokens ───────────────────────────────────────────────── */
+:root {
+  --bg-base:        #0d0d12;
+  --bg-surface:     #13131a;
+  --bg-elevated:    #1a1a24;
+  --bg-glass:       rgba(255, 255, 255, 0.04);
+  --bg-glass-hover: rgba(255, 255, 255, 0.07);
+
+  --border-subtle:  rgba(255, 255, 255, 0.07);
+  --border-default: rgba(255, 255, 255, 0.11);
+  --border-strong:  rgba(255, 255, 255, 0.18);
+
+  --text-primary:   #f0eeff;
+  --text-secondary: #9b93c4;
+  --text-muted:     #5c5580;
+
+  --accent-pink:    #f06292;
+  --accent-violet:  #9c6fef;
+  --accent-blue:    #5b9cf6;
+  --accent-teal:    #2dd4bf;
+
+  --grad-brand:     linear-gradient(135deg, #f06292 0%, #9c6fef 50%, #5b9cf6 100%);
+  --grad-pink-vio:  linear-gradient(135deg, #f06292 0%, #9c6fef 100%);
+  --grad-vio-blue:  linear-gradient(135deg, #9c6fef 0%, #5b9cf6 100%);
+
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:   0 4px 16px rgba(0,0,0,0.5);
+  --shadow-lg:   0 8px 40px rgba(0,0,0,0.6);
+  --shadow-glow: 0 0 32px rgba(156, 111, 239, 0.25);
+
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+  --radius-full: 9999px;
+}
+
+/* ── Reset & base ────────────────────────────────────────────────── */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html { -webkit-font-smoothing: antialiased; }
+
 body {
-  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
-  background-color: #fdf6ff;
-  background-image:
-    radial-gradient(circle at 20% 20%, #fce4f3 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, #e4f0fc 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, #f0fce4 0%, transparent 60%);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-8px); }
-  40% { transform: translateX(8px); }
-  60% { transform: translateX(-8px); }
-  80% { transform: translateX(8px); }
+/* Ambient background orbs */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+body::before {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -150px;
+  background: radial-gradient(circle, rgba(156,111,239,0.12) 0%, transparent 70%);
+}
+body::after {
+  width: 500px;
+  height: 500px;
+  bottom: -150px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(240,98,146,0.10) 0%, transparent 70%);
 }
 
-@keyframes bounce-in {
-  0% { transform: scale(0.8); opacity: 0; }
-  60% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); }
+#root {
+  position: relative;
+  z-index: 1;
 }
 
-@keyframes flip-reveal {
-  0% { transform: rotateX(0deg); }
-  50% { transform: rotateX(90deg); }
-  100% { transform: rotateX(0deg); }
+/* ── Typography helpers ──────────────────────────────────────────── */
+.font-display {
+  font-family: 'Syne', sans-serif;
 }
 
-.shake {
-  animation: shake 0.4s ease-in-out;
+.text-gradient {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.bounce-in {
-  animation: bounce-in 0.35s ease-out;
+/* ── Buttons ─────────────────────────────────────────────────────── */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-default);
+  background: var(--bg-glass);
+  color: var(--text-secondary);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--bg-glass-hover);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.btn-ghost:active:not(:disabled) {
+  transform: scale(0.97);
+}
+.btn-ghost:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
-.flip-reveal {
-  animation: flip-reveal 0.5s ease-in-out;
-}
-
-.tile-selected {
-  transform: scale(0.95);
-  transition: transform 0.1s ease;
-}
-
-.tile-transition {
-  transition: background-color 0.3s ease, transform 0.1s ease;
-}
-
+/* Keep legacy alias */
 .btn-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 10px 20px;
-  border-radius: 9999px;
-  border: 2px solid #ddd6fe;
-  background: rgba(255, 255, 255, 0.85);
-  color: #7c3aed;
-  font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-default);
+  background: var(--bg-glass);
+  color: var(--text-secondary);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
-  box-shadow: 0 2px 8px rgba(167, 139, 250, 0.15);
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
-
 .btn-outline:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(167, 139, 250, 0.25);
+  background: var(--bg-glass-hover);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+  transform: translateY(-1px);
 }
-
 .btn-outline:active:not(:disabled) {
-  transform: scale(0.95);
+  transform: scale(0.97);
 }
-
 .btn-outline:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
@@ -95,44 +166,81 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px 24px;
-  border-radius: 9999px;
+  gap: 7px;
+  padding: 11px 28px;
+  border-radius: var(--radius-full);
   border: none;
-  background: linear-gradient(135deg, #f472b6, #a78bfa);
+  background: var(--grad-pink-vio);
   color: #fff;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   white-space: nowrap;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
-  box-shadow: 0 4px 14px rgba(167, 139, 250, 0.4);
+  box-shadow: 0 4px 20px rgba(156, 111, 239, 0.35);
 }
-
 .btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(167, 139, 250, 0.5);
+  box-shadow: 0 8px 28px rgba(156, 111, 239, 0.5);
 }
-
 .btn-primary:active:not(:disabled) {
-  transform: scale(0.95);
+  transform: scale(0.97);
 }
-
 .btn-primary:disabled {
-  background: #d1d5db;
+  background: rgba(255,255,255,0.08);
+  color: var(--text-muted);
   box-shadow: none;
-  opacity: 0.5;
   cursor: not-allowed;
 }
 
-/* ── Wordle animations ───────────────────────────────────────────── */
+/* ── Animations ──────────────────────────────────────────────────── */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  18%       { transform: translateX(-7px); }
+  36%       { transform: translateX(7px); }
+  54%       { transform: translateX(-5px); }
+  72%       { transform: translateX(5px); }
+}
 
+@keyframes bounce-in {
+  0%   { transform: scale(0.85) translateY(8px); opacity: 0; }
+  60%  { transform: scale(1.03) translateY(-2px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes flip-reveal {
+  0%   { transform: rotateX(0deg); }
+  50%  { transform: rotateX(90deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(156,111,239,0); }
+  50%       { box-shadow: 0 0 20px 4px rgba(156,111,239,0.3); }
+}
+
+.shake      { animation: shake 0.42s ease-in-out; }
+.bounce-in  { animation: bounce-in 0.38s cubic-bezier(0.34,1.56,0.64,1) both; }
+.fade-up    { animation: fade-up 0.35s ease both; }
+.flip-reveal { animation: flip-reveal 0.5s ease-in-out; }
+
+.tile-transition {
+  transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
+}
+
+/* ── Wordle animations ───────────────────────────────────────────── */
 @keyframes wordle-flip {
-  0%   { transform: rotateX(0deg);   }
-  45%  { transform: rotateX(90deg);  }
-  55%  { transform: rotateX(90deg);  }
-  100% { transform: rotateX(0deg);   }
+  0%   { transform: rotateX(0deg);  }
+  45%  { transform: rotateX(90deg); }
+  55%  { transform: rotateX(90deg); }
+  100% { transform: rotateX(0deg);  }
 }
 
 @keyframes wordle-shake {
@@ -144,36 +252,35 @@ body {
 }
 
 @keyframes wordle-bounce {
-  0%,  20% { transform: translateY(0);    }
-  40%       { transform: translateY(-20px);}
-  50%       { transform: translateY(5px);  }
-  60%       { transform: translateY(-12px);}
-  80%       { transform: translateY(3px);  }
-  100%      { transform: translateY(0);    }
+  0%,  20% { transform: translateY(0);     }
+  40%       { transform: translateY(-18px); }
+  50%       { transform: translateY(4px);   }
+  60%       { transform: translateY(-10px); }
+  80%       { transform: translateY(2px);   }
+  100%      { transform: translateY(0);     }
 }
 
 @keyframes wordle-pop {
   0%   { transform: scale(1);    }
-  50%  { transform: scale(1.12); }
+  50%  { transform: scale(1.1);  }
   100% { transform: scale(1);    }
 }
 
-.wordle-tile {
-  transition: border-color 0.1s ease;
+.wordle-tile   { transition: border-color 0.1s ease; }
+.wordle-flip   { animation: wordle-flip 0.5s ease-in-out both; }
+.wordle-shake  { animation: wordle-shake 0.45s ease-in-out; }
+.wordle-bounce { animation: wordle-bounce 0.8s ease-in-out both; }
+.wordle-pop    { animation: wordle-pop 0.1s ease-in-out; }
+
+/* ── Glass card ──────────────────────────────────────────────────── */
+.glass-card {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
-.wordle-flip {
-  animation: wordle-flip 0.5s ease-in-out both;
-}
-
-.wordle-shake {
-  animation: wordle-shake 0.45s ease-in-out;
-}
-
-.wordle-bounce {
-  animation: wordle-bounce 0.8s ease-in-out both;
-}
-
-.wordle-pop {
-  animation: wordle-pop 0.1s ease-in-out;
-}
+/* ── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 3px; }
