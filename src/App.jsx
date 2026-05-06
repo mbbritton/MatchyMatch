@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import GameBoard from './components/GameBoard'
+import WordleBoard from './components/wordle/WordleBoard'
 import { puzzles } from './data/puzzles'
 
 const envIndex = parseInt(import.meta.env.VITE_PUZZLE_INDEX, 10)
@@ -10,21 +11,31 @@ const PUZZLE_INDEX =
     : 0
 
 function App() {
+  const [activeGame, setActiveGame] = useState('matchy')
   const [gameKey, setGameKey] = useState(0)
 
   const handleNewGame = () => {
     setGameKey((k) => k + 1)
   }
 
+  const handleGameChange = (game) => {
+    setActiveGame(game)
+    setGameKey((k) => k + 1)
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <Header activeGame={activeGame} onGameChange={handleGameChange} />
       <main className="flex-1 flex flex-col items-center">
-        <GameBoard
-          key={gameKey}
-          puzzle={puzzles[PUZZLE_INDEX]}
-          onNewGame={handleNewGame}
-        />
+        {activeGame === 'matchy' ? (
+          <GameBoard
+            key={`matchy-${gameKey}`}
+            puzzle={puzzles[PUZZLE_INDEX]}
+            onNewGame={handleNewGame}
+          />
+        ) : (
+          <WordleBoard key={`wordle-${gameKey}`} />
+        )}
       </main>
     </div>
   )
