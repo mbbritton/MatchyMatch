@@ -1,4 +1,5 @@
 
+�
 �export default function Header({ activeGame, onGameChange }) {
   return (
     <header
@@ -38,7 +39,7 @@
 
         {/* Game switcher — segmented pill */}
         <div
-          className="flex gap-1 p-1 rounded-full"
+          className="flex gap-1.5 p-1.5 rounded-full"
           style={{
             background: "rgba(255,255,255,0.05)",
             border: "1px solid rgba(255,255,255,0.09)",
@@ -65,9 +66,9 @@
                         color: "var(--text-muted)",
                       }
                 }
-                className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer select-none"
+                className="flex items-center gap-2.5 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer select-none"
               >
-                <span style={{ fontSize: "11px" }}>{icon}</span>
+                <span style={{ fontSize: "13px" }}>{icon}</span>
                 {label}
               </button>
             );
