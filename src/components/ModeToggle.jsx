@@ -1,44 +1,28 @@
-�export default function ModeToggle({ mode, onChange, disabled }) {
+export default function ModeToggle({ mode, onChange, disabled }) {
   return (
-    <div className="flex items-center gap-3">
-      <span
-        className="text-xs font-semibold tracking-[0.12em] uppercase"
-        style={{ color: "var(--text-muted)" }}
-      >
+    <div className="mode-toggle" aria-label="Difficulty selector">
+
+      <span className="mode-toggle__label">
         Difficulty
       </span>
 
-      {/* Segmented control */}
       <div
-        className="flex gap-1 p-0.5 rounded-full"
-        style={{
-          background: "rgba(255,255,255,0.05)",
-          border: "1px solid rgba(255,255,255,0.08)",
-        }}
+        className={`seg-control seg-control--sm${disabled ? " seg-control--locked" : ""}`}
+        role="group"
+        aria-label="Difficulty"
       >
         {[
           { id: "normal", label: "Normal" },
-          { id: "hard",   label: "Hard" },
+          { id: "hard",   label: "Hard"   },
         ].map(({ id, label }) => {
           const active = mode === id;
           return (
             <button
               key={id}
-              onClick={() => onChange(id)}
-              disabled={disabled}
-              style={
-                active
-                  ? {
-                      background: "linear-gradient(135deg, #f06292, #9c6fef)",
-                      color: "#fff",
-                      boxShadow: "0 2px 10px rgba(156,111,239,0.35)",
-                    }
-                  : {
-                      background: "transparent",
-                      color: disabled ? "var(--text-muted)" : "var(--text-secondary)",
-                    }
-              }
-              className="px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none disabled:cursor-not-allowed"
+              onClick={() => !disabled && onChange(id)}
+              disabled={disabled && !active}
+              aria-pressed={active}
+              className={`seg-control__btn${active ? " seg-control__btn--active" : ""}`}
             >
               {label}
             </button>
@@ -47,13 +31,15 @@
       </div>
 
       {disabled && (
-        <span
-          className="text-xs italic"
-          style={{ color: "var(--text-muted)" }}
-        >
+        <span className="mode-toggle__locked-badge" aria-label="Difficulty locked">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
           locked
         </span>
       )}
+
     </div>
   );
 }
