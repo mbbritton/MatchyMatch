@@ -32,7 +32,7 @@ export default function WordleKeyboard({ onKey, letterStates = {} }) {
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 w-full max-w-sm mx-auto select-none">
+    <div className="flex flex-col items-center gap-2 w-full max-w-sm mx-auto px-2 select-none">
       {ROWS.map((row, ri) => (
         <div key={ri} className="flex gap-1.5 justify-center">
           {row.map((key) => {
