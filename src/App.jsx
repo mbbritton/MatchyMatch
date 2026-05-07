@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import GameBoard from './components/GameBoard'
 import WordleBoard from './components/wordle/WordleBoard'
 import NumberCrunchBoard from './components/numbercrunch/NumberCrunchBoard'
+import CrosswordBoard from './components/crossword/CrosswordBoard'
 import { puzzles } from './data/puzzles'
 
 const envIndex = parseInt(import.meta.env.VITE_PUZZLE_INDEX, 10)
@@ -37,8 +38,10 @@ function App() {
           />
         ) : activeGame === 'wordle' ? (
           <WordleBoard key={`wordle-${gameKey}`} />
-        ) : (
+        ) : activeGame === 'crunch' ? (
           <NumberCrunchBoard key={`crunch-${gameKey}`} />
+        ) : (
+          <CrosswordBoard key={`cross-${gameKey}`} />
         )}
       </main>
       <Footer />
