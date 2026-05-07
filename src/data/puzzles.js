@@ -203,38 +203,48 @@ export const puzzles = [
 
 export const COLOR_STYLES = {
   yellow: {
-    bg:         "rgba(251,191,36,0.12)",
-    border:     "rgba(251,191,36,0.28)",
-    glow:       "rgba(251,191,36,0.12)",
-    titleColor: "#fde68a",
-    wordsColor: "#ca8a04",
+    // Sunflower / buttercup
+    bg:         "rgba(250, 210, 80, 0.18)",
+    border:     "rgba(240, 185, 40, 0.40)",
+    glow:       "rgba(245, 200, 66, 0.18)",
+    titleColor: "#8a6000",
+    wordsColor: "#6b4a00",
+    emoji:      "🌻",
   },
   green: {
-    bg:         "rgba(52,211,153,0.10)",
-    border:     "rgba(52,211,153,0.25)",
-    glow:       "rgba(52,211,153,0.10)",
-    titleColor: "#6ee7b7",
-    wordsColor: "#059669",
+    // Sage / lily-of-the-valley
+    bg:         "rgba(122, 170, 138, 0.16)",
+    border:     "rgba(100, 155, 118, 0.38)",
+    glow:       "rgba(122, 170, 138, 0.16)",
+    titleColor: "#2d6645",
+    wordsColor: "#1e4d32",
+    emoji:      "🌿",
   },
   blue: {
-    bg:         "rgba(96,165,250,0.10)",
-    border:     "rgba(96,165,250,0.25)",
-    glow:       "rgba(96,165,250,0.10)",
-    titleColor: "#93c5fd",
-    wordsColor: "#2563eb",
+    // Hydrangea / forget-me-not
+    bg:         "rgba(130, 170, 230, 0.16)",
+    border:     "rgba(110, 150, 215, 0.38)",
+    glow:       "rgba(130, 170, 230, 0.16)",
+    titleColor: "#2a4e8a",
+    wordsColor: "#1a3568",
+    emoji:      "💙",
   },
   purple: {
-    bg:         "rgba(167,139,250,0.12)",
-    border:     "rgba(167,139,250,0.28)",
-    glow:       "rgba(167,139,250,0.12)",
-    titleColor: "#c4b5fd",
-    wordsColor: "#7c3aed",
+    // Lavender / wisteria
+    bg:         "rgba(176, 126, 200, 0.16)",
+    border:     "rgba(160, 105, 185, 0.38)",
+    glow:       "rgba(176, 126, 200, 0.16)",
+    titleColor: "#5a2878",
+    wordsColor: "#3e1a58",
+    emoji:      "💜",
   },
   pink: {
-    bg:         "rgba(244,114,182,0.10)",
-    border:     "rgba(244,114,182,0.25)",
-    glow:       "rgba(244,114,182,0.10)",
-    titleColor: "#f9a8d4",
-    wordsColor: "#db2777",
+    // Rose / cherry blossom
+    bg:         "rgba(232, 96, 122, 0.14)",
+    border:     "rgba(220, 80, 108, 0.36)",
+    glow:       "rgba(232, 96, 122, 0.14)",
+    titleColor: "#8a1a38",
+    wordsColor: "#6a0e28",
+    emoji:      "🌸",
   },
 };

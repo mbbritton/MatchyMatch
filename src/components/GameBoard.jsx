@@ -142,10 +142,10 @@ export default function GameBoard({ puzzle, onNewGame }) {
       {/* Controls row */}
       <div className="flex flex-col items-center gap-3 w-full">
         <p
-          className="text-xs font-medium tracking-[0.12em] uppercase"
+          className="text-xs font-bold tracking-[0.12em] uppercase"
           style={{ color: "var(--text-muted)" }}
         >
-          Group the words into four matching sets
+          🌸 Group the words into five matching sets 🌸
         </p>
         <ModeToggle mode={mode} onChange={handleModeChange} disabled={hasStarted} />
       </div>
@@ -220,38 +220,39 @@ export default function GameBoard({ puzzle, onNewGame }) {
         <div
           className="bounce-in flex flex-col items-center gap-5 mt-2 p-8 rounded-3xl w-full"
           style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(156,111,239,0.15)",
+            background: "linear-gradient(135deg, rgba(255,240,245,0.95) 0%, rgba(245,235,255,0.95) 50%, rgba(235,248,240,0.95) 100%)",
+            border: "1.5px solid rgba(232, 96, 122, 0.25)",
+            boxShadow: "0 8px 48px rgba(232, 96, 122, 0.14), 0 0 0 1px rgba(176,126,200,0.12)",
+            backdropFilter: "blur(16px)",
           }}
         >
           <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
+            className="w-16 h-16 rounded-full flex items-center justify-center text-3xl"
             style={{
-              background: "linear-gradient(135deg, rgba(240,98,146,0.2), rgba(156,111,239,0.2))",
-              border: "1px solid rgba(156,111,239,0.3)",
+              background: "linear-gradient(135deg, rgba(232,96,122,0.15), rgba(176,126,200,0.15))",
+              border: "1.5px solid rgba(232,96,122,0.28)",
             }}
           >
-            🎉
+            🌸
           </div>
           <div className="flex flex-col items-center gap-1.5">
             <h2
-              className="font-display text-3xl"
+              className="font-display text-3xl italic"
               style={{
-                background: "linear-gradient(135deg, #f06292, #9c6fef)",
+                background: "linear-gradient(135deg, #e8607a, #b07ec8)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}
             >
-              {mode === "hard" ? "Hard mode conquered!" : "You nailed it!"}
+              {mode === "hard" ? "Bloomed in hard mode!" : "You're in full bloom!"}
             </h2>
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>
               Solved with{" "}
-              <span style={{ color: "var(--text-secondary)", fontWeight: 600 }}>
-                {lives} {lives === 1 ? "life" : "lives"}
+              <span style={{ color: "var(--text-secondary)", fontWeight: 700 }}>
+                {lives} {lives === 1 ? "petal" : "petals"}
               </span>{" "}
-              remaining
+              remaining 🌷
             </p>
           </div>
           <button onClick={onNewGame} className="btn-primary mt-1">
@@ -268,29 +269,30 @@ export default function GameBoard({ puzzle, onNewGame }) {
         <div
           className="bounce-in flex flex-col items-center gap-5 mt-2 p-8 rounded-3xl w-full"
           style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.5)",
+            background: "linear-gradient(135deg, rgba(255,245,240,0.95) 0%, rgba(255,240,248,0.95) 100%)",
+            border: "1.5px solid rgba(210, 150, 160, 0.28)",
+            boxShadow: "0 8px 48px rgba(180, 80, 100, 0.10)",
+            backdropFilter: "blur(16px)",
           }}
         >
           <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
+            className="w-16 h-16 rounded-full flex items-center justify-center text-3xl"
             style={{
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              background: "rgba(232, 96, 122, 0.08)",
+              border: "1.5px solid rgba(232, 96, 122, 0.22)",
             }}
           >
-            😔
+            🥀
           </div>
           <div className="flex flex-col items-center gap-1.5">
             <h2
-              className="font-display text-3xl"
+              className="font-display text-3xl italic"
               style={{ color: "var(--text-primary)" }}
             >
-              So close!
+              A petal fell…
             </h2>
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              The answers are revealed above.
+              The answers are revealed above. Every flower blooms again! 🌱
             </p>
           </div>
           <button onClick={onNewGame} className="btn-primary mt-1">
