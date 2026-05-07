@@ -1,4 +1,4 @@
-export const puzzles = [
+7�export const puzzles = [
   {
     id: 1,
     categories: [
@@ -203,38 +203,48 @@ export const puzzles = [
 
 export const COLOR_STYLES = {
   yellow: {
-    bg:         "rgba(251,191,36,0.12)",
-    border:     "rgba(251,191,36,0.28)",
-    glow:       "rgba(251,191,36,0.12)",
+    bg:         "rgba(251,191,36,0.10)",
+    border:     "rgba(251,191,36,0.22)",
+    glow:       "rgba(251,191,36,0.14)",
+    dotBg:      "rgba(251,191,36,0.18)",
     titleColor: "#fde68a",
-    wordsColor: "#ca8a04",
+    wordsColor: "#d97706",
+    emoji:      "🌟",
   },
   green: {
-    bg:         "rgba(52,211,153,0.10)",
-    border:     "rgba(52,211,153,0.25)",
-    glow:       "rgba(52,211,153,0.10)",
+    bg:         "rgba(52,211,153,0.09)",
+    border:     "rgba(52,211,153,0.20)",
+    glow:       "rgba(52,211,153,0.12)",
+    dotBg:      "rgba(52,211,153,0.16)",
     titleColor: "#6ee7b7",
     wordsColor: "#059669",
+    emoji:      "🌿",
   },
   blue: {
-    bg:         "rgba(96,165,250,0.10)",
-    border:     "rgba(96,165,250,0.25)",
-    glow:       "rgba(96,165,250,0.10)",
+    bg:         "rgba(96,165,250,0.09)",
+    border:     "rgba(96,165,250,0.20)",
+    glow:       "rgba(96,165,250,0.12)",
+    dotBg:      "rgba(96,165,250,0.16)",
     titleColor: "#93c5fd",
-    wordsColor: "#2563eb",
+    wordsColor: "#3b82f6",
+    emoji:      "💎",
   },
   purple: {
-    bg:         "rgba(167,139,250,0.12)",
-    border:     "rgba(167,139,250,0.28)",
-    glow:       "rgba(167,139,250,0.12)",
+    bg:         "rgba(167,139,250,0.10)",
+    border:     "rgba(167,139,250,0.22)",
+    glow:       "rgba(167,139,250,0.14)",
+    dotBg:      "rgba(167,139,250,0.18)",
     titleColor: "#c4b5fd",
-    wordsColor: "#7c3aed",
+    wordsColor: "#8b5cf6",
+    emoji:      "🔮",
   },
   pink: {
-    bg:         "rgba(244,114,182,0.10)",
-    border:     "rgba(244,114,182,0.25)",
-    glow:       "rgba(244,114,182,0.10)",
+    bg:         "rgba(244,114,182,0.09)",
+    border:     "rgba(244,114,182,0.20)",
+    glow:       "rgba(244,114,182,0.12)",
+    dotBg:      "rgba(244,114,182,0.16)",
     titleColor: "#f9a8d4",
-    wordsColor: "#db2777",
+    wordsColor: "#ec4899",
+    emoji:      "🌸",
   },
 };

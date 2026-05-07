@@ -18,6 +18,146 @@ function shuffleArray(arr) {
   return a;
 }
 
+/* ── Shuffle icon ─────────────────────────────────────────────── */
+function ShuffleIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="16 3 21 3 21 8"/>
+      <line x1="4" y1="20" x2="21" y2="3"/>
+      <polyline points="21 16 21 21 16 21"/>
+      <line x1="15" y1="15" x2="21" y2="21"/>
+    </svg>
+  );
+}
+
+/* ── X icon ───────────────────────────────────────────────────── */
+function XIcon() {
+  return (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  );
+}
+
+/* ── Check icon ───────────────────────────────────────────────── */
+function CheckIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  );
+}
+
+/* ── Replay icon ──────────────────────────────────────────────── */
+function ReplayIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="23 4 23 10 17 10"/>
+      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+    </svg>
+  );
+}
+
+/* ── End-state card ───────────────────────────────────────────── */
+function EndCard({ won, lives, mode, onAction }) {
+  return (
+    <div
+      className="bounce-in w-full rounded-3xl overflow-hidden"
+      style={{
+        background: won
+          ? "linear-gradient(145deg, rgba(167,139,250,0.08) 0%, rgba(244,114,182,0.06) 100%)"
+          : "rgba(255,255,255,0.025)",
+        border: won
+          ? "1px solid rgba(167,139,250,0.22)"
+          : "1px solid rgba(255,255,255,0.07)",
+        boxShadow: won
+          ? "0 8px 48px rgba(167,139,250,0.18), 0 0 0 1px rgba(167,139,250,0.1)"
+          : "0 8px 40px rgba(0,0,0,0.5)",
+      }}
+    >
+      {/* Top accent bar */}
+      {won && (
+        <div
+          style={{
+            height: 3,
+            background: "linear-gradient(90deg, #f472b6, #a78bfa, #60a5fa)",
+          }}
+        />
+      )}
+
+      <div className="flex flex-col items-center gap-5 px-8 py-8">
+        {/* Emoji */}
+        <div
+          className="float w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
+          style={{
+            background: won
+              ? "linear-gradient(135deg, rgba(244,114,182,0.2), rgba(167,139,250,0.25))"
+              : "rgba(255,255,255,0.05)",
+            border: won
+              ? "1px solid rgba(167,139,250,0.3)"
+              : "1px solid rgba(255,255,255,0.09)",
+            boxShadow: won ? "0 4px 20px rgba(167,139,250,0.25)" : "none",
+          }}
+        >
+          {won ? "🎉" : "😔"}
+        </div>
+
+        {/* Headline */}
+        <div className="flex flex-col items-center gap-2 text-center">
+          <h2
+            className="font-display leading-tight"
+            style={{
+              fontSize: "clamp(1.6rem, 5vw, 2rem)",
+              fontWeight: 800,
+              ...(won
+                ? {
+                    background: "linear-gradient(135deg, #f472b6, #a78bfa)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }
+                : { color: "var(--text-primary)" }),
+            }}
+          >
+            {won
+              ? mode === "hard"
+                ? "Hard mode conquered! 🔥"
+                : "You nailed it!"
+              : "Better luck next time!"}
+          </h2>
+
+          <p style={{ fontSize: "13px", color: "var(--text-muted)", lineHeight: 1.6 }}>
+            {won ? (
+              <>
+                Solved with{" "}
+                <span style={{ color: "var(--text-secondary)", fontWeight: 700 }}>
+                  {lives} {lives === 1 ? "life" : "lives"}
+                </span>{" "}
+                remaining
+              </>
+            ) : (
+              "The categories are revealed above."
+            )}
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div className="divider" style={{ opacity: 0.6 }} />
+
+        {/* CTA */}
+        <button onClick={onAction} className="btn-primary">
+          {won ? "Play Again" : "Try Again"}
+          <ReplayIcon />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MAIN COMPONENT
+══════════════════════════════════════════════════════════════════ */
 export default function GameBoard({ puzzle, onNewGame }) {
   const allWords = puzzle.categories.flatMap((c) =>
     c.words.map((w) => ({ word: w, categoryId: c.id }))
@@ -39,7 +179,8 @@ export default function GameBoard({ puzzle, onNewGame }) {
   const isWordSelected = (word) => selected.includes(word);
 
   const showToast = useCallback((msg) => {
-    setToast(msg);
+    setToast(null);
+    setTimeout(() => setToast(msg), 10);
   }, []);
 
   const handleModeChange = (newMode) => {
@@ -78,7 +219,6 @@ export default function GameBoard({ puzzle, onNewGame }) {
   const handleSubmit = () => {
     if (selected.length !== MAX_SELECTED) return;
     if (gameState !== "playing") return;
-
     if (!hasStarted) setHasStarted(true);
 
     const selectedCategoryIds = selected.map((word) => {
@@ -110,9 +250,9 @@ export default function GameBoard({ puzzle, onNewGame }) {
       setSelected([]);
 
       if (oneAway && mode === "normal") {
-        showToast("One away — so close!");
+        showToast("So close — one away! 👀");
       } else {
-        showToast("Not quite. Try again!");
+        showToast("Not quite. Keep going!");
       }
 
       if (newLives <= 0) {
@@ -134,28 +274,36 @@ export default function GameBoard({ puzzle, onNewGame }) {
   };
 
   const unrevealed = tiles.filter((t) => !isWordRevealed(t.word));
+  const selectionCount = selected.length;
 
   return (
-    <div className="flex flex-col items-center gap-6 w-full max-w-2xl mx-auto px-4 sm:px-6 pt-6 pb-10">
+    <div className="flex flex-col items-center gap-5 w-full max-w-2xl mx-auto px-3 sm:px-6 pt-4 pb-12">
       {toast && <Toast message={toast} onDone={() => setToast(null)} />}
 
-      {/* Controls row */}
+      {/* ── Header row: instruction + mode toggle ── */}
       <div className="flex flex-col items-center gap-3 w-full">
         <p
-          className="text-xs font-medium tracking-[0.12em] uppercase"
-          style={{ color: "var(--text-muted)" }}
+          style={{
+            fontSize: "12px",
+            fontWeight: 600,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            color: "var(--text-muted)",
+          }}
         >
-          Group the words into four matching sets
+          Find five groups of four
         </p>
         <ModeToggle mode={mode} onChange={handleModeChange} disabled={hasStarted} />
       </div>
 
-      {/* Board */}
+      {/* ── Board ── */}
       <div className="w-full flex flex-col gap-2">
+        {/* Revealed categories */}
         {guessedCategories.map((cat) => (
           <RevealedCategory key={cat.id} category={cat} />
         ))}
 
+        {/* Tile grid */}
         {unrevealed.length > 0 && (
           <div
             ref={gridRef}
@@ -178,128 +326,61 @@ export default function GameBoard({ puzzle, onNewGame }) {
         )}
       </div>
 
-      {/* Action bar */}
+      {/* ── Action bar ── */}
       {gameState === "playing" && (
-        <div className="flex flex-col items-center gap-5 w-full">
+        <div className="flex flex-col items-center gap-4 w-full">
           <LivesDisplay lives={lives} maxLives={LIVES_BY_MODE[mode]} />
 
-          <div className="flex gap-2.5 flex-wrap justify-center">
+          {/* Selection counter */}
+          <div
+            style={{
+              fontSize: "11px",
+              fontWeight: 600,
+              letterSpacing: "0.08em",
+              color: selectionCount === MAX_SELECTED ? "var(--violet)" : "var(--text-muted)",
+              transition: "color 0.2s ease",
+              minHeight: "16px",
+            }}
+          >
+            {selectionCount > 0
+              ? `${selectionCount} of ${MAX_SELECTED} selected`
+              : "\u00A0"}
+          </div>
+
+          {/* Buttons */}
+          <div className="flex gap-2 flex-wrap justify-center">
             <button onClick={handleShuffle} className="btn-outline">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/>
-                <polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/>
-              </svg>
+              <ShuffleIcon />
               Shuffle
             </button>
             <button
               onClick={handleDeselectAll}
-              disabled={selected.length === 0}
+              disabled={selectionCount === 0}
               className="btn-outline"
             >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-              </svg>
+              <XIcon />
               Deselect
             </button>
             <button
               onClick={handleSubmit}
-              disabled={selected.length !== MAX_SELECTED}
+              disabled={selectionCount !== MAX_SELECTED}
               className="btn-primary"
             >
               Submit
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
+              <CheckIcon />
             </button>
           </div>
         </div>
       )}
 
-      {/* Win state */}
-      {gameState === "won" && (
-        <div
-          className="bounce-in flex flex-col items-center gap-5 mt-2 p-8 rounded-3xl w-full"
-          style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(156,111,239,0.15)",
-          }}
-        >
-          <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-            style={{
-              background: "linear-gradient(135deg, rgba(240,98,146,0.2), rgba(156,111,239,0.2))",
-              border: "1px solid rgba(156,111,239,0.3)",
-            }}
-          >
-            🎉
-          </div>
-          <div className="flex flex-col items-center gap-1.5">
-            <h2
-              className="font-display text-3xl"
-              style={{
-                background: "linear-gradient(135deg, #f06292, #9c6fef)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              {mode === "hard" ? "Hard mode conquered!" : "You nailed it!"}
-            </h2>
-            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              Solved with{" "}
-              <span style={{ color: "var(--text-secondary)", fontWeight: 600 }}>
-                {lives} {lives === 1 ? "life" : "lives"}
-              </span>{" "}
-              remaining
-            </p>
-          </div>
-          <button onClick={onNewGame} className="btn-primary mt-1">
-            Play Again
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
-            </svg>
-          </button>
-        </div>
-      )}
-
-      {/* Lose state */}
-      {gameState === "lost" && (
-        <div
-          className="bounce-in flex flex-col items-center gap-5 mt-2 p-8 rounded-3xl w-full"
-          style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.5)",
-          }}
-        >
-          <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-            style={{
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.1)",
-            }}
-          >
-            😔
-          </div>
-          <div className="flex flex-col items-center gap-1.5">
-            <h2
-              className="font-display text-3xl"
-              style={{ color: "var(--text-primary)" }}
-            >
-              So close!
-            </h2>
-            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              The answers are revealed above.
-            </p>
-          </div>
-          <button onClick={onNewGame} className="btn-primary mt-1">
-            Try Again
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
-            </svg>
-          </button>
-        </div>
+      {/* ── End states ── */}
+      {(gameState === "won" || gameState === "lost") && (
+        <EndCard
+          won={gameState === "won"}
+          lives={lives}
+          mode={mode}
+          onAction={onNewGame}
+        />
       )}
     </div>
   );

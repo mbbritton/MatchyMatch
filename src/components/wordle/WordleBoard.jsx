@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+">import { useState, useEffect, useCallback } from "react";
 import WordleRow from "./WordleRow";
 import WordleKeyboard from "./WordleKeyboard";
 import Toast from "../Toast";
@@ -162,93 +162,107 @@ export default function WordleBoard() {
       {/* Win state */}
       {gameState === "won" && (
         <div
-          className="bounce-in flex flex-col items-center gap-5 mt-2 p-8 rounded-3xl w-full"
+          className="bounce-in w-full rounded-3xl overflow-hidden"
           style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(156,111,239,0.15)",
+            background: "linear-gradient(145deg, rgba(52,211,153,0.07) 0%, rgba(167,139,250,0.06) 100%)",
+            border: "1px solid rgba(52,211,153,0.2)",
+            boxShadow: "0 8px 48px rgba(52,211,153,0.12), 0 0 0 1px rgba(52,211,153,0.08)",
           }}
         >
-          <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-            style={{
-              background: "linear-gradient(135deg, rgba(52,211,153,0.2), rgba(16,185,129,0.2))",
-              border: "1px solid rgba(52,211,153,0.3)",
-            }}
-          >
-            🎉
-          </div>
-          <div className="flex flex-col items-center gap-1.5">
-            <h2
-              className="font-display text-3xl"
+          <div style={{ height: 3, background: "linear-gradient(90deg, #34d399, #a78bfa, #60a5fa)" }} />
+          <div className="flex flex-col items-center gap-5 px-8 py-8">
+            <div
+              className="float w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
               style={{
-                background: "linear-gradient(135deg, #34d399, #9c6fef)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
+                background: "linear-gradient(135deg, rgba(52,211,153,0.2), rgba(167,139,250,0.2))",
+                border: "1px solid rgba(52,211,153,0.3)",
+                boxShadow: "0 4px 20px rgba(52,211,153,0.2)",
               }}
             >
-              You got it!
-            </h2>
-            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              The word was{" "}
-              <span style={{ color: "var(--text-primary)", fontWeight: 700, letterSpacing: "0.1em" }}>
-                {answer}
-              </span>
-              {" "}— solved in{" "}
-              <span style={{ color: "var(--text-secondary)", fontWeight: 600 }}>
-                {guesses.length} {guesses.length === 1 ? "guess" : "guesses"}
-              </span>
-            </p>
+              🎉
+            </div>
+            <div className="flex flex-col items-center gap-2 text-center">
+              <h2
+                className="font-display leading-tight"
+                style={{
+                  fontSize: "clamp(1.6rem, 5vw, 2rem)",
+                  fontWeight: 800,
+                  background: "linear-gradient(135deg, #34d399, #a78bfa)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                You got it!
+              </h2>
+              <p style={{ fontSize: "13px", color: "var(--text-muted)", lineHeight: 1.6 }}>
+                The word was{" "}
+                <span style={{ color: "var(--text-primary)", fontWeight: 700, letterSpacing: "0.1em" }}>
+                  {answer}
+                </span>
+                {" "}— solved in{" "}
+                <span style={{ color: "var(--text-secondary)", fontWeight: 600 }}>
+                  {guesses.length} {guesses.length === 1 ? "guess" : "guesses"}
+                </span>
+              </p>
+            </div>
+            <div className="divider" style={{ opacity: 0.6 }} />
+            <button onClick={handleNewGame} className="btn-primary">
+              Play Again
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+              </svg>
+            </button>
           </div>
-          <button onClick={handleNewGame} className="btn-primary mt-1">
-            Play Again
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
-            </svg>
-          </button>
         </div>
       )}
 
       {/* Lose state */}
       {gameState === "lost" && (
         <div
-          className="bounce-in flex flex-col items-center gap-5 mt-2 p-8 rounded-3xl w-full"
+          className="bounce-in w-full rounded-3xl overflow-hidden"
           style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.5)",
+            background: "rgba(255,255,255,0.025)",
+            border: "1px solid rgba(255,255,255,0.07)",
+            boxShadow: "0 8px 40px rgba(0,0,0,0.5)",
           }}
         >
-          <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-            style={{
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.1)",
-            }}
-          >
-            😔
-          </div>
-          <div className="flex flex-col items-center gap-1.5">
-            <h2
-              className="font-display text-3xl"
-              style={{ color: "var(--text-primary)" }}
+          <div className="flex flex-col items-center gap-5 px-8 py-8">
+            <div
+              className="float w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
+              style={{
+                background: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(255,255,255,0.09)",
+              }}
             >
-              So close!
-            </h2>
-            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              The word was{" "}
-              <span style={{ color: "var(--text-primary)", fontWeight: 700, letterSpacing: "0.1em" }}>
-                {answer}
-              </span>
-            </p>
+              😔
+            </div>
+            <div className="flex flex-col items-center gap-2 text-center">
+              <h2
+                className="font-display leading-tight"
+                style={{
+                  fontSize: "clamp(1.6rem, 5vw, 2rem)",
+                  fontWeight: 800,
+                  color: "var(--text-primary)",
+                }}
+              >
+                Better luck next time!
+              </h2>
+              <p style={{ fontSize: "13px", color: "var(--text-muted)", lineHeight: 1.6 }}>
+                The word was{" "}
+                <span style={{ color: "var(--text-primary)", fontWeight: 700, letterSpacing: "0.1em" }}>
+                  {answer}
+                </span>
+              </p>
+            </div>
+            <div className="divider" style={{ opacity: 0.6 }} />
+            <button onClick={handleNewGame} className="btn-primary">
+              Try Again
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+              </svg>
+            </button>
           </div>
-          <button onClick={handleNewGame} className="btn-primary mt-1">
-            Try Again
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
-            </svg>
-          </button>
         </div>
       )}
     </div>
