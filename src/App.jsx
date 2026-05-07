@@ -1,9 +1,8 @@
-��import { useState } from 'react'
+import { useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import GameBoard from './components/GameBoard'
 import WordleBoard from './components/wordle/WordleBoard'
-import Footer from './components/Footer'
 import { puzzles } from './data/puzzles'
 
 const envIndex = parseInt(import.meta.env.VITE_PUZZLE_INDEX, 10)
