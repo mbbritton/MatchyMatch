@@ -1,5 +1,6 @@
-import { useState } from 'react'
+��import { useState } from 'react'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import GameBoard from './components/GameBoard'
 import WordleBoard from './components/wordle/WordleBoard'
 import { puzzles } from './data/puzzles'
@@ -37,6 +38,7 @@ function App() {
           <WordleBoard key={`wordle-${gameKey}`} />
         )}
       </main>
+      <Footer />
     </div>
   )
 }
