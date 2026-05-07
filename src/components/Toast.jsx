@@ -1,5 +1,5 @@
-import { clsx } from "clsx";
 import { useEffect, useState } from "react";
+import { clsx } from "clsx";
 
 export default function Toast({ message, onDone }) {
   const [visible, setVisible] = useState(true);
@@ -7,7 +7,7 @@ export default function Toast({ message, onDone }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false);
-      setTimeout(onDone, 300);
+      setTimeout(onDone, 280);
     }, 1800);
     return () => clearTimeout(timer);
   }, [onDone]);
@@ -15,19 +15,21 @@ export default function Toast({ message, onDone }) {
   return (
     <div
       className={clsx(
-        "fixed top-24 left-1/2 -translate-x-1/2 z-50",
-        "text-sm font-semibold px-5 py-2.5 rounded-full",
-        "transition-all duration-300 pointer-events-none",
-        visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3"
+        "fixed top-20 left-1/2 -translate-x-1/2 z-50",
+        "text-sm font-medium px-5 py-2.5 rounded-full",
+        "pointer-events-none",
+        "transition-all duration-280"
       )}
       style={{
-        background: "rgba(26,26,36,0.92)",
-        border: "1px solid rgba(255,255,255,0.12)",
-        color: "var(--text-primary)",
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
-        boxShadow: "0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(156,111,239,0.2)",
-        letterSpacing: "0.01em",
+        background: "rgba(28,28,30,0.88)",
+        color: "#ffffff",
+        backdropFilter: "blur(20px) saturate(180%)",
+        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        boxShadow: "0 4px 24px rgba(0,0,0,0.18), 0 0 0 0.5px rgba(255,255,255,0.08)",
+        letterSpacing: "-0.01em",
+        opacity: visible ? 1 : 0,
+        transform: `translateX(-50%) translateY(${visible ? "0" : "-6px"})`,
+        transition: "opacity 0.28s ease, transform 0.28s ease",
       }}
     >
       {message}

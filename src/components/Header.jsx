@@ -2,35 +2,56 @@ export default function Header({ activeGame, onGameChange }) {
   return (
     <header
       style={{
-        background: "rgba(13,13,18,0.85)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        borderBottom: "1px solid rgba(255,255,255,0.07)",
+        background: "rgba(242,242,247,0.85)",
+        backdropFilter: "blur(24px) saturate(180%)",
+        WebkitBackdropFilter: "blur(24px) saturate(180%)",
+        borderBottom: "0.5px solid rgba(0,0,0,0.12)",
       }}
       className="w-full sticky top-0 z-40"
     >
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
 
         {/* Wordmark */}
-        <h1
-          className="font-display select-none tracking-tight leading-none shrink-0 min-w-0"
-          style={{
-            fontSize: "clamp(1.4rem, 4vw, 1.85rem)",
-            background: "linear-gradient(135deg, #f06292 0%, #9c6fef 50%, #5b9cf6 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          {activeGame === "matchy" ? "Matchy Match" : "Wordle-ish"}
-        </h1>
+        <div className="flex items-center gap-2.5 shrink-0 min-w-0">
+          <div
+            style={{
+              width: 30,
+              height: 30,
+              borderRadius: 8,
+              background: "var(--accent)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+              boxShadow: "0 2px 8px rgba(0,122,255,0.35)",
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" fill="white" opacity="0.9"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5" fill="white" opacity="0.9"/>
+            </svg>
+          </div>
+          <h1
+            className="select-none leading-none"
+            style={{
+              fontSize: "clamp(1.1rem, 3.5vw, 1.3rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.025em",
+              color: "var(--label-primary)",
+            }}
+          >
+            {activeGame === "matchy" ? "Matchy Match" : "Wordle-ish"}
+          </h1>
+        </div>
 
-        {/* Game switcher — segmented pill */}
+        {/* Game switcher — iOS segmented control */}
         <nav className="seg-control" role="tablist" aria-label="Game switcher">
           {[
-            { id: "matchy", label: "Matchy", icon: "◈" },
-            { id: "wordle", label: "Wordle", icon: "⬛" },
-          ].map(({ id, label, icon }) => {
+            { id: "matchy", label: "Matchy" },
+            { id: "wordle", label: "Wordle" },
+          ].map(({ id, label }) => {
             const active = activeGame === id;
             return (
               <button
@@ -40,8 +61,7 @@ export default function Header({ activeGame, onGameChange }) {
                 onClick={() => onGameChange(id)}
                 className={`seg-control__btn${active ? " seg-control__btn--active" : ""}`}
               >
-                <span className="seg-control__icon" aria-hidden="true">{icon}</span>
-                <span>{label}</span>
+                {label}
               </button>
             );
           })}

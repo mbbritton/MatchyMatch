@@ -6,34 +6,34 @@ export default function WordleTile({ letter = "", state = "empty", flipDelay = 0
 
   const stateStyles = {
     empty: {
-      background: "rgba(255,255,255,0.03)",
-      border: "1px solid rgba(255,255,255,0.09)",
+      background: "var(--bg-surface)",
+      border: "1.5px solid var(--separator-opaque)",
       color: "transparent",
     },
     active: {
-      background: "rgba(255,255,255,0.03)",
-      border: "1px solid rgba(255,255,255,0.15)",
-      color: "var(--text-primary)",
+      background: "var(--bg-surface)",
+      border: "1.5px solid var(--separator-opaque)",
+      color: "var(--label-primary)",
     },
     filled: {
-      background: "rgba(255,255,255,0.06)",
-      border: "1px solid rgba(156,111,239,0.5)",
-      color: "var(--text-primary)",
+      background: "var(--bg-surface)",
+      border: "1.5px solid var(--accent)",
+      color: "var(--label-primary)",
     },
     correct: {
-      background: "linear-gradient(135deg, rgba(52,211,153,0.25), rgba(16,185,129,0.25))",
-      border: "1px solid rgba(52,211,153,0.5)",
-      color: "#6ee7b7",
+      background: "#34c759",
+      border: "1.5px solid #34c759",
+      color: "#ffffff",
     },
     present: {
-      background: "linear-gradient(135deg, rgba(251,191,36,0.2), rgba(245,158,11,0.2))",
-      border: "1px solid rgba(251,191,36,0.45)",
-      color: "#fde68a",
+      background: "#ff9f0a",
+      border: "1.5px solid #ff9f0a",
+      color: "#ffffff",
     },
     absent: {
-      background: "rgba(255,255,255,0.04)",
-      border: "1px solid rgba(255,255,255,0.07)",
-      color: "var(--text-muted)",
+      background: "var(--fill-secondary)",
+      border: "1.5px solid transparent",
+      color: "var(--label-tertiary)",
     },
   };
 
@@ -50,6 +50,7 @@ export default function WordleTile({ letter = "", state = "empty", flipDelay = 0
         ...stateStyles[state],
         animationDelay: isRevealed ? `${flipDelay}ms` : "0ms",
         perspective: "250px",
+        boxShadow: state === "empty" || state === "active" ? "var(--shadow-xs)" : "none",
       }}
     >
       {letter}

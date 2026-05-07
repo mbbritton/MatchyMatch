@@ -10,24 +10,25 @@ export default function WordleKeyboard({ onKey, letterStates = {} }) {
   const stateStyle = (key) => {
     const s = letterStates[key];
     if (s === "correct") return {
-      background: "linear-gradient(135deg, rgba(52,211,153,0.3), rgba(16,185,129,0.3))",
-      border: "1px solid rgba(52,211,153,0.5)",
-      color: "#6ee7b7",
+      background: "#34c759",
+      border: "none",
+      color: "#ffffff",
     };
     if (s === "present") return {
-      background: "linear-gradient(135deg, rgba(251,191,36,0.25), rgba(245,158,11,0.25))",
-      border: "1px solid rgba(251,191,36,0.45)",
-      color: "#fde68a",
+      background: "#ff9f0a",
+      border: "none",
+      color: "#ffffff",
     };
     if (s === "absent") return {
-      background: "rgba(255,255,255,0.04)",
-      border: "1px solid rgba(255,255,255,0.06)",
-      color: "var(--text-muted)",
+      background: "var(--fill-primary)",
+      border: "none",
+      color: "var(--label-tertiary)",
     };
     return {
-      background: "rgba(255,255,255,0.06)",
-      border: "1px solid rgba(255,255,255,0.1)",
-      color: "var(--text-secondary)",
+      background: "var(--bg-surface)",
+      border: "none",
+      color: "var(--label-primary)",
+      boxShadow: "var(--shadow-sm)",
     };
   };
 
@@ -48,20 +49,6 @@ export default function WordleKeyboard({ onKey, letterStates = {} }) {
                   isWide ? "px-2 text-xs min-w-[56px] h-14" : "w-10 h-14 text-sm p-0"
                 )}
                 style={stateStyle(key)}
-                onMouseEnter={(e) => {
-                  const s = letterStates[key];
-                  if (!s) {
-                    e.currentTarget.style.background = "rgba(255,255,255,0.1)";
-                    e.currentTarget.style.color = "var(--text-primary)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  const s = letterStates[key];
-                  if (!s) {
-                    e.currentTarget.style.background = "rgba(255,255,255,0.06)";
-                    e.currentTarget.style.color = "var(--text-secondary)";
-                  }
-                }}
               >
                 {key}
               </button>

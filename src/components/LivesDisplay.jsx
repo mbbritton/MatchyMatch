@@ -1,15 +1,13 @@
-import { clsx } from "clsx";
-
-export default function LivesDisplay({ lives, maxLives = 4 }) {
+export default function LivesDisplay({ lives, maxLives = 5 }) {
   return (
-    <div className="flex flex-col items-center gap-2.5">
+    <div className="flex flex-col items-center gap-2">
       <span
-        className="text-xs font-semibold tracking-[0.12em] uppercase"
-        style={{ color: "var(--text-muted)" }}
+        className="text-xs font-medium tracking-wide"
+        style={{ color: "var(--label-tertiary)", letterSpacing: "0.04em" }}
       >
-        Lives remaining
+        {lives === 1 ? "1 life remaining" : `${lives} lives remaining`}
       </span>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-1.5 items-center">
         {Array.from({ length: maxLives }).map((_, i) => {
           const alive = i < lives;
           return (
@@ -17,16 +15,12 @@ export default function LivesDisplay({ lives, maxLives = 4 }) {
               key={i}
               className="transition-all duration-300"
               style={{
-                width: 10,
-                height: 10,
+                width: 8,
+                height: 8,
                 borderRadius: "50%",
-                background: alive
-                  ? "linear-gradient(135deg, #f06292, #9c6fef)"
-                  : "rgba(255,255,255,0.1)",
-                boxShadow: alive
-                  ? "0 0 8px rgba(156,111,239,0.6)"
-                  : "none",
-                transform: alive ? "scale(1)" : "scale(0.75)",
+                background: alive ? "var(--accent)" : "var(--fill-secondary)",
+                transform: alive ? "scale(1)" : "scale(0.7)",
+                opacity: alive ? 1 : 0.4,
               }}
             />
           );

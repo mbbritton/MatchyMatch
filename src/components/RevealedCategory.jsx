@@ -6,16 +6,14 @@ export default function RevealedCategory({ category }) {
 
   return (
     <div
-      className="bounce-in rounded-2xl px-5 py-4 flex flex-col items-center justify-center gap-1.5 w-full"
+      className="bounce-in rounded-2xl px-5 py-4 flex flex-col items-center justify-center gap-1 w-full"
       style={{
         background: styles.bg,
-        border: `1px solid ${styles.border}`,
         minHeight: "5rem",
-        boxShadow: `0 4px 24px ${styles.glow}`,
       }}
     >
       <p
-        className="text-xs font-bold tracking-[0.15em] uppercase"
+        className="text-xs font-semibold tracking-[0.08em] uppercase"
         style={{ color: styles.titleColor }}
       >
         {category.title}
