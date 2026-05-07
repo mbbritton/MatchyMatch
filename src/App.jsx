@@ -1,4 +1,4 @@
-import { useState } from 'react'
+�import { useState } from 'react'
 import Header from './components/Header'
 import GameBoard from './components/GameBoard'
 import WordleBoard from './components/wordle/WordleBoard'
@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header activeGame={activeGame} onGameChange={handleGameChange} />
-      <main className="flex-1 flex flex-col items-center pt-2 pb-16">
+      <main className="flex-1 flex flex-col items-center pt-8 pb-16">
         {activeGame === 'matchy' ? (
           <GameBoard
             key={`matchy-${gameKey}`}
