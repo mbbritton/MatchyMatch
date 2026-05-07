@@ -164,39 +164,35 @@ export default function WordleBoard() {
         <div
           className="bounce-in flex flex-col items-center gap-5 mt-2 p-8 rounded-3xl w-full"
           style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(156,111,239,0.15)",
+            background: "linear-gradient(135deg, rgba(200,235,210,0.70), rgba(220,240,255,0.70))",
+            border: "1.5px solid rgba(100,160,120,0.30)",
+            boxShadow: "0 8px 40px rgba(100,160,120,0.14)",
           }}
         >
-          <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-            style={{
-              background: "linear-gradient(135deg, rgba(52,211,153,0.2), rgba(16,185,129,0.2))",
-              border: "1px solid rgba(52,211,153,0.3)",
-            }}
-          >
-            🎉
+          <div className="flex gap-1 text-3xl select-none" aria-hidden="true">
+            <span style={{ animation: "bloom 0.5s 0.0s cubic-bezier(0.34,1.56,0.64,1) both" }}>🌿</span>
+            <span style={{ animation: "bloom 0.5s 0.1s cubic-bezier(0.34,1.56,0.64,1) both" }}>🌸</span>
+            <span style={{ animation: "bloom 0.5s 0.2s cubic-bezier(0.34,1.56,0.64,1) both" }}>🌿</span>
           </div>
           <div className="flex flex-col items-center gap-1.5">
             <h2
-              className="font-display text-3xl"
+              className="font-display italic text-3xl"
               style={{
-                background: "linear-gradient(135deg, #34d399, #9c6fef)",
+                background: "linear-gradient(135deg, #2d7a4a, #7aab8a)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}
             >
-              You got it!
+              Blooming brilliant!
             </h2>
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>
               The word was{" "}
-              <span style={{ color: "var(--text-primary)", fontWeight: 700, letterSpacing: "0.1em" }}>
+              <span style={{ color: "#1a5c35", fontWeight: 700, letterSpacing: "0.1em" }}>
                 {answer}
               </span>
               {" "}— solved in{" "}
-              <span style={{ color: "var(--text-secondary)", fontWeight: 600 }}>
+              <span style={{ color: "var(--text-secondary)", fontWeight: 700 }}>
                 {guesses.length} {guesses.length === 1 ? "guess" : "guesses"}
               </span>
             </p>
@@ -215,26 +211,18 @@ export default function WordleBoard() {
         <div
           className="bounce-in flex flex-col items-center gap-5 mt-2 p-8 rounded-3xl w-full"
           style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.5)",
+            background: "linear-gradient(135deg, rgba(255,248,240,0.92), rgba(255,240,245,0.92))",
+            border: "1.5px solid rgba(180,120,100,0.20)",
+            boxShadow: "0 8px 40px rgba(180,100,80,0.10)",
           }}
         >
-          <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-            style={{
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.1)",
-            }}
-          >
-            😔
-          </div>
+          <div className="text-4xl select-none" aria-hidden="true">🥀</div>
           <div className="flex flex-col items-center gap-1.5">
             <h2
-              className="font-display text-3xl"
+              className="font-display italic text-3xl"
               style={{ color: "var(--text-primary)" }}
             >
-              So close!
+              Wilted this time…
             </h2>
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>
               The word was{" "}

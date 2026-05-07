@@ -1,4 +1,3 @@
-import { clsx } from "clsx";
 import { COLOR_STYLES } from "../data/puzzles";
 
 export default function RevealedCategory({ category }) {
@@ -9,17 +8,21 @@ export default function RevealedCategory({ category }) {
       className="bounce-in rounded-2xl px-5 py-4 flex flex-col items-center justify-center gap-1.5 w-full"
       style={{
         background: styles.bg,
-        border: `1px solid ${styles.border}`,
+        border: `1.5px solid ${styles.border}`,
         minHeight: "5rem",
-        boxShadow: `0 4px 24px ${styles.glow}`,
+        boxShadow: `0 4px 20px ${styles.glow}`,
       }}
     >
-      <p
-        className="text-xs font-bold tracking-[0.15em] uppercase"
-        style={{ color: styles.titleColor }}
-      >
-        {category.title}
-      </p>
+      <div className="flex items-center gap-2">
+        <span style={{ fontSize: "14px" }} aria-hidden="true">{styles.emoji}</span>
+        <p
+          className="text-xs font-bold tracking-[0.15em] uppercase font-display not-italic"
+          style={{ color: styles.titleColor, fontFamily: "'Lato', sans-serif", letterSpacing: "0.12em" }}
+        >
+          {category.title}
+        </p>
+        <span style={{ fontSize: "14px" }} aria-hidden="true">{styles.emoji}</span>
+      </div>
       <p
         className="text-xs font-medium tracking-wide"
         style={{ color: styles.wordsColor }}

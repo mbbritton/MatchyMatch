@@ -3,7 +3,7 @@ export default function ModeToggle({ mode, onChange, disabled }) {
     <div className="mode-toggle" aria-label="Difficulty selector">
 
       <span className="mode-toggle__label">
-        Difficulty
+        🌿 Difficulty
       </span>
 
       <div
@@ -12,9 +12,9 @@ export default function ModeToggle({ mode, onChange, disabled }) {
         aria-label="Difficulty"
       >
         {[
-          { id: "normal", label: "Normal" },
-          { id: "hard",   label: "Hard"   },
-        ].map(({ id, label }) => {
+          { id: "normal", label: "Normal", icon: "🌼" },
+          { id: "hard",   label: "Hard",   icon: "🥀" },
+        ].map(({ id, label, icon }) => {
           const active = mode === id;
           return (
             <button
@@ -24,6 +24,7 @@ export default function ModeToggle({ mode, onChange, disabled }) {
               aria-pressed={active}
               className={`seg-control__btn${active ? " seg-control__btn--active" : ""}`}
             >
+              <span className="seg-control__icon" aria-hidden="true">{icon}</span>
               {label}
             </button>
           );
