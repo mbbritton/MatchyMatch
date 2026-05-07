@@ -9,11 +9,11 @@ export default function Header({ activeGame, onGameChange }) {
       }}
       className="w-full sticky top-0 z-40"
     >
-      <div className="max-w-2xl mx-auto px-6 sm:px-8 py-4 flex items-center justify-between gap-6">
+      <div className="max-w-2xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between gap-4">
 
         {/* Wordmark */}
         <h1
-          className="font-display select-none tracking-tight leading-none shrink-0"
+          className="font-display select-none tracking-tight leading-none shrink-0 min-w-0"
           style={{
             fontSize: "clamp(1.4rem, 4vw, 1.85rem)",
             background: "linear-gradient(135deg, #f06292 0%, #9c6fef 50%, #5b9cf6 100%)",

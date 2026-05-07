@@ -134,7 +134,7 @@ export default function WordleBoard() {
   });
 
   return (
-    <div className="flex flex-col items-center gap-6 w-full max-w-lg mx-auto px-4 pt-2 pb-8">
+    <div className="flex flex-col items-center gap-6 w-full max-w-lg mx-auto px-4 pt-4 pb-8">
       {toast && <Toast message={toast} onDone={() => setToast(null)} />}
 
       {/* Grid */}
