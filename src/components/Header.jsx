@@ -42,15 +42,16 @@ export default function Header({ activeGame, onGameChange }) {
               color: "var(--label-primary)",
             }}
           >
-            {activeGame === "matchy" ? "Matchy Match" : "Wordle-ish"}
+            {activeGame === "matchy" ? "Matchy Match" : activeGame === "wordle" ? "Wordle-ish" : "Number Crunch"}
           </h1>
         </div>
 
         {/* Game switcher — iOS segmented control */}
         <nav className="seg-control" role="tablist" aria-label="Game switcher">
           {[
-            { id: "matchy", label: "Matchy" },
+          { id: "matchy", label: "Matchy" },
             { id: "wordle", label: "Wordle" },
+            { id: "crunch", label: "Crunch" },
           ].map(({ id, label }) => {
             const active = activeGame === id;
             return (
