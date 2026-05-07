@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header activeGame={activeGame} onGameChange={handleGameChange} />
-      <main className="flex-1 flex flex-col items-center pt-6 pb-10 px-4">
+      <main className="flex-1 flex flex-col items-center pt-6 pb-10 px-4 sm:px-6">
         {activeGame === 'matchy' ? (
           <GameBoard
             key={`matchy-${gameKey}`}
