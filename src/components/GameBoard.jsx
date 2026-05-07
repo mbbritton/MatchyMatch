@@ -136,16 +136,16 @@ export default function GameBoard({ puzzle, onNewGame }) {
   const unrevealed = tiles.filter((t) => !isWordRevealed(t.word));
 
   return (
-    <div className="flex flex-col items-center gap-6 w-full max-w-2xl mx-auto px-4 sm:px-6 pt-6 pb-10">
+    <div className="flex flex-col items-center gap-5 w-full max-w-2xl mx-auto px-4 sm:px-6 pt-6 pb-12">
       {toast && <Toast message={toast} onDone={() => setToast(null)} />}
 
       {/* Controls row */}
       <div className="flex flex-col items-center gap-3 w-full">
         <p
-          className="text-xs font-medium tracking-[0.12em] uppercase"
-          style={{ color: "var(--text-muted)" }}
+          className="text-sm font-medium text-center"
+          style={{ color: "var(--label-tertiary)", letterSpacing: "-0.01em" }}
         >
-          Group the words into four matching sets
+          Group the words into five matching sets
         </p>
         <ModeToggle mode={mode} onChange={handleModeChange} disabled={hasStarted} />
       </div>
@@ -183,11 +183,13 @@ export default function GameBoard({ puzzle, onNewGame }) {
         <div className="flex flex-col items-center gap-5 w-full">
           <LivesDisplay lives={lives} maxLives={LIVES_BY_MODE[mode]} />
 
-          <div className="flex gap-2.5 flex-wrap justify-center">
+          <div className="flex gap-2 flex-wrap justify-center">
             <button onClick={handleShuffle} className="btn-outline">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/>
-                <polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="16 3 21 3 21 8"/>
+                <line x1="4" y1="20" x2="21" y2="3"/>
+                <polyline points="21 16 21 21 16 21"/>
+                <line x1="15" y1="15" x2="21" y2="21"/>
               </svg>
               Shuffle
             </button>
@@ -196,8 +198,9 @@ export default function GameBoard({ puzzle, onNewGame }) {
               disabled={selected.length === 0}
               className="btn-outline"
             >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
               </svg>
               Deselect
             </button>
@@ -207,9 +210,6 @@ export default function GameBoard({ puzzle, onNewGame }) {
               className="btn-primary"
             >
               Submit
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
             </button>
           </div>
         </div>
@@ -218,47 +218,58 @@ export default function GameBoard({ puzzle, onNewGame }) {
       {/* Win state */}
       {gameState === "won" && (
         <div
-          className="bounce-in flex flex-col items-center gap-5 mt-2 p-8 rounded-3xl w-full"
+          className="spring-pop flex flex-col items-center gap-6 mt-2 p-8 rounded-3xl w-full"
           style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(156,111,239,0.15)",
+            background: "var(--bg-surface)",
+            boxShadow: "var(--shadow-xl)",
           }}
         >
+          {/* Icon */}
           <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
             style={{
-              background: "linear-gradient(135deg, rgba(240,98,146,0.2), rgba(156,111,239,0.2))",
-              border: "1px solid rgba(156,111,239,0.3)",
+              width: 72,
+              height: 72,
+              borderRadius: 20,
+              background: "linear-gradient(145deg, #34c759, #30d158)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 32,
+              boxShadow: "0 8px 24px rgba(52,199,89,0.35)",
             }}
           >
             🎉
           </div>
+
+          {/* Text */}
           <div className="flex flex-col items-center gap-1.5">
             <h2
-              className="font-display text-3xl"
               style={{
-                background: "linear-gradient(135deg, #f06292, #9c6fef)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
+                fontSize: "1.75rem",
+                fontWeight: 700,
+                letterSpacing: "-0.03em",
+                color: "var(--label-primary)",
               }}
             >
               {mode === "hard" ? "Hard mode conquered!" : "You nailed it!"}
             </h2>
-            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+            <p
+              style={{
+                fontSize: "0.9rem",
+                color: "var(--label-tertiary)",
+                letterSpacing: "-0.01em",
+              }}
+            >
               Solved with{" "}
-              <span style={{ color: "var(--text-secondary)", fontWeight: 600 }}>
+              <span style={{ color: "var(--accent)", fontWeight: 600 }}>
                 {lives} {lives === 1 ? "life" : "lives"}
               </span>{" "}
               remaining
             </p>
           </div>
-          <button onClick={onNewGame} className="btn-primary mt-1">
+
+          <button onClick={onNewGame} className="btn-primary">
             Play Again
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
-            </svg>
           </button>
         </div>
       )}
@@ -266,38 +277,54 @@ export default function GameBoard({ puzzle, onNewGame }) {
       {/* Lose state */}
       {gameState === "lost" && (
         <div
-          className="bounce-in flex flex-col items-center gap-5 mt-2 p-8 rounded-3xl w-full"
+          className="spring-pop flex flex-col items-center gap-6 mt-2 p-8 rounded-3xl w-full"
           style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.5)",
+            background: "var(--bg-surface)",
+            boxShadow: "var(--shadow-xl)",
           }}
         >
+          {/* Icon */}
           <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
             style={{
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              width: 72,
+              height: 72,
+              borderRadius: 20,
+              background: "linear-gradient(145deg, #ff9f0a, #ff6b00)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 32,
+              boxShadow: "0 8px 24px rgba(255,159,10,0.35)",
             }}
           >
             😔
           </div>
+
+          {/* Text */}
           <div className="flex flex-col items-center gap-1.5">
             <h2
-              className="font-display text-3xl"
-              style={{ color: "var(--text-primary)" }}
+              style={{
+                fontSize: "1.75rem",
+                fontWeight: 700,
+                letterSpacing: "-0.03em",
+                color: "var(--label-primary)",
+              }}
             >
               So close!
             </h2>
-            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+            <p
+              style={{
+                fontSize: "0.9rem",
+                color: "var(--label-tertiary)",
+                letterSpacing: "-0.01em",
+              }}
+            >
               The answers are revealed above.
             </p>
           </div>
-          <button onClick={onNewGame} className="btn-primary mt-1">
+
+          <button onClick={onNewGame} className="btn-primary">
             Try Again
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
-            </svg>
           </button>
         </div>
       )}
