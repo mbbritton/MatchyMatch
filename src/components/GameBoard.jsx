@@ -136,7 +136,7 @@ export default function GameBoard({ puzzle, onNewGame }) {
   const unrevealed = tiles.filter((t) => !isWordRevealed(t.word));
 
   return (
-    <div className="flex flex-col items-center gap-6 w-full max-w-2xl mx-auto px-4 py-8">
+    <div className="flex flex-col items-center gap-6 w-full max-w-2xl mx-auto px-4 pt-2 pb-8">
       {toast && <Toast message={toast} onDone={() => setToast(null)} />}
 
       {/* Controls row */}

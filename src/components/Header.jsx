@@ -9,7 +9,7 @@ export default function Header({ activeGame, onGameChange }) {
       }}
       className="w-full sticky top-0 z-40"
     >
-      <div className="max-w-2xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+      <div className="max-w-2xl mx-auto px-6 sm:px-8 py-4 flex items-center justify-between gap-6">
 
         {/* Wordmark */}
         <h1
