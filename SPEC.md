@@ -1,8 +1,8 @@
-# Matchy Match — 5-Group Game Mode Spec
+��# Puzzlr — 5-Group Game Mode Spec
 
 ## Overview
 
-Matchy Match is migrating fully to a **5-group format**. All puzzles consist of **5 groups of 4 words** (20 words total). The 4-group format is retired. A **mode toggle** on the game screen allows players to switch between a standard solve attempt and a relaxed/hard difficulty, as described below.
+Puzzlr is migrating fully to a **5-group format**. All puzzles consist of **5 groups of 4 words** (20 words total). The 4-group format is retired. A **mode toggle** on the game screen allows players to switch between a standard solve attempt and a relaxed/hard difficulty, as described below.
 
 ---
 
