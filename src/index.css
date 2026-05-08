@@ -51,6 +51,44 @@
   --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
 }
 
+/* ── Dark mode tokens ────────────────────────────────────────────── */
+.dark {
+  /* Backgrounds */
+  --bg-base:        #1c1c1e;
+  --bg-surface:     #2c2c2e;
+  --bg-elevated:    #3a3a3c;
+  --bg-grouped:     #1c1c1e;
+  --bg-inset:       #3a3a3c;
+
+  /* Labels */
+  --label-primary:   #ffffff;
+  --label-secondary: #ebebf5;
+  --label-tertiary:  rgba(235,235,245,0.6);
+  --label-quaternary:rgba(235,235,245,0.3);
+
+  /* Separators */
+  --separator:       rgba(84,84,88,0.65);
+  --separator-opaque:#48484a;
+
+  /* Apple system blue stays the same */
+  --accent:          #0a84ff;
+  --accent-light:    rgba(10,132,255,0.18);
+  --accent-mid:      rgba(10,132,255,0.28);
+
+  /* Fill colors */
+  --fill-primary:    rgba(120,120,128,0.36);
+  --fill-secondary:  rgba(120,120,128,0.28);
+  --fill-tertiary:   rgba(118,118,128,0.22);
+  --fill-quaternary: rgba(116,116,128,0.14);
+
+  /* Shadows (subtler on dark) */
+  --shadow-xs:  0 1px 2px rgba(0,0,0,0.24);
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.32), 0 0 0 0.5px rgba(255,255,255,0.04);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.40), 0 0 0 0.5px rgba(255,255,255,0.04);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.48), 0 0 0 0.5px rgba(255,255,255,0.04);
+  --shadow-xl:  0 16px 48px rgba(0,0,0,0.56), 0 0 0 0.5px rgba(255,255,255,0.04);
+}
+
 /* ── Reset & base ────────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -70,6 +108,7 @@ body {
   color: var(--label-primary);
   min-height: 100dvh;
   overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 #root {
@@ -382,6 +421,10 @@ body {
   border: 0.5px solid rgba(0,0,0,0.08);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+.dark .glass-card {
+  background: rgba(44,44,46,0.80);
+  border: 0.5px solid rgba(255,255,255,0.08);
 }
 
 /* ── Number Crunch operator buttons ─────────────────────────────── */

@@ -1,11 +1,14 @@
-export default function Header({ activeGame, onGameChange }) {
+import DarkModeToggle from './DarkModeToggle'
+
+export default function Header({ activeGame, onGameChange, dark, onToggleDark }) {
   return (
     <header
       style={{
-        background: "rgba(242,242,247,0.85)",
+        background: "var(--bg-base)",
         backdropFilter: "blur(24px) saturate(180%)",
         WebkitBackdropFilter: "blur(24px) saturate(180%)",
-        borderBottom: "0.5px solid rgba(0,0,0,0.12)",
+        borderBottom: "0.5px solid var(--separator)",
+        opacity: 0.95,
       }}
       className="w-full sticky top-0 z-40"
     >
@@ -73,6 +76,9 @@ export default function Header({ activeGame, onGameChange }) {
             );
           })}
         </nav>
+
+        {/* Dark mode toggle */}
+        <DarkModeToggle dark={dark} onToggle={onToggleDark} />
 
       </div>
     </header>

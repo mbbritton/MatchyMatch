@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
+import { useDarkMode } from './hooks/useDarkMode'
 import Footer from './components/Footer'
 import GameBoard from './components/GameBoard'
 import WordleBoard from './components/wordle/WordleBoard'
@@ -21,6 +22,7 @@ const PUZZLE_INDEX =
 function App() {
   const [activeGame, setActiveGame] = useState('matchy')
   const [gameKey, setGameKey] = useState(0)
+  const { dark, toggle: toggleDark } = useDarkMode()
 
   const handleNewGame = () => {
     setGameKey((k) => k + 1)
@@ -33,7 +35,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header activeGame={activeGame} onGameChange={handleGameChange} />
+      <Header activeGame={activeGame} onGameChange={handleGameChange} dark={dark} onToggleDark={toggleDark} />
       <main className="flex-1 flex flex-col items-center pt-6 pb-10 px-4 sm:px-6">
         {activeGame === 'matchy' ? (
           <GameBoard
