@@ -42,21 +42,7 @@ export default function Header({ activeGame, onGameChange }) {
               color: "var(--label-primary)",
             }}
           >
-            {activeGame === "matchy"
-              ? "Matchy Match"
-              : activeGame === "wordle"
-              ? "Wordle-ish"
-              : activeGame === "crunch"
-              ? "Number Crunch"
-              : activeGame === "cross"
-              ? "Mini Cross"
-              : activeGame === "chain"
-              ? "Word Chain"
-              : activeGame === "scramble"
-              ? "Scramble"
-              : activeGame === "anagram"
-              ? "Anagram Blast"
-              : "Mini Sudoku"}
+            Puzzlr
           </h1>
         </div>
 
