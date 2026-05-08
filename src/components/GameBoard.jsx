@@ -5,6 +5,7 @@ import RevealedCategory from "./RevealedCategory";
 import LivesDisplay from "./LivesDisplay";
 import ModeToggle from "./ModeToggle";
 import Toast from "./Toast";
+import Confetti from "./Confetti";
 
 const MAX_SELECTED = 4;
 const LIVES_BY_MODE = { normal: 5, hard: 3 };
@@ -246,8 +247,12 @@ export default function GameBoard({ puzzle, onNewGame }) {
           style={{
             background: "var(--bg-surface)",
             boxShadow: "var(--shadow-xl)",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
+          <Confetti count={70} />
+
           {/* Icon */}
           <div
             style={{
@@ -260,13 +265,15 @@ export default function GameBoard({ puzzle, onNewGame }) {
               justifyContent: "center",
               fontSize: 32,
               boxShadow: "0 8px 24px rgba(52,199,89,0.35)",
+              position: "relative",
+              zIndex: 1,
             }}
           >
             🎉
           </div>
 
           {/* Text */}
-          <div className="flex flex-col items-center gap-1.5">
+          <div className="flex flex-col items-center gap-1.5" style={{ position: "relative", zIndex: 1 }}>
             <h2
               style={{
                 fontSize: "1.75rem",
@@ -295,7 +302,7 @@ export default function GameBoard({ puzzle, onNewGame }) {
             </p>
           </div>
 
-          <button onClick={onNewGame} className="btn-primary">
+          <button onClick={onNewGame} className="btn-primary" style={{ position: "relative", zIndex: 1 }}>
             Play Again
           </button>
         </div>

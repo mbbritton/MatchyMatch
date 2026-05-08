@@ -450,6 +450,13 @@ body {
   transform: scale(0.94);
 }
 
+/* ── Confetti ────────────────────────────────────────────────────── */
+@keyframes confetti-fall {
+  0%   { opacity: 1; transform: translateY(0)      translateX(0)           rotate(0deg); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(320px)  translateX(var(--drift)) rotate(var(--rot-end)); }
+}
+
 /* ── Scrollbar ───────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
