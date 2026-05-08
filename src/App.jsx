@@ -9,6 +9,7 @@ import WordChainBoard from './components/wordchain/WordChainBoard'
 import ScrambleBoard from './components/scramble/ScrambleBoard'
 import AnagramBoard from './components/anagram/AnagramBoard'
 import SudokuBoard from './components/sudoku/SudokuBoard'
+import TriviaBoard from './components/trivia/TriviaBoard'
 import { puzzles } from './data/puzzles'
 
 const envIndex = parseInt(import.meta.env.VITE_PUZZLE_INDEX, 10)
@@ -52,6 +53,8 @@ function App() {
           <ScrambleBoard key={`scramble-${gameKey}`} />
         ) : activeGame === 'anagram' ? (
           <AnagramBoard key={`anagram-${gameKey}`} />
+        ) : activeGame === 'trivia' ? (
+          <TriviaBoard key={`trivia-${gameKey}`} />
         ) : (
           <SudokuBoard key={`sudoku-${gameKey}`} />
         )}
