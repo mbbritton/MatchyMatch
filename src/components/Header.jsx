@@ -48,7 +48,9 @@ export default function Header({ activeGame, onGameChange }) {
               ? "Wordle-ish"
               : activeGame === "crunch"
               ? "Number Crunch"
-              : "Mini Cross"}
+              : activeGame === "cross"
+              ? "Mini Cross"
+              : "Word Chain"}
           </h1>
         </div>
 
@@ -59,6 +61,7 @@ export default function Header({ activeGame, onGameChange }) {
             { id: "wordle", label: "Wordle" },
             { id: "crunch", label: "Crunch" },
             { id: "cross",  label: "Cross"  },
+            { id: "chain",  label: "Chain"  },
           ].map(({ id, label }) => {
             const active = activeGame === id;
             return (
