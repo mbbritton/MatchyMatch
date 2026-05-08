@@ -52,7 +52,9 @@ export default function Header({ activeGame, onGameChange }) {
               ? "Mini Cross"
               : activeGame === "chain"
               ? "Word Chain"
-              : "Scramble"}
+              : activeGame === "scramble"
+              ? "Scramble"
+              : "Anagram Blast"}
           </h1>
         </div>
 
@@ -65,6 +67,7 @@ export default function Header({ activeGame, onGameChange }) {
             { id: "cross",    label: "Cross"    },
             { id: "chain",    label: "Chain"    },
             { id: "scramble", label: "Scramble" },
+            { id: "anagram",  label: "Anagram"  },
           ].map(({ id, label }) => {
             const active = activeGame === id;
             return (
