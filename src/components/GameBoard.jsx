@@ -33,6 +33,7 @@ export default function GameBoard({ puzzle, onNewGame }) {
   const [isShaking, setIsShaking] = useState(false);
   const [gameState, setGameState] = useState("playing");
   const [guessedCategories, setGuessedCategories] = useState([]);
+  const [guessCount, setGuessCount] = useState(0);
   const gridRef = useRef(null);
 
   const isWordRevealed = (word) => revealed.includes(word);
@@ -50,6 +51,7 @@ export default function GameBoard({ puzzle, onNewGame }) {
     setSelected([]);
     setRevealed([]);
     setGuessedCategories([]);
+    setGuessCount(0);
     setGameState("playing");
   };
 
@@ -80,6 +82,7 @@ export default function GameBoard({ puzzle, onNewGame }) {
     if (gameState !== "playing") return;
 
     if (!hasStarted) setHasStarted(true);
+    setGuessCount((n) => n + 1);
 
     const selectedCategoryIds = selected.map((word) => {
       const tile = allWords.find((t) => t.word === word);
@@ -181,7 +184,28 @@ export default function GameBoard({ puzzle, onNewGame }) {
       {/* Action bar */}
       {gameState === "playing" && (
         <div className="flex flex-col items-center gap-5 w-full">
+        <div className="flex items-center gap-6">
           <LivesDisplay lives={lives} maxLives={LIVES_BY_MODE[mode]} />
+          <div className="flex flex-col items-center gap-1">
+            <span
+              className="text-xs font-medium tracking-wide"
+              style={{ color: "var(--label-tertiary)", letterSpacing: "0.04em" }}
+            >
+              {guessCount === 1 ? "1 guess" : `${guessCount} guesses`}
+            </span>
+            <div
+              style={{
+                fontSize: "1.1rem",
+                fontWeight: 700,
+                color: "var(--accent)",
+                letterSpacing: "-0.02em",
+                lineHeight: 1,
+              }}
+            >
+              {guessCount}
+            </div>
+          </div>
+        </div>
 
           <div className="flex gap-2 flex-wrap justify-center">
             <button onClick={handleShuffle} className="btn-outline">
@@ -264,7 +288,10 @@ export default function GameBoard({ puzzle, onNewGame }) {
               <span style={{ color: "var(--accent)", fontWeight: 600 }}>
                 {lives} {lives === 1 ? "life" : "lives"}
               </span>{" "}
-              remaining
+              remaining in{" "}
+              <span style={{ color: "var(--accent)", fontWeight: 600 }}>
+                {guessCount} {guessCount === 1 ? "guess" : "guesses"}
+              </span>
             </p>
           </div>
 
@@ -319,7 +346,10 @@ export default function GameBoard({ puzzle, onNewGame }) {
                 letterSpacing: "-0.01em",
               }}
             >
-              The answers are revealed above.
+              The answers are revealed above. You made{" "}
+              <span style={{ color: "var(--accent)", fontWeight: 600 }}>
+                {guessCount} {guessCount === 1 ? "guess" : "guesses"}
+              </span>.
             </p>
           </div>
 
