@@ -88,17 +88,18 @@ export default function Header({ activeGame, onGameChange, dark, onToggleDark })
         {/* Game switcher — iOS segmented control */}
         <nav className="seg-control" role="tablist" aria-label="Game switcher">
           {[
-            { id: "matchy",   label: "Matchy"    },
-            { id: "wordle",   label: "Wordle"    },
-            { id: "crunch",   label: "Crunch"    },
-            { id: "cross",    label: "Cross"     },
-            { id: "chain",    label: "Chain"     },
-            { id: "scramble", label: "Scramble"  },
-            { id: "anagram",  label: "Anagram"   },
-            { id: "sudoku",   label: "Sudoku"    },
-            { id: "trivia",   label: "Trivia"    },
-            { id: "memory",   label: "Memory"    },
-            { id: "typerace", label: "Type Race" },
+            { id: "matchy",     label: "Matchy"      },
+            { id: "wordle",     label: "Wordle"      },
+            { id: "crunch",     label: "Crunch"      },
+            { id: "cross",      label: "Cross"       },
+            { id: "chain",      label: "Chain"       },
+            { id: "scramble",   label: "Scramble"    },
+            { id: "anagram",    label: "Anagram"     },
+            { id: "sudoku",     label: "Sudoku"      },
+            { id: "trivia",     label: "Trivia"      },
+            { id: "memory",     label: "Memory"      },
+            { id: "typerace",   label: "Type Race"   },
+            { id: "wordsearch", label: "Word Search" },
           ].map(({ id, label }) => {
             const active = activeGame === id;
             return (
