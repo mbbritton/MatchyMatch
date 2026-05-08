@@ -1,4 +1,4 @@
-export default function Header({ activeGame, onGameChange }) {
+export default function Header({ activeGame, onGameChange }) {
   return (
     <header
       style={{
