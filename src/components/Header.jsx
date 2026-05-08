@@ -57,6 +57,7 @@ export default function Header({ activeGame, onGameChange }) {
             { id: "scramble", label: "Scramble" },
             { id: "anagram",  label: "Anagram"  },
             { id: "sudoku",   label: "Sudoku"   },
+            { id: "trivia",   label: "Trivia"   },
           ].map(({ id, label }) => {
             const active = activeGame === id;
             return (
