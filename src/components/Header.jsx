@@ -54,7 +54,9 @@ export default function Header({ activeGame, onGameChange }) {
               ? "Word Chain"
               : activeGame === "scramble"
               ? "Scramble"
-              : "Anagram Blast"}
+              : activeGame === "anagram"
+              ? "Anagram Blast"
+              : "Mini Sudoku"}
           </h1>
         </div>
 
@@ -68,6 +70,7 @@ export default function Header({ activeGame, onGameChange }) {
             { id: "chain",    label: "Chain"    },
             { id: "scramble", label: "Scramble" },
             { id: "anagram",  label: "Anagram"  },
+            { id: "sudoku",   label: "Sudoku"   },
           ].map(({ id, label }) => {
             const active = activeGame === id;
             return (
