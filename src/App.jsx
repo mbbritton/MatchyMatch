@@ -29,6 +29,7 @@ import NickOfTTimeBoard from './components/nickofttime/NickOfTTimeBoard'
 import ColourClashBoard from './components/colourclash/ColourClashBoard'
 import FlipFlopBoard from './components/flipflop/FlipFlopBoard'
 import DiceRollBoard from './components/diceroll/DiceRollBoard'
+import CatMatchBoard from './components/catmatch/CatMatchBoard'
 import { puzzles } from './data/puzzles'
 
 const envIndex = parseInt(import.meta.env.VITE_PUZZLE_INDEX, 10)
@@ -122,6 +123,8 @@ function App() {
           <FlipFlopBoard key={`flipflop-${gameKey}`} />
         ) : activeGame === 'diceroll' ? (
           <DiceRollBoard key={`diceroll-${gameKey}`} />
+        ) : activeGame === 'catmatch' ? (
+          <CatMatchBoard key={`catmatch-${gameKey}`} />
         ) : (
           <SudokuBoard key={`sudoku-${gameKey}`} />
         )}

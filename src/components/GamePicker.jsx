@@ -121,7 +121,7 @@ const GAMES = [
   {
     id: 'minesweeper',
     emoji: '💣',
-    name: "Ryanfield",
+    name: 'Ryanfield',
     description: "Clear Ryan's field without hitting a bomb",
     color: '#2e7d32',
   },
@@ -180,6 +180,13 @@ const GAMES = [
     name: 'Dice Roll',
     description: 'Roll two dice and try to hit the target sum',
     color: '#ff3b30',
+  },
+  {
+    id: 'catmatch',
+    emoji: '🐱',
+    name: 'Cat Match',
+    description: 'Match all the kitties in the fewest moves',
+    color: '#ff6b6b',
   },
 ]
 
