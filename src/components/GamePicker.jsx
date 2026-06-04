@@ -118,6 +118,13 @@ const GAMES = [
     description: 'Slide & merge tiles to reach the 2048 tile',
     color: '#f65e3b',
   },
+  {
+    id: 'diceroller',
+    emoji: '🎲',
+    name: 'Dice Roller',
+    description: 'Roll the dice and reach 50 points without busting',
+    color: '#ff3b30',
+  },
 ]
 
 export default function GamePicker({ onGameSelect }) {
