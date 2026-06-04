@@ -174,6 +174,13 @@ const GAMES = [
     description: 'Match all the fruit pairs in the fewest moves',
     color: '#ff9f0a',
   },
+  {
+    id: 'simonsays',
+    emoji: '🔴',
+    name: 'Simon Says',
+    description: 'Repeat the colour sequence — one step longer each round!',
+    color: '#34c759',
+  },
 ]
 
 export default function GamePicker({ onGameSelect }) {
