@@ -1,12 +1,19 @@
-import { writeFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+#!/usr/bin/env node
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+/**
+ * Script to randomly select a puzzle index and write it to .env.production
+ * This ensures each build serves a single fixed puzzle
+ */
 
-const PUZZLE_COUNT = 20;
-const index = Math.floor(Math.random() * PUZZLE_COUNT);
-const envPath = join(__dirname, '..', '.env.production');
+const fs = require('fs');
+const path = require('path');
 
-writeFileSync(envPath, `VITE_PUZZLE_INDEX=${index}\n`);
-console.log(`[pick-puzzle] Selected puzzle index: ${index}`);
+// Generate random puzzle index (0-19 for 20 puzzles)
+const randomIndex = Math.floor(Math.random() * 20);
+
+// Write to .env.production
+const envContent = `VITE_PUZZLE_INDEX=${randomIndex}\n`;
+const envPath = path.join(__dirname, '..', '.env.production');
+
+fs.writeFileSync(envPath, envContent, 'utf8');
+console.log(`✓ Puzzle index set to ${randomIndex} in .env.production`);

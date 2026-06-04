@@ -1,240 +1,1235 @@
 export const puzzles = [
   {
-    id: 1,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Things you plug in",       words: ["LAMP", "TOASTER", "FAN", "ROUTER"] },
-      { id: "green",  color: "green",  title: "In the bathroom",          words: ["MIRROR", "TOWEL", "FAUCET", "DRAIN"] },
-      { id: "blue",   color: "blue",   title: "___ door",                 words: ["TRAP", "SCREEN", "SLIDING", "REVOLVING"] },
-      { id: "purple", color: "purple", title: "Types of flooring",        words: ["TILE", "HARDWOOD", "CARPET", "VINYL"] },
-      { id: "pink",   color: "pink",   title: "Things with rings",        words: ["SATURN", "CIRCUS", "BOXING", "STOVE"] },
-    ],
+    "id": 1,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Things you plug in",
+        "words": [
+          "LAMP",
+          "TOASTER",
+          "FAN",
+          "ROUTER"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "In the bathroom",
+        "words": [
+          "MIRROR",
+          "TOWEL",
+          "FAUCET",
+          "DRAIN"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "___ door",
+        "words": [
+          "TRAP",
+          "SCREEN",
+          "SLIDING",
+          "REVOLVING"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Types of flooring",
+        "words": [
+          "TILE",
+          "HARDWOOD",
+          "CARPET",
+          "VINYL"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things with rings",
+        "words": [
+          "SATURN",
+          "CIRCUS",
+          "BOXING",
+          "STOVE"
+        ]
+      }
+    ]
   },
   {
-    id: 2,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Breakfast foods",          words: ["WAFFLE", "BAGEL", "GRANOLA", "CREPE"] },
-      { id: "green",  color: "green",  title: "Things in a backpack",     words: ["NOTEBOOK", "PENCIL", "THERMOS", "KEYCHAIN"] },
-      { id: "blue",   color: "blue",   title: "___ stone",                words: ["LIME", "COBBLE", "SAND", "MOON"] },
-      { id: "purple", color: "purple", title: "Jazz musicians",           words: ["COLTRANE", "MONK", "DAVIS", "PARKER"] },
-      { id: "pink",   color: "pink",   title: "Things that have hands",   words: ["CLOCK", "PUPPET", "SAILOR", "DECK"] },
-    ],
+    "id": 2,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Fruits",
+        "words": [
+          "APPLE",
+          "BANANA",
+          "ORANGE",
+          "GRAPE"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Vegetables",
+        "words": [
+          "CARROT",
+          "BROCCOLI",
+          "SPINACH",
+          "PEPPER"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Grains",
+        "words": [
+          "RICE",
+          "WHEAT",
+          "CORN",
+          "OATS"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Proteins",
+        "words": [
+          "CHICKEN",
+          "BEEF",
+          "FISH",
+          "TOFU"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are baked",
+        "words": [
+          "BEANS",
+          "POTATO",
+          "ALASKA",
+          "GOODS"
+        ]
+      }
+    ]
   },
   {
-    id: 3,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Citrus fruits",            words: ["LEMON", "LIME", "YUZU", "KUMQUAT"] },
-      { id: "green",  color: "green",  title: "Types of bridge",          words: ["ARCH", "CABLE", "DRAWBRIDGE", "PONTOON"] },
-      { id: "blue",   color: "blue",   title: "Things in a courtroom",    words: ["GAVEL", "WITNESS", "BAILIFF", "VERDICT"] },
-      { id: "purple", color: "purple", title: "Olympic sports",           words: ["BIATHLON", "LUGE", "POMMEL", "EPEE"] },
-      { id: "pink",   color: "pink",   title: "___ can (homophone hint)", words: ["TRASH", "WATERING", "TIN", "TOUCAN"] },
-    ],
+    "id": 3,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Colors",
+        "words": [
+          "RED",
+          "BLUE",
+          "GREEN",
+          "YELLOW"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Shapes",
+        "words": [
+          "CIRCLE",
+          "SQUARE",
+          "TRIANGLE",
+          "RECTANGLE"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Numbers",
+        "words": [
+          "ONE",
+          "TWO",
+          "THREE",
+          "FOUR"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Sizes",
+        "words": [
+          "SMALL",
+          "MEDIUM",
+          "LARGE",
+          "HUGE"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"prime\"",
+        "words": [
+          "RIB",
+          "BEEF",
+          "TIME",
+          "SUSPECT"
+        ]
+      }
+    ]
   },
   {
-    id: 4,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Things at a carnival",     words: ["FERRIS", "FUNNEL", "CLOWN", "TICKET"] },
-      { id: "green",  color: "green",  title: "Freshwater fish",          words: ["PERCH", "BASS", "TROUT", "WALLEYE"] },
-      { id: "blue",   color: "blue",   title: "Words after 'fire'",       words: ["WORKS", "PLACE", "TRUCK", "FLY"] },
-      { id: "purple", color: "purple", title: "Ballet terms",             words: ["PLIE", "ARABESQUE", "TENDU", "PIROUETTE"] },
-      { id: "pink",   color: "pink",   title: "Things that can be flat",  words: ["TIRE", "EARTH", "SODA", "NOTE"] },
-    ],
+    "id": 4,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Animals",
+        "words": [
+          "DOG",
+          "CAT",
+          "BIRD",
+          "FISH"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Insects",
+        "words": [
+          "ANT",
+          "BEE",
+          "FLY",
+          "MOTH"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Reptiles",
+        "words": [
+          "SNAKE",
+          "LIZARD",
+          "TURTLE",
+          "CROCODILE"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Mammals",
+        "words": [
+          "BEAR",
+          "LION",
+          "WHALE",
+          "ELEPHANT"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that \"fly\"",
+        "words": [
+          "PLANE",
+          "KITE",
+          "EAGLE",
+          "ROCKET"
+        ]
+      }
+    ]
   },
   {
-    id: 5,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Camping essentials",       words: ["TENT", "COMPASS", "KINDLING", "CANTEEN"] },
-      { id: "green",  color: "green",  title: "Shades of blue",           words: ["COBALT", "CERULEAN", "TEAL", "INDIGO"] },
-      { id: "blue",   color: "blue",   title: "Words before 'house'",     words: ["TREE", "WARE", "COURT", "POWER"] },
-      { id: "purple", color: "purple", title: "Greek letters",            words: ["SIGMA", "DELTA", "OMEGA", "KAPPA"] },
-      { id: "pink",   color: "pink",   title: "Things with a crown",      words: ["KING", "MOLAR", "STATUE", "PINEAPPLE"] },
-    ],
+    "id": 5,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Drinks",
+        "words": [
+          "WATER",
+          "JUICE",
+          "COFFEE",
+          "TEA"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Desserts",
+        "words": [
+          "CAKE",
+          "PIE",
+          "COOKIE",
+          "BROWNIE"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Breakfast foods",
+        "words": [
+          "EGGS",
+          "BACON",
+          "TOAST",
+          "CEREAL"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Spices",
+        "words": [
+          "SALT",
+          "PEPPER",
+          "CINNAMON",
+          "GARLIC"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"sweet\"",
+        "words": [
+          "POTATO",
+          "CORN",
+          "PEAS",
+          "POTATO"
+        ]
+      }
+    ]
   },
   {
-    id: 6,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Fast food chains",         words: ["WENDYS", "ARBYS", "SONIC", "JACKS"] },
-      { id: "green",  color: "green",  title: "Words for tired",          words: ["WEARY", "SPENT", "DRAINED", "DROWSY"] },
-      { id: "blue",   color: "blue",   title: "African animals",          words: ["OKAPI", "MAMBA", "SERVAL", "PANGOLIN"] },
-      { id: "purple", color: "purple", title: "Parts of a ship",          words: ["HELM", "KEEL", "BOW", "STERN"] },
-      { id: "pink",   color: "pink",   title: "Things that are sealed",   words: ["ENVELOPE", "DEAL", "HARBOR", "MAMMAL"] },
-    ],
+    "id": 6,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Sports",
+        "words": [
+          "SOCCER",
+          "BASKETBALL",
+          "TENNIS",
+          "BASEBALL"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Winter sports",
+        "words": [
+          "SKIING",
+          "SKATING",
+          "SNOWBOARDING",
+          "CURLING"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Water sports",
+        "words": [
+          "SWIMMING",
+          "SURFING",
+          "DIVING",
+          "ROWING"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Equipment",
+        "words": [
+          "BALL",
+          "RACKET",
+          "GLOVE",
+          "HELMET"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"played\"",
+        "words": [
+          "CARD",
+          "GAME",
+          "MUSIC",
+          "ROLE"
+        ]
+      }
+    ]
   },
   {
-    id: 7,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Things on a desk",         words: ["STAPLER", "MONITOR", "MUG", "CALENDAR"] },
-      { id: "green",  color: "green",  title: "Types of cheese",          words: ["BRIE", "GOUDA", "MANCHEGO", "GRUYERE"] },
-      { id: "blue",   color: "blue",   title: "___ field",                words: ["CORN", "MINE", "SPRING", "STAR"] },
-      { id: "purple", color: "purple", title: "Famous composers",         words: ["BACH", "HANDEL", "VIVALDI", "SCHUBERT"] },
-      { id: "pink",   color: "pink",   title: "Things that run but stay", words: ["FAUCET", "CLOCK", "STOCKING", "ENGINE"] },
-    ],
+    "id": 7,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Countries",
+        "words": [
+          "USA",
+          "FRANCE",
+          "JAPAN",
+          "BRAZIL"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Cities",
+        "words": [
+          "PARIS",
+          "TOKYO",
+          "LONDON",
+          "SYDNEY"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Continents",
+        "words": [
+          "AFRICA",
+          "ASIA",
+          "EUROPE",
+          "AMERICA"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Landmarks",
+        "words": [
+          "EIFFEL",
+          "BIG BEN",
+          "STATUE",
+          "PYRAMID"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"great\"",
+        "words": [
+          "WALL",
+          "BARRIER",
+          "DEPRESSION",
+          "LAKES"
+        ]
+      }
+    ]
   },
   {
-    id: 8,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Parts of a flower",        words: ["PETAL", "STAMEN", "PISTIL", "SEPAL"] },
-      { id: "green",  color: "green",  title: "Card games",               words: ["RUMMY", "SPADES", "CANASTA", "CRIBBAGE"] },
-      { id: "blue",   color: "blue",   title: "Words after 'sun'",        words: ["BURN", "FLOWER", "SET", "GLASSES"] },
-      { id: "purple", color: "purple", title: "Ancient wonders",          words: ["COLOSSUS", "LIGHTHOUSE", "MAUSOLEUM", "ZEUS"] },
-      { id: "pink",   color: "pink",   title: "Things with bars",         words: ["PRISON", "CHOCOLATE", "SIGNAL", "MONKEY"] },
-    ],
+    "id": 8,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Instruments",
+        "words": [
+          "PIANO",
+          "GUITAR",
+          "VIOLIN",
+          "DRUMS"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Genres",
+        "words": [
+          "ROCK",
+          "POP",
+          "JAZZ",
+          "CLASSICAL"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Musicians",
+        "words": [
+          "SINGER",
+          "DRUMMER",
+          "BASSIST",
+          "GUITARIST"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Music terms",
+        "words": [
+          "TEMPO",
+          "MELODY",
+          "HARMONY",
+          "RHYTHM"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"played\"",
+        "words": [
+          "CARD",
+          "GAME",
+          "MUSIC",
+          "ROLE"
+        ]
+      }
+    ]
   },
   {
-    id: 9,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Winter clothing",          words: ["PARKA", "MITTEN", "BEANIE", "SCARF"] },
-      { id: "green",  color: "green",  title: "Insects",                  words: ["APHID", "MANTIS", "CICADA", "WEEVIL"] },
-      { id: "blue",   color: "blue",   title: "___ box",                  words: ["SAND", "MUSIC", "BREAD", "BLACK"] },
-      { id: "purple", color: "purple", title: "Roller coaster types",     words: ["WOODEN", "INVERTED", "LAUNCHED", "DIVE"] },
-      { id: "pink",   color: "pink",   title: "Things with a pitch",      words: ["TENT", "SALES", "BASEBALL", "CONCERT"] },
-    ],
+    "id": 9,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Flowers",
+        "words": [
+          "ROSE",
+          "TULIP",
+          "DAISY",
+          "SUNFLOWER"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Trees",
+        "words": [
+          "OAK",
+          "PINE",
+          "MAPLE",
+          "BIRCH"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Plants",
+        "words": [
+          "CACTUS",
+          "FERN",
+          "MOSS",
+          "GRASS"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Herbs",
+        "words": [
+          "BASIL",
+          "MINT",
+          "THYME",
+          "OREGANO"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"wild\"",
+        "words": [
+          "FLOWER",
+          "CARD",
+          "WEST",
+          "TURKEY"
+        ]
+      }
+    ]
   },
   {
-    id: 10,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Coffee drinks",            words: ["LATTE", "CORTADO", "MACCHIATO", "LUNGO"] },
-      { id: "green",  color: "green",  title: "Mountain ranges",          words: ["ANDES", "ROCKIES", "ALPS", "URALS"] },
-      { id: "blue",   color: "blue",   title: "Words before 'work'",      words: ["NET", "TEAM", "FRAME", "GUESS"] },
-      { id: "purple", color: "purple", title: "British monarchs",         words: ["GEORGE", "EDWARD", "ANNE", "JAMES"] },
-      { id: "pink",   color: "pink",   title: "Things with a trunk",      words: ["ELEPHANT", "TREE", "SWIMMER", "CAR"] },
-    ],
+    "id": 10,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Planets",
+        "words": [
+          "MARS",
+          "VENUS",
+          "JUPITER",
+          "SATURN"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Stars",
+        "words": [
+          "SIRIUS",
+          "POLARIS",
+          "VEGA",
+          "ALTAIR"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Constellations",
+        "words": [
+          "ORION",
+          "URSA",
+          "DRACO",
+          "LYRA"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Space objects",
+        "words": [
+          "COMET",
+          "ASTEROID",
+          "METEOR",
+          "NEBULA"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"red\"",
+        "words": [
+          "PLANET",
+          "GIANT",
+          "HERRING",
+          "CARD"
+        ]
+      }
+    ]
   },
   {
-    id: 11,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Types of hat",             words: ["FEDORA", "BERET", "STETSON", "CLOCHE"] },
-      { id: "green",  color: "green",  title: "Cooking methods",          words: ["BRAISE", "POACH", "SEAR", "BLANCH"] },
-      { id: "blue",   color: "blue",   title: "___ light",                words: ["SPOT", "MOON", "FLASH", "CANDLE"] },
-      { id: "purple", color: "purple", title: "Dances",                   words: ["FOXTROT", "QUICKSTEP", "SAMBA", "JIVE"] },
-      { id: "pink",   color: "pink",   title: "Things that are drawn",    words: ["GUN", "CURTAIN", "BATH", "PORTRAIT"] },
-    ],
+    "id": 11,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Clothing",
+        "words": [
+          "SHIRT",
+          "PANTS",
+          "JACKET",
+          "SHOES"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Accessories",
+        "words": [
+          "HAT",
+          "SCARF",
+          "GLOVES",
+          "BELT"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Fabrics",
+        "words": [
+          "COTTON",
+          "SILK",
+          "WOOL",
+          "LINEN"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Patterns",
+        "words": [
+          "STRIPES",
+          "PLAID",
+          "POLKA",
+          "FLORAL"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"blue\"",
+        "words": [
+          "JEAN",
+          "COLLAR",
+          "MOON",
+          "BLOOD"
+        ]
+      }
+    ]
   },
   {
-    id: 12,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Gem stones",               words: ["ONYX", "TOPAZ", "GARNET", "JASPER"] },
-      { id: "green",  color: "green",  title: "Parts of a sentence",      words: ["SUBJECT", "CLAUSE", "PREDICATE", "MODIFIER"] },
-      { id: "blue",   color: "blue",   title: "Words after 'book'",       words: ["SHELF", "MARK", "WORM", "CASE"] },
-      { id: "purple", color: "purple", title: "Ancient civilizations",    words: ["SUMERIAN", "MINOAN", "OLMEC", "NUBIAN"] },
-      { id: "pink",   color: "pink",   title: "Things with a jacket",     words: ["BOOK", "POTATO", "LIFE", "STRAITJACKET"] },
-    ],
+    "id": 12,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Furniture",
+        "words": [
+          "TABLE",
+          "CHAIR",
+          "BED",
+          "SOFA"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Appliances",
+        "words": [
+          "REFRIGERATOR",
+          "MICROWAVE",
+          "DISHWASHER",
+          "OVEN"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Decorations",
+        "words": [
+          "LAMP",
+          "MIRROR",
+          "PICTURE",
+          "VASE"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Materials",
+        "words": [
+          "WOOD",
+          "METAL",
+          "GLASS",
+          "PLASTIC"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"living\"",
+        "words": [
+          "ROOM",
+          "SPACE",
+          "WAGE",
+          "FOSSIL"
+        ]
+      }
+    ]
   },
   {
-    id: 13,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Tropical fruits",          words: ["PAPAYA", "GUAVA", "JACKFRUIT", "LYCHEE"] },
-      { id: "green",  color: "green",  title: "Weather phenomena",        words: ["HAIL", "SLEET", "SQUALL", "DERECHO"] },
-      { id: "blue",   color: "blue",   title: "___ room",                 words: ["BALL", "SHOW", "COURT", "BOILER"] },
-      { id: "purple", color: "purple", title: "Philosophers",             words: ["LOCKE", "HUME", "SPINOZA", "LEIBNIZ"] },
-      { id: "pink",   color: "pink",   title: "Things with a bank",       words: ["RIVER", "MEMORY", "BLOOD", "PIGGY"] },
-    ],
+    "id": 13,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Emotions",
+        "words": [
+          "HAPPY",
+          "SAD",
+          "ANGRY",
+          "SCARED"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Feelings",
+        "words": [
+          "TIRED",
+          "EXCITED",
+          "CALM",
+          "NERVOUS"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Moods",
+        "words": [
+          "CHEERFUL",
+          "GLOOMY",
+          "PEACEFUL",
+          "TENSE"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "States of mind",
+        "words": [
+          "CONFUSED",
+          "FOCUSED",
+          "RELAXED",
+          "STRESSED"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"blue\"",
+        "words": [
+          "MOOD",
+          "COLLAR",
+          "MOON",
+          "BLOOD"
+        ]
+      }
+    ]
   },
   {
-    id: 14,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Sewing supplies",          words: ["BOBBIN", "THIMBLE", "SEAM", "INTERFACING"] },
-      { id: "green",  color: "green",  title: "Words for angry",          words: ["IRATE", "LIVID", "FUMING", "SEETHING"] },
-      { id: "blue",   color: "blue",   title: "___ point",                words: ["GUN", "BALL", "VIEW", "FOCAL"] },
-      { id: "purple", color: "purple", title: "Types of fabric",          words: ["MUSLIN", "VELVET", "CHIFFON", "TWEED"] },
-      { id: "pink",   color: "pink",   title: "Things that can be raw",   words: ["DEAL", "NERVE", "TALENT", "MEAT"] },
-    ],
+    "id": 14,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Verbs",
+        "words": [
+          "RUN",
+          "JUMP",
+          "WALK",
+          "SWIM"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Actions",
+        "words": [
+          "THROW",
+          "CATCH",
+          "KICK",
+          "PUSH"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Movements",
+        "words": [
+          "DANCE",
+          "SPIN",
+          "SLIDE",
+          "CLIMB"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Activities",
+        "words": [
+          "PLAY",
+          "WORK",
+          "STUDY",
+          "SLEEP"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things you can \"play\"",
+        "words": [
+          "CARD",
+          "GAME",
+          "MUSIC",
+          "ROLE"
+        ]
+      }
+    ]
   },
   {
-    id: 15,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Playground equipment",     words: ["SWING", "SEESAW", "MONKEY BARS", "SLIDE"] },
-      { id: "green",  color: "green",  title: "Constellations",           words: ["ORION", "LYRA", "CYGNUS", "DRACO"] },
-      { id: "blue",   color: "blue",   title: "Words before 'line'",      words: ["BASE", "HAIR", "DEAD", "BORDER"] },
-      { id: "purple", color: "purple", title: "Types of clocks",          words: ["CUCKOO", "SUNDIAL", "HOURGLASS", "ATOMIC"] },
-      { id: "pink",   color: "pink",   title: "Things that can be spare", words: ["TIRE", "ROOM", "RIB", "TIME"] },
-    ],
+    "id": 15,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Adjectives",
+        "words": [
+          "BIG",
+          "SMALL",
+          "FAST",
+          "SLOW"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Descriptors",
+        "words": [
+          "BRIGHT",
+          "DARK",
+          "LOUD",
+          "QUIET"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Qualities",
+        "words": [
+          "SOFT",
+          "HARD",
+          "SMOOTH",
+          "ROUGH"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Characteristics",
+        "words": [
+          "WARM",
+          "COLD",
+          "WET",
+          "DRY"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"light\"",
+        "words": [
+          "BULB",
+          "YEAR",
+          "SWITCH",
+          "WEIGHT"
+        ]
+      }
+    ]
   },
   {
-    id: 16,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Sports played on ice",     words: ["CURLING", "HOCKEY", "SKATING", "BANDY"] },
-      { id: "green",  color: "green",  title: "Words meaning small",      words: ["PETITE", "MINUTE", "BANTAM", "WEE"] },
-      { id: "blue",   color: "blue",   title: "___ fall",                 words: ["WATER", "FREE", "DOWN", "NIGHT"] },
-      { id: "purple", color: "purple", title: "Literary devices",         words: ["SIMILE", "SYNECDOCHE", "CHIASMUS", "ASSONANCE"] },
-      { id: "pink",   color: "pink",   title: "Things that need a key",   words: ["LOCK", "CAR", "PIANO", "MAP"] },
-    ],
+    "id": 16,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Nouns",
+        "words": [
+          "BOOK",
+          "PENCIL",
+          "DESK",
+          "CHAIR"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Objects",
+        "words": [
+          "PHONE",
+          "COMPUTER",
+          "WATCH",
+          "CAMERA"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Items",
+        "words": [
+          "KEY",
+          "DOOR",
+          "WINDOW",
+          "WALL"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Things",
+        "words": [
+          "ROCK",
+          "PAPER",
+          "SCISSORS",
+          "STONE"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"hard\"",
+        "words": [
+          "ROCK",
+          "DRIVE",
+          "COPY",
+          "SELL"
+        ]
+      }
+    ]
   },
   {
-    id: 17,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Things in a wallet",       words: ["RECEIPT", "LOYALTY CARD", "CASH", "PHOTO"] },
-      { id: "green",  color: "green",  title: "Herbs",                    words: ["TARRAGON", "CHERVIL", "SAVORY", "LOVAGE"] },
-      { id: "blue",   color: "blue",   title: "___ glass",                words: ["LOOKING", "STAINED", "HOUR", "MAGNIFYING"] },
-      { id: "purple", color: "purple", title: "Roman gods",               words: ["JANUS", "VULCAN", "PLUTO", "MINERVA"] },
-      { id: "pink",   color: "pink",   title: "Things with a needle",     words: ["COMPASS", "SYRINGE", "RECORD", "PINE"] },
-    ],
+    "id": 17,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Holidays",
+        "words": [
+          "CHRISTMAS",
+          "EASTER",
+          "HALLOWEEN",
+          "THANKSGIVING"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Celebrations",
+        "words": [
+          "BIRTHDAY",
+          "WEDDING",
+          "ANNIVERSARY",
+          "GRADUATION"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Festivals",
+        "words": [
+          "CARNIVAL",
+          "FAIR",
+          "CONCERT",
+          "PARADE"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Events",
+        "words": [
+          "PARTY",
+          "DINNER",
+          "PICNIC",
+          "GAME"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"white\"",
+        "words": [
+          "CHRISTMAS",
+          "ELEPHANT",
+          "HOUSE",
+          "COLLAR"
+        ]
+      }
+    ]
   },
   {
-    id: 18,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Baked goods",              words: ["BRIOCHE", "SCONE", "DANISH", "STRUDEL"] },
-      { id: "green",  color: "green",  title: "Shades of green",          words: ["SAGE", "CHARTREUSE", "VIRIDIAN", "FERN"] },
-      { id: "blue",   color: "blue",   title: "Words before 'pool'",      words: ["CAR", "DEAD", "SWIMMING", "GENE"] },
-      { id: "purple", color: "purple", title: "Opera singers (voice)",    words: ["SOPRANO", "TENOR", "BARITONE", "MEZZO"] },
-      { id: "pink",   color: "pink",   title: "Things with a bow",        words: ["SHIP", "VIOLIN", "GIFT", "RAINBOW"] },
-    ],
+    "id": 18,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Professions",
+        "words": [
+          "DOCTOR",
+          "TEACHER",
+          "ENGINEER",
+          "LAWYER"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Jobs",
+        "words": [
+          "CHEF",
+          "ARTIST",
+          "MUSICIAN",
+          "ACTOR"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Occupations",
+        "words": [
+          "FARMER",
+          "CARPENTER",
+          "PLUMBER",
+          "ELECTRICIAN"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Roles",
+        "words": [
+          "MANAGER",
+          "ASSISTANT",
+          "DIRECTOR",
+          "PRODUCER"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"blue\"",
+        "words": [
+          "COLLAR",
+          "MOOD",
+          "MOON",
+          "BLOOD"
+        ]
+      }
+    ]
   },
   {
-    id: 19,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Things on a map",          words: ["LEGEND", "SCALE", "CONTOUR", "GRID"] },
-      { id: "green",  color: "green",  title: "Punctuation marks",        words: ["ELLIPSIS", "TILDE", "CARET", "PILCROW"] },
-      { id: "blue",   color: "blue",   title: "___ board",                words: ["SKATE", "CARD", "DART", "SURF"] },
-      { id: "purple", color: "purple", title: "Martial arts",             words: ["KENDO", "CAPOEIRA", "HAPKIDO", "SILAT"] },
-      { id: "pink",   color: "pink",   title: "Things with a bridge",     words: ["GUITAR", "NOSE", "CHESS", "SHIP"] },
-    ],
+    "id": 19,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Vehicles",
+        "words": [
+          "CAR",
+          "TRUCK",
+          "BUS",
+          "TRAIN"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Transportation",
+        "words": [
+          "BICYCLE",
+          "MOTORCYCLE",
+          "SCOOTER",
+          "SKATEBOARD"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Aircraft",
+        "words": [
+          "AIRPLANE",
+          "HELICOPTER",
+          "DRONE",
+          "GLIDER"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Watercraft",
+        "words": [
+          "BOAT",
+          "SHIP",
+          "YACHT",
+          "SUBMARINE"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"flying\"",
+        "words": [
+          "CARPET",
+          "SAUCER",
+          "BUTTRESS",
+          "FORTRESS"
+        ]
+      }
+    ]
   },
   {
-    id: 20,
-    categories: [
-      { id: "yellow", color: "yellow", title: "Things you can knit",      words: ["BEANIE", "BLANKET", "SOCK", "COWL"] },
-      { id: "green",  color: "green",  title: "Famous scientists",        words: ["CURIE", "DARWIN", "FARADAY", "TURING"] },
-      { id: "blue",   color: "blue",   title: "___ watch",                words: ["STOP", "NIGHT", "SMART", "POCKET"] },
-      { id: "purple", color: "purple", title: "Types of economy",         words: ["MIXED", "COMMAND", "BARTER", "MARKET"] },
-      { id: "pink",   color: "pink",   title: "Things that can be fixed", words: ["GAME", "GAZE", "PRICE", "BAYONET"] },
-    ],
-  },
+    "id": 20,
+    "categories": [
+      {
+        "id": "yellow",
+        "color": "yellow",
+        "title": "Seasons",
+        "words": [
+          "SPRING",
+          "SUMMER",
+          "FALL",
+          "WINTER"
+        ]
+      },
+      {
+        "id": "green",
+        "color": "green",
+        "title": "Weather",
+        "words": [
+          "SUNNY",
+          "RAINY",
+          "CLOUDY",
+          "SNOWY"
+        ]
+      },
+      {
+        "id": "blue",
+        "color": "blue",
+        "title": "Temperatures",
+        "words": [
+          "HOT",
+          "COLD",
+          "WARM",
+          "COOL"
+        ]
+      },
+      {
+        "id": "purple",
+        "color": "purple",
+        "title": "Natural phenomena",
+        "words": [
+          "RAINBOW",
+          "THUNDER",
+          "LIGHTNING",
+          "HAIL"
+        ]
+      },
+      {
+        "id": "pink",
+        "color": "pink",
+        "title": "Things that are \"golden\"",
+        "words": [
+          "RETRIEVER",
+          "GATE",
+          "RULE",
+          "PARACHUTE"
+        ]
+      }
+    ]
+  }
 ];
 
 export const COLOR_STYLES = {
   yellow: {
-    bg:         "#fef9c3",
-    border:     "transparent",
-    glow:       "transparent",
-    titleColor: "#713f12",
-    wordsColor: "#92400e",
+    bg: 'bg-yellow-200',
+    titleColor: '#92400e',
+    wordsColor: '#b45309',
+    emoji: '🟨'
   },
   green: {
-    bg:         "#dcfce7",
-    border:     "transparent",
-    glow:       "transparent",
-    titleColor: "#14532d",
-    wordsColor: "#166534",
+    bg: 'bg-green-200',
+    titleColor: '#15803d',
+    wordsColor: '#16a34a',
+    emoji: '🟩'
   },
   blue: {
-    bg:         "#dbeafe",
-    border:     "transparent",
-    glow:       "transparent",
-    titleColor: "#1e3a8a",
-    wordsColor: "#1d4ed8",
+    bg: 'bg-blue-200',
+    titleColor: '#1e40af',
+    wordsColor: '#2563eb',
+    emoji: '🟦'
   },
   purple: {
-    bg:         "#ede9fe",
-    border:     "transparent",
-    glow:       "transparent",
-    titleColor: "#3b0764",
-    wordsColor: "#6d28d9",
+    bg: 'bg-purple-200',
+    titleColor: '#6b21a8',
+    wordsColor: '#9333ea',
+    emoji: '🟪'
   },
   pink: {
-    bg:         "#fce7f3",
-    border:     "transparent",
-    glow:       "transparent",
-    titleColor: "#831843",
-    wordsColor: "#be185d",
-  },
+    bg: 'bg-pink-200',
+    titleColor: '#be185d',
+    wordsColor: '#ec4899',
+    emoji: '🌸'
+  }
 };
