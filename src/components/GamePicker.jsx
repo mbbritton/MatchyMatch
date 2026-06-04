@@ -174,6 +174,13 @@ const GAMES = [
     description: 'Match all the fruit pairs in the fewest moves',
     color: '#ff9f0a',
   },
+  {
+    id: 'diceroller',
+    emoji: '🎲',
+    name: 'Dice Roller',
+    description: 'Predict high or low and roll the dice!',
+    color: '#ff2d55',
+  },
 ]
 
 export default function GamePicker({ onGameSelect }) {
