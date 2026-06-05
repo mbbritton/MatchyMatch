@@ -202,6 +202,13 @@ const GAMES = [
     description: 'Play the classic game of chess against a friend',
     color: '#8b7355',
   },
+  {
+    id: 'tobynottobe',
+    emoji: '🎭',
+    name: 'Toby or Not Toby?',
+    description: 'True or false — decide before the clock runs out!',
+    color: '#bf5af2',
+  },
 ]
 
 export default function GamePicker({ onGameSelect }) {
