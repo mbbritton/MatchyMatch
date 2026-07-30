@@ -17,6 +17,6 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ## 😄 A Little Joke
 
-Why did the matching game break up with the memory game?
+Why are card-matching games so good at relationships?
 
-Because it kept finding someone **else** a perfect match! 🃏
+Because they never give up until they find their **perfect match**! 🃏
