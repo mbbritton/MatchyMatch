@@ -20,3 +20,9 @@ If you are developing a production application, we recommend using TypeScript wi
 Why did the matching game break up with the memory game?
 
 Because it kept finding someone **else** a perfect match! 🃏
+
+## Another Little Joke
+
+Why did the scarecrow win an award?
+
+Because he was outstanding in his field! 🌾
