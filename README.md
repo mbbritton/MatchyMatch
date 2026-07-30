@@ -20,3 +20,9 @@ If you are developing a production application, we recommend using TypeScript wi
 Why did the matching game break up with the memory game?
 
 Because it kept finding someone **else** a perfect match! 🃏
+
+---
+
+Why do React developers always carry an umbrella? ☂️
+
+Because they're afraid of getting caught in the **state** of confusion when the props start pouring down! 🌧️
