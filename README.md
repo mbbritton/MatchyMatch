@@ -20,3 +20,7 @@ If you are developing a production application, we recommend using TypeScript wi
 Why did the matching game break up with the memory game?
 
 Because it kept finding someone **else** a perfect match! 🃏
+
+Why do React developers make terrible comedians?
+
+Because their jokes always need a **re-render** to get a laugh! 😂
