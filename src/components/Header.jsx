@@ -1,6 +1,11 @@
 import ThemeMenu from './ThemeMenu'
+import ShareButton from './ShareButton'
 
 export default function Header({ activeGame, onGoHome }) {
+  const shareUrl = activeGame
+    ? `${window.location.origin}${window.location.pathname}?game=${activeGame}`
+    : null
+
   return (
     <header
       style={{
@@ -14,7 +19,7 @@ export default function Header({ activeGame, onGoHome }) {
       <div className="max-w-5xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between gap-4">
 
         {/* Left: back button (when in a game) or spacer */}
-        <div className="w-24 flex items-center">
+        <div className="w-32 flex items-center">
           {activeGame ? (
             <button
               onClick={onGoHome}
@@ -105,8 +110,9 @@ export default function Header({ activeGame, onGoHome }) {
           </h1>
         </button>
 
-        {/* Right: theme menu (always visible) */}
-        <div className="w-24 flex items-center justify-end">
+        {/* Right: share (in a game) + theme menu (always visible) */}
+        <div className="w-32 flex items-center justify-end gap-2">
+          {shareUrl ? <ShareButton url={shareUrl} /> : null}
           <ThemeMenu />
         </div>
 

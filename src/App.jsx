@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import GamePicker from './components/GamePicker'
@@ -40,8 +40,8 @@ import LatchamBoard from './components/latcham/LatchamBoard'
 import GeoffsGeometryBoard from './components/geoffsgeometry/GeoffsGeometryBoard'
 import GreatWallBoard from './components/greatwall/GreatWallBoard'
 import SamIAmBoard from './components/samiam/SamIAmBoard'
-import GabbysGiftBoard from './components/gabbysgift/GabbysGiftBoard'
 import { puzzles } from './data/puzzles'
+import { GAME_IDS } from './data/games'
 
 const envIndex = parseInt(import.meta.env.VITE_PUZZLE_INDEX, 10)
 const PUZZLE_INDEX =
@@ -49,10 +49,22 @@ const PUZZLE_INDEX =
     ? envIndex
     : 0
 
+function getGameFromURL() {
+  const id = new URLSearchParams(window.location.search).get('game')
+  return GAME_IDS.includes(id) ? id : null
+}
+
 function App() {
   // null = home / game picker screen
-  const [activeGame, setActiveGame] = useState(null)
+  const [activeGame, setActiveGame] = useState(getGameFromURL)
   const [gameKey, setGameKey] = useState(0)
+
+  // Keep activeGame in sync with browser back/forward navigation.
+  useEffect(() => {
+    const onPopState = () => setActiveGame(getGameFromURL())
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
 
   const handleNewGame = () => {
     setGameKey((k) => k + 1)
@@ -61,10 +73,16 @@ function App() {
   const handleGameSelect = (game) => {
     setActiveGame(game)
     setGameKey((k) => k + 1)
+    const url = new URL(window.location.href)
+    url.searchParams.set('game', game)
+    window.history.pushState(null, '', url)
   }
 
   const handleGoHome = () => {
     setActiveGame(null)
+    const url = new URL(window.location.href)
+    url.searchParams.delete('game')
+    window.history.pushState(null, '', url)
   }
 
   return (
@@ -155,8 +173,6 @@ function App() {
           <GreatWallBoard key={`greatwall-${gameKey}`} />
         ) : activeGame === 'samiam' ? (
           <SamIAmBoard key={`samiam-${gameKey}`} />
-        ) : activeGame === 'gabbysgift' ? (
-          <GabbysGiftBoard key={`gabbysgift-${gameKey}`} />
         ) : (
           <SudokuBoard key={`sudoku-${gameKey}`} />
         )}
