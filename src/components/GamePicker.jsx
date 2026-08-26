@@ -6,114 +6,133 @@ const GAMES = [
     name: 'Matchy Match',
     description: 'Group 20 words into 5 hidden categories',
     tag: 'Puzzle',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'wordle',
     name: 'Wordle',
     description: 'Guess the 5-letter word in 6 tries',
     tag: 'Word',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'crunch',
     name: 'Number Crunch',
     description: 'Hit the target using 6 numbers & operators',
     tag: 'Puzzle',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'cross',
     name: 'Crossword',
     description: 'Fill in the classic crossword grid',
     tag: 'Word',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'chain',
     name: 'Word Chain',
     description: 'Link words one letter change at a time',
     tag: 'Word',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'scramble',
     name: 'Scramble',
     description: 'Unscramble the jumbled letters',
     tag: 'Word',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'anagram',
     name: 'Anagram',
     description: 'Rearrange letters to find the hidden word',
     tag: 'Word',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'sudoku',
     name: 'Sudoku',
     description: 'Fill the 9×9 grid with digits 1–9',
     tag: 'Puzzle',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'trivia',
     name: 'Trivia',
     description: 'Test your knowledge across many topics',
     tag: 'Trivia',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'memory',
     name: 'Memory',
     description: 'Flip cards and find every matching pair',
     tag: 'Memory',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'puppyfetch',
     name: 'Puppy Fetch',
     description: 'Match all the dog breed pairs to get treats',
     tag: 'Memory',
+    createdAt: '2026-06-04T22:50:03Z',
   },
   {
     id: 'catmatch',
     name: 'Cat Match',
     description: 'Match all the kitties in the fewest moves',
     tag: 'Memory',
+    createdAt: '2026-06-04T23:03:44Z',
   },
   {
     id: 'typerace',
     name: 'Type Race',
     description: 'Type the passage as fast as you can',
     tag: 'Reflex',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'wordsearch',
     name: 'Word Search',
     description: 'Hunt for hidden words in the grid',
     tag: 'Word',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'mathquiz',
     name: 'Math Quiz',
     description: 'Solve rapid-fire arithmetic questions',
     tag: 'Puzzle',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'hangman',
     name: 'Hangman',
     description: 'Guess the word before the drawing is done',
     tag: 'Word',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'snake',
     name: 'Snake',
     description: "Eat, grow, and don't hit the walls",
     tag: 'Arcade',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: 'spellingbee',
     name: 'Spelling Bee',
     description: 'Make words from 7 letters — use the centre one',
     tag: 'Word',
+    createdAt: '2026-05-08T19:02:02Z',
   },
   {
     id: '2048',
     name: '2048',
     description: 'Slide & merge tiles to reach the 2048 tile',
     tag: 'Puzzle',
+    createdAt: '2026-05-08T19:27:31Z',
   },
   {
     id: 'minesweeper',
@@ -121,6 +140,7 @@ const GAMES = [
     description: "Clear Ryan's field without hitting a bomb",
     tag: 'Puzzle',
     builder: 'Ryan',
+    createdAt: '2026-06-03T21:54:41Z',
   },
   {
     id: 'tictactoe',
@@ -128,6 +148,7 @@ const GAMES = [
     description: 'Use your brain to beat Brian!',
     tag: 'Strategy',
     builder: 'Brian',
+    createdAt: '2026-06-03T22:28:23Z',
   },
   {
     id: 'barrysblitz',
@@ -135,6 +156,7 @@ const GAMES = [
     description: 'Race against time to match words to categories',
     tag: 'Word',
     builder: 'Barry',
+    createdAt: '2026-06-04T16:27:03Z',
   },
   {
     id: 'gregsegg',
@@ -142,6 +164,7 @@ const GAMES = [
     description: "Tap Greg's eggs before they hatch — timing is everything!",
     tag: 'Reflex',
     builder: 'Greg',
+    createdAt: '2026-06-04T17:25:51Z',
   },
   {
     id: 'nathanielninja',
@@ -149,6 +172,7 @@ const GAMES = [
     description: 'Identify numbers quickly before time runs out!',
     tag: 'Reflex',
     builder: 'Nathaniel',
+    createdAt: '2026-06-04T19:33:10Z',
   },
   {
     id: 'nickofttime',
@@ -156,30 +180,35 @@ const GAMES = [
     description: "Tap in the nick of time — land the marker in the green zone!",
     tag: 'Reflex',
     builder: 'Nick',
+    createdAt: '2026-06-04T20:21:47Z',
   },
   {
     id: 'colourclash',
     name: 'Colour Clash',
     description: 'Tap the ink colour, not the word — beat the Stroop effect!',
     tag: 'Reflex',
+    createdAt: '2026-06-04T22:01:27Z',
   },
   {
     id: 'flipflop',
     name: 'Flip Flop',
     description: 'Match all the fruit pairs in the fewest moves',
     tag: 'Memory',
+    createdAt: '2026-06-04T22:11:03Z',
   },
   {
     id: 'diceroll',
     name: 'Dice Roll',
     description: 'Roll two dice and try to hit the target sum',
     tag: 'Chaos',
+    createdAt: '2026-06-04T22:38:45Z',
   },
   {
     id: 'flipcoin',
     name: 'Flip Coin',
     description: 'Predict heads or tails and test your luck!',
     tag: 'Chaos',
+    createdAt: '2026-07-29T21:15:40Z',
   },
   {
     id: 'kennykeno',
@@ -187,12 +216,14 @@ const GAMES = [
     description: 'Pick numbers and match them to the draw!',
     tag: 'Chaos',
     builder: 'Kenny',
+    createdAt: '2026-07-29T22:32:53Z',
   },
   {
     id: 'chess',
     name: 'Chess',
     description: 'Play the classic game of chess against the AI, or a friend',
     tag: 'Strategy',
+    createdAt: '2026-06-04T22:59:29Z',
   },
   {
     id: 'rochellespinner',
@@ -201,6 +232,7 @@ const GAMES = [
     tag: 'Chaos',
     builder: 'Rochelle',
     isNew: true,
+    createdAt: '2026-07-30T16:20:57Z',
   },
   {
     id: 'martinimatch',
@@ -208,18 +240,21 @@ const GAMES = [
     description: 'Match cocktail names with their ingredients!',
     tag: 'Memory',
     isNew: true,
+    createdAt: '2026-07-30T16:38:10Z',
   },
   {
     id: 'manjual',
     name: 'Manju-al',
     description: 'Guess manju-related words with hints!',
     tag: 'Word',
+    createdAt: '2026-07-30T18:01:25Z',
   },
   {
     id: 'latcham',
     name: 'Latch-am If You Can',
     description: 'Click the locks before they escape — latch as many as you can!',
     tag: 'Reflex',
+    createdAt: '2026-07-30T19:07:13Z',
   },
   {
     id: 'geoffsgeometry',
@@ -228,6 +263,7 @@ const GAMES = [
     tag: 'Reflex',
     builder: 'Geoff',
     isNew: true,
+    createdAt: '2026-08-07T18:07:53Z',
   },
   {
     id: 'greatwall',
@@ -235,6 +271,7 @@ const GAMES = [
     description: 'Break down the wall, one brick at a time!',
     tag: 'Arcade',
     isNew: true,
+    createdAt: '2026-07-30T19:05:46Z',
   },
   {
     id: 'samiam',
@@ -242,6 +279,16 @@ const GAMES = [
     description: 'Guess the secret word from Dr. Seuss-style clues!',
     tag: 'Word',
     isNew: true,
+    createdAt: '2026-08-25T19:41:16Z',
+  },
+  {
+    id: 'gabbysgift',
+    name: "Gabby's Gift of Gab",
+    description: 'Flip cards and match every communication-themed pair!',
+    tag: 'Memory',
+    builder: 'Gabby',
+    isNew: true,
+    createdAt: '2026-08-26T00:00:00Z',
   },
 ]
 
@@ -357,6 +404,10 @@ export default function GamePicker({ onGameSelect }) {
     })
     if (sort === 'az') {
       list = [...list].sort((a, b) => a.name.localeCompare(b.name))
+    } else if (sort === 'newest') {
+      list = [...list].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    } else if (sort === 'oldest') {
+      list = [...list].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
     }
     return list
   }, [query, tag, favOnly, favorites, sort])
@@ -457,6 +508,8 @@ export default function GamePicker({ onGameSelect }) {
               >
                 <option value="default">Default order</option>
                 <option value="az">A – Z</option>
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
               </select>
 
               <button onClick={handleSurprise} className="arcade-btn arcade-btn--primary">
