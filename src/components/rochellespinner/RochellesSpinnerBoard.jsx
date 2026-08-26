@@ -10,12 +10,18 @@ export default function RochellesSpinnerBoard() {
   const [message, setMessage] = useState('')
   const [showConfetti, setShowConfetti] = useState(false)
   const [rotation, setRotation] = useState(0)
+  const [pickedSegment, setPickedSegment] = useState(null)
 
   const segments = ['🎉', '🌟', '💎', '🎁', '🏆', '🎪', '🎨', '🎭']
   const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a29bfe', '#fd79a8', '#fdcb6e']
 
-  const handleSpin = () => {
+  const handlePick = (index) => {
     if (isSpinning) return
+    setPickedSegment(index)
+  }
+
+  const handleSpin = () => {
+    if (isSpinning || pickedSegment === null) return
 
     setIsSpinning(true)
     setResult(null)
@@ -40,13 +46,13 @@ export default function RochellesSpinnerBoard() {
     setTimeout(() => {
       setResult(randomSegment)
 
-      if (randomSegment % 2 === 0) {
+      if (randomSegment === pickedSegment) {
         setWins(wins + 1)
-        setMessage('🎉 You won!')
+        setMessage(`🎉 It landed on ${segments[randomSegment]} — you called it!`)
         setShowConfetti(true)
       } else {
         setLosses(losses + 1)
-        setMessage('❌ Try again!')
+        setMessage(`❌ It landed on ${segments[randomSegment]}, not your pick. Try again!`)
       }
 
       setIsSpinning(false)
@@ -57,6 +63,7 @@ export default function RochellesSpinnerBoard() {
     setResult(null)
     setMessage('')
     setShowConfetti(false)
+    setPickedSegment(null)
   }
 
   const handleNewGame = () => {
@@ -66,6 +73,7 @@ export default function RochellesSpinnerBoard() {
     setMessage('')
     setShowConfetti(false)
     setRotation(0)
+    setPickedSegment(null)
   }
 
   return (
@@ -82,7 +90,7 @@ export default function RochellesSpinnerBoard() {
           className="text-sm"
           style={{ color: 'var(--label-secondary)' }}
         >
-          Spin the wheel and try your luck!
+          Pick an emoji, then spin to see if you called it!
         </p>
       </div>
 
@@ -95,6 +103,36 @@ export default function RochellesSpinnerBoard() {
         <p className="text-sm mt-1" style={{ color: 'var(--label-secondary)' }}>
           Win Rate: {wins + losses > 0 ? Math.round((wins / (wins + losses)) * 100) : 0}%
         </p>
+      </div>
+
+      {/* Emoji Picker */}
+      <div className="mb-8">
+        <p
+          className="text-sm font-semibold text-center mb-3"
+          style={{ color: 'var(--label-primary)' }}
+        >
+          {pickedSegment === null ? 'Pick your emoji' : `Your pick: ${segments[pickedSegment]}`}
+        </p>
+        <div className="grid grid-cols-4 gap-2">
+          {segments.map((emoji, index) => (
+            <button
+              key={emoji}
+              type="button"
+              onClick={() => handlePick(index)}
+              disabled={isSpinning}
+              className="aspect-square rounded-lg flex items-center justify-center text-2xl transition-transform disabled:opacity-50"
+              style={{
+                backgroundColor: pickedSegment === index ? colors[index] : 'var(--fill-tertiary)',
+                border: pickedSegment === index ? '2px solid var(--label-primary)' : '2px solid transparent',
+                transform: pickedSegment === index ? 'scale(1.05)' : 'scale(1)',
+              }}
+              aria-pressed={pickedSegment === index}
+              aria-label={`Pick ${emoji}`}
+            >
+              {emoji}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Spinner */}
@@ -145,11 +183,11 @@ export default function RochellesSpinnerBoard() {
       {/* Spin Button */}
       <button
         onClick={handleSpin}
-        disabled={isSpinning}
+        disabled={isSpinning || pickedSegment === null}
         className="w-full px-6 py-3 rounded-lg font-semibold text-white transition-opacity disabled:opacity-50 mb-6"
         style={{ backgroundColor: 'var(--accent)' }}
       >
-        {isSpinning ? 'Spinning...' : 'Spin the Wheel'}
+        {isSpinning ? 'Spinning...' : pickedSegment === null ? 'Pick an emoji first' : 'Spin the Wheel'}
       </button>
 
       {/* Action Buttons */}

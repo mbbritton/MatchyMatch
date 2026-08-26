@@ -226,7 +226,7 @@ export const GAMES = [
   {
     id: 'rochellespinner',
     name: "Rochelle's Spinner",
-    description: 'Spin the wheel and try your luck!',
+    description: 'Pick an emoji, then spin to see if you called it!',
     tag: 'Chaos',
     builder: 'Rochelle',
     isNew: true,

@@ -43,6 +43,8 @@ test.each([0, 1, 2, 3, 4, 5, 6, 7])(
       .mockReturnValueOnce(targetSegment / SEGMENT_COUNT); // randomSegment = targetSegment
 
     const { container } = render(<RochellesSpinnerBoard />);
+    const pickBtn = container.querySelector('button[aria-label^="Pick "]');
+    fireEvent.click(pickBtn);
     const spinBtn = Array.from(container.querySelectorAll('button')).find((b) =>
       /spin the wheel/i.test(b.textContent)
     );
