@@ -279,6 +279,15 @@ export const GAMES = [
     isNew: true,
     createdAt: '2026-08-25T19:41:16Z',
   },
+  {
+    id: 'jeremysjeopardy',
+    name: "Jeremy's Jeopardy",
+    description: 'Answer the clue with the correct response!',
+    tag: 'Trivia',
+    builder: 'Jeremy',
+    isNew: true,
+    createdAt: '2026-08-26T00:00:00Z',
+  },
 ]
 
 export const GAME_IDS = GAMES.map((g) => g.id)
