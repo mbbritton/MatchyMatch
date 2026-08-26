@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useTheme } from "../../contexts/ThemeContext";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
@@ -53,7 +54,7 @@ function drawGame(ctx, state, dark) {
   const H = ROWS * CELL;
 
   // Background
-  ctx.fillStyle = dark ? "#1c1c1e" : "#f2f2f7";
+  ctx.fillStyle = dark ? "#131316" : "#f2f2f7";
   ctx.fillRect(0, 0, W, H);
 
   // Grid lines (subtle)
@@ -188,7 +189,8 @@ function ScoreBadge({ score, best }) {
 
 // ── Main board ────────────────────────────────────────────────────────────────
 
-export default function SnakeBoard({ dark }) {
+export default function SnakeBoard() {
+  const { dark } = useTheme();
   const canvasRef   = useRef(null);
   const tickRef     = useRef(null);
   const dirQueueRef = useRef([]); // buffer up to 2 direction changes per tick

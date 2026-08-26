@@ -311,7 +311,7 @@ export default function GreatWallBoard() {
     <div className="w-full max-w-2xl mx-auto">
       <div className="mb-6 text-center">
         <h2 className="text-3xl font-bold mb-2">The Great Wall</h2>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p style={{ color: 'var(--label-secondary)' }}>
           Break down the wall, one brick at a time!
         </p>
       </div>
@@ -319,12 +319,12 @@ export default function GreatWallBoard() {
       <div className="flex justify-center">
         <canvas
           ref={canvasRef}
-          className="border-2 border-gray-300 dark:border-gray-700 rounded-lg cursor-none"
-          style={{ maxWidth: '100%', height: 'auto' }}
+          className="border-2 rounded-lg cursor-none"
+          style={{ maxWidth: '100%', height: 'auto', borderColor: 'var(--separator-opaque)' }}
         />
       </div>
 
-      <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+      <div className="mt-6 text-center text-sm" style={{ color: 'var(--label-secondary)' }}>
         <p>Move your mouse to control the paddle</p>
         <p>Don't let the ball fall!</p>
       </div>

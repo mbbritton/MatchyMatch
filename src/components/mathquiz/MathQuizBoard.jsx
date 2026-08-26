@@ -125,7 +125,7 @@ function SummaryRow({ problem, userAnswer, timeTaken, index }) {
         border: `0.5px solid ${correct ? "rgba(52,199,89,0.25)" : skipped ? "rgba(120,120,128,0.2)" : "rgba(255,59,48,0.25)"}`,
       }}
     >
-      <span style={{ fontSize: "0.9rem", fontWeight: 700, flexShrink: 0, color: correct ? "#1a7a35" : skipped ? "var(--label-tertiary)" : "#c0392b" }}>
+      <span style={{ fontSize: "0.9rem", fontWeight: 700, flexShrink: 0, color: correct ? "var(--success-text)" : skipped ? "var(--label-tertiary)" : "var(--danger-text)" }}>
         {correct ? "✓" : skipped ? "—" : "✗"}
       </span>
       <div className="flex flex-col gap-0.5 min-w-0 flex-1">
@@ -134,8 +134,8 @@ function SummaryRow({ problem, userAnswer, timeTaken, index }) {
         </p>
         {!correct && (
           <p style={{ fontSize: "0.75rem", color: "var(--label-tertiary)" }}>
-            {skipped ? "Time ran out" : <>Your answer: <span style={{ color: "#c0392b", fontWeight: 600 }}>{userAnswer}</span></>}
-            {" · "}Correct: <span style={{ color: "#1a7a35", fontWeight: 600 }}>{problem.answer}</span>
+            {skipped ? "Time ran out" : <>Your answer: <span style={{ color: "var(--danger-text)", fontWeight: 600 }}>{userAnswer}</span></>}
+            {" · "}Correct: <span style={{ color: "var(--success-text)", fontWeight: 600 }}>{problem.answer}</span>
           </p>
         )}
       </div>
@@ -510,7 +510,7 @@ function Game({ problems, onNewGame }) {
               style={{
                 fontSize: "0.9rem",
                 fontWeight: 600,
-                color: isCorrect ? "#1a7a35" : "#c0392b",
+                color: isCorrect ? "var(--success-text)" : "var(--danger-text)",
                 letterSpacing: "-0.01em",
               }}
             >

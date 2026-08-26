@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Header from './components/Header'
-import { useDarkMode } from './hooks/useDarkMode'
 import Footer from './components/Footer'
 import GamePicker from './components/GamePicker'
 import GameBoard from './components/GameBoard'
@@ -53,7 +52,6 @@ function App() {
   // null = home / game picker screen
   const [activeGame, setActiveGame] = useState(null)
   const [gameKey, setGameKey] = useState(0)
-  const { dark, toggle: toggleDark } = useDarkMode()
 
   const handleNewGame = () => {
     setGameKey((k) => k + 1)
@@ -74,8 +72,6 @@ function App() {
         activeGame={activeGame}
         onGameChange={handleGameSelect}
         onGoHome={handleGoHome}
-        dark={dark}
-        onToggleDark={toggleDark}
       />
       <main className="flex-1 flex flex-col items-center pt-6 pb-10 px-4 sm:px-6">
         {!activeGame ? (
@@ -115,7 +111,7 @@ function App() {
         ) : activeGame === 'hangman' ? (
           <HangmanBoard key={`hangman-${gameKey}`} />
         ) : activeGame === 'snake' ? (
-          <SnakeBoard key={`snake-${gameKey}`} dark={dark} />
+          <SnakeBoard key={`snake-${gameKey}`} />
         ) : activeGame === 'spellingbee' ? (
           <SpellingBeeBoard key={`spellingbee-${gameKey}`} />
         ) : activeGame === '2048' ? (

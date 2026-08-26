@@ -39,6 +39,16 @@
   --fill-tertiary:   rgba(118,118,128,0.12);
   --fill-quaternary: rgba(116,116,128,0.08);
 
+  /* Semantic status colors */
+  --success:         #34c759;
+  --success-bg:      rgba(52,199,89,0.12);
+  --success-border:  rgba(52,199,89,0.55);
+  --success-text:    #1a7a35;
+  --danger:          #ff3b30;
+  --danger-bg:       rgba(255,59,48,0.10);
+  --danger-border:   rgba(255,59,48,0.48);
+  --danger-text:     #c0392b;
+
   /* Shadows */
   --shadow-xs:  0 1px 2px rgba(0,0,0,0.06);
   --shadow-sm:  0 1px 4px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
@@ -82,12 +92,13 @@
 
 /* ── Dark mode tokens ────────────────────────────────────────────── */
 .dark {
-  /* Backgrounds */
-  --bg-base:        #1c1c1e;
-  --bg-surface:     #2c2c2e;
-  --bg-elevated:    #3a3a3c;
-  --bg-grouped:     #1c1c1e;
-  --bg-inset:       #3a3a3c;
+  /* Backgrounds — deepened from iOS system gray so "dark" reads as
+     actually dark rather than a washed-out charcoal. */
+  --bg-base:        #131316;
+  --bg-surface:     #1f1f22;
+  --bg-elevated:    #2a2a2e;
+  --bg-grouped:     #131316;
+  --bg-inset:       #262629;
 
   /* Labels */
   --label-primary:   #ffffff;
@@ -109,6 +120,17 @@
   --fill-secondary:  rgba(120,120,128,0.28);
   --fill-tertiary:   rgba(118,118,128,0.22);
   --fill-quaternary: rgba(116,116,128,0.14);
+
+  /* Semantic status colors — brightened so text stays legible against
+     dark surfaces instead of reading as a near-black smudge. */
+  --success:         #30d158;
+  --success-bg:      rgba(48,209,88,0.16);
+  --success-border:  rgba(48,209,88,0.55);
+  --success-text:    #4cd964;
+  --danger:          #ff453a;
+  --danger-bg:       rgba(255,69,58,0.14);
+  --danger-border:   rgba(255,69,58,0.5);
+  --danger-text:     #ff6b60;
 
   /* Shadows (subtler on dark) */
   --shadow-xs:  0 1px 2px rgba(0,0,0,0.24);
@@ -138,12 +160,43 @@
   --arcade-card-shadow-hover: 0 12px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(59,163,255,0.15);
 }
 
+/* ── Midnight (true-black / OLED) tokens ─────────────────────────────
+   Layers on top of .dark (both classes are always applied together —
+   see ThemeContext), so only the values that differ from .dark need
+   to be listed here; everything else falls through. */
+[data-theme="midnight"] {
+  --bg-base:        #000000;
+  --bg-surface:     #0a0a0c;
+  --bg-elevated:    #161618;
+  --bg-grouped:     #000000;
+  --bg-inset:       #131315;
+
+  --separator:       rgba(255,255,255,0.14);
+  --separator-opaque:#2c2c30;
+
+  --accent:          #2f95ff;
+  --accent-light:    rgba(47,149,255,0.2);
+  --accent-mid:      rgba(47,149,255,0.3);
+
+  --success-bg:      rgba(48,209,88,0.2);
+  --danger-bg:       rgba(255,69,58,0.18);
+
+  --shadow-xs:  0 1px 2px rgba(0,0,0,0.4);
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.5), 0 0 0 0.5px rgba(255,255,255,0.06);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(255,255,255,0.06);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.7), 0 0 0 0.5px rgba(255,255,255,0.06);
+  --shadow-xl:  0 16px 48px rgba(0,0,0,0.8), 0 0 0 0.5px rgba(255,255,255,0.06);
+}
+
 /* ── Reset & base ────────────────────────────────────────────────── */
 /* Scoped to Tailwind's "base" layer (rather than left unlayered) so
    that Tailwind's spacing/utility classes — which live in the
    "utilities" layer — can actually override this reset. Unlayered CSS
    always wins over layered CSS regardless of specificity, so leaving
-   this unlayered silently zeroed out every p-*/m-* utility in the app. */
+   this unlayered silently zeroed out every padding and margin utility
+   in the app. Do not write an asterisk immediately followed by a
+   forward slash anywhere in this comment block — that sequence closes
+   a CSS comment early and silently corrupts every rule below it. */
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;
@@ -491,6 +544,84 @@ select:focus-visible,
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--label-tertiary);
+}
+
+/* ── Theme menu ──────────────────────────────────────────────────── */
+.theme-menu {
+  position: relative;
+}
+
+.theme-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--fill-tertiary);
+  color: var(--label-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease;
+}
+.theme-menu__trigger:hover {
+  background: var(--fill-secondary);
+  color: var(--label-primary);
+}
+.theme-menu__trigger:active {
+  transform: scale(0.92);
+}
+.theme-menu__trigger[aria-expanded="true"] {
+  background: var(--fill-secondary);
+  color: var(--label-primary);
+}
+
+.theme-menu__panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 50;
+  min-width: 168px;
+  padding: 6px;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 0.5px solid var(--separator);
+  box-shadow: var(--shadow-lg);
+}
+
+.theme-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--label-primary);
+  font-family: var(--font-system);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.theme-menu__item:hover {
+  background: var(--fill-tertiary);
+}
+.theme-menu__item--active {
+  color: var(--accent);
+  font-weight: 600;
+}
+.theme-menu__item-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+.theme-menu__item-check {
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 /* ── Glass card ──────────────────────────────────────────────────── */

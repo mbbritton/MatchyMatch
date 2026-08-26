@@ -1,6 +1,6 @@
-import DarkModeToggle from './DarkModeToggle'
+import ThemeMenu from './ThemeMenu'
 
-export default function Header({ activeGame, onGoHome, dark, onToggleDark }) {
+export default function Header({ activeGame, onGoHome }) {
   return (
     <header
       style={{
@@ -105,9 +105,9 @@ export default function Header({ activeGame, onGoHome, dark, onToggleDark }) {
           </h1>
         </button>
 
-        {/* Right: dark mode toggle (always visible) */}
+        {/* Right: theme menu (always visible) */}
         <div className="w-24 flex items-center justify-end">
-          <DarkModeToggle dark={dark} onToggle={onToggleDark} />
+          <ThemeMenu />
         </div>
 
       </div>

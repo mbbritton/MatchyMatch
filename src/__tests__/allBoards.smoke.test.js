@@ -4,6 +4,7 @@
 // lookups, crashes in initial state or effects) across the whole game list
 // in one run, not to verify each game's rules are correct.
 import { render, cleanup } from '@testing-library/react';
+import { ThemeProvider } from '../contexts/ThemeContext';
 import GameBoard from '../components/GameBoard';
 import WordleBoard from '../components/wordle/WordleBoard';
 import NumberCrunchBoard from '../components/numbercrunch/NumberCrunchBoard';
@@ -63,7 +64,7 @@ const BOARDS = [
   ['wordsearch', () => <WordSearchBoard />],
   ['mathquiz', () => <MathQuizBoard />],
   ['hangman', () => <HangmanBoard />],
-  ['snake', () => <SnakeBoard dark={false} />],
+  ['snake', () => <SnakeBoard />],
   ['spellingbee', () => <SpellingBeeBoard />],
   ['2048', () => <Game2048Board />],
   ['minesweeper', () => <MinesweeperBoard />],
@@ -94,6 +95,6 @@ describe('game board smoke tests', () => {
   });
 
   test.each(BOARDS)('%s renders without throwing', (_id, renderBoard) => {
-    expect(() => render(renderBoard())).not.toThrow();
+    expect(() => render(<ThemeProvider>{renderBoard()}</ThemeProvider>)).not.toThrow();
   });
 });

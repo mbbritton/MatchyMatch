@@ -72,14 +72,14 @@ function LetterKey({ letter, state, onClick }) {
     ? {
         background: "rgba(52,199,89,0.15)",
         border: "1.5px solid rgba(52,199,89,0.55)",
-        color: "#1a7a35",
+        color: "var(--success-text)",
         cursor: "default",
       }
     : isWrong
     ? {
         background: "rgba(255,59,48,0.10)",
         border: "1.5px solid rgba(255,59,48,0.40)",
-        color: "rgba(192,57,43,0.55)",
+        color: "color-mix(in srgb, var(--danger-text) 55%, transparent)",
         cursor: "default",
       }
     : {

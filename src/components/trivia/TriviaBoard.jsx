@@ -38,17 +38,17 @@ function ChoiceButton({ letter, text, state, onClick }) {
   const isReveal   = state === "reveal"; // correct answer revealed after wrong pick
 
   const bgStyle = isCorrect || isReveal
-    ? { background: "rgba(52,199,89,0.12)", border: "1.5px solid rgba(52,199,89,0.6)", color: "#1a7a35" }
+    ? { background: "rgba(52,199,89,0.12)", border: "1.5px solid rgba(52,199,89,0.6)", color: "var(--success-text)" }
     : isWrong
-    ? { background: "rgba(255,59,48,0.10)", border: "1.5px solid rgba(255,59,48,0.5)", color: "#c0392b" }
+    ? { background: "rgba(255,59,48,0.10)", border: "1.5px solid rgba(255,59,48,0.5)", color: "var(--danger-text)" }
     : isSelected
     ? { background: "var(--accent-light)", border: "1.5px solid var(--accent)", color: "var(--accent)", boxShadow: "0 0 0 3px rgba(0,122,255,0.10)" }
     : { background: "var(--bg-surface)", border: "0.5px solid rgba(0,0,0,0.08)", color: "var(--label-primary)", boxShadow: "var(--shadow-sm)" };
 
   const letterBg = isCorrect || isReveal
-    ? { background: "rgba(52,199,89,0.2)", color: "#1a7a35" }
+    ? { background: "rgba(52,199,89,0.2)", color: "var(--success-text)" }
     : isWrong
-    ? { background: "rgba(255,59,48,0.15)", color: "#c0392b" }
+    ? { background: "rgba(255,59,48,0.15)", color: "var(--danger-text)" }
     : isSelected
     ? { background: "var(--accent)", color: "#fff" }
     : { background: "var(--fill-tertiary)", color: "var(--label-secondary)" };
@@ -140,7 +140,7 @@ function SummaryRow({ question, userAnswer, correctAnswer, index }) {
         border: `0.5px solid ${correct ? "rgba(52,199,89,0.25)" : "rgba(255,59,48,0.25)"}`,
       }}
     >
-      <span style={{ fontSize: "0.85rem", fontWeight: 700, color: correct ? "#1a7a35" : "#c0392b", flexShrink: 0, marginTop: 1 }}>
+      <span style={{ fontSize: "0.85rem", fontWeight: 700, color: correct ? "var(--success-text)" : "var(--danger-text)", flexShrink: 0, marginTop: 1 }}>
         {correct ? "✓" : "✗"}
       </span>
       <div className="flex flex-col gap-0.5 min-w-0">
@@ -149,8 +149,8 @@ function SummaryRow({ question, userAnswer, correctAnswer, index }) {
         </p>
         {!correct && (
           <p style={{ fontSize: "0.75rem", color: "var(--label-tertiary)" }}>
-            Your answer: <span style={{ color: "#c0392b", fontWeight: 600 }}>{LETTERS[["A","B","C","D"].indexOf(userAnswer)]} — {question.choices[["A","B","C","D"].indexOf(userAnswer)]}</span>
-            {" · "}Correct: <span style={{ color: "#1a7a35", fontWeight: 600 }}>{correctAnswer} — {question.choices[["A","B","C","D"].indexOf(correctAnswer)]}</span>
+            Your answer: <span style={{ color: "var(--danger-text)", fontWeight: 600 }}>{LETTERS[["A","B","C","D"].indexOf(userAnswer)]} — {question.choices[["A","B","C","D"].indexOf(userAnswer)]}</span>
+            {" · "}Correct: <span style={{ color: "var(--success-text)", fontWeight: 600 }}>{correctAnswer} — {question.choices[["A","B","C","D"].indexOf(correctAnswer)]}</span>
           </p>
         )}
       </div>

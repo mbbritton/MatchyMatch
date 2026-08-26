@@ -149,7 +149,7 @@
   padding: 1rem;
   border-radius: 8px;
   background: var(--fill-secondary);
-  border: 1px solid var(--stroke-tertiary);
+  border: 1px solid var(--separator);
 }
 
 .status-header {
@@ -180,7 +180,7 @@
   padding: 1rem;
   border-radius: 8px;
   background: var(--fill-secondary);
-  border: 1px solid var(--stroke-tertiary);
+  border: 1px solid var(--separator);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -293,7 +293,7 @@
   padding: 1rem;
   border-radius: 8px;
   background: var(--fill-secondary);
-  border: 1px solid var(--stroke-tertiary);
+  border: 1px solid var(--separator);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
