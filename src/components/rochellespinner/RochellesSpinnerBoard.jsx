@@ -2,15 +2,8 @@ import { useState } from 'react'
 import Toast from '../Toast'
 import Confetti from '../Confetti'
 
-// Segments alternate win/lose (even index = win) so the wheel is a coin
-// flip in disguise. Winners get warm gold/green wedges, losers get red —
-// so the odds are readable on the wheel itself, not just after landing.
 const segments = ['🎉', '🌟', '💎', '🎁', '🏆', '🎪', '🎨', '🎭']
-const winPalette = ['#facc15', '#22c55e', '#eab308', '#16a34a']
-const losePalette = ['#f87171', '#ef4444', '#fb7185', '#e11d48']
-const colors = segments.map((_, i) =>
-  i % 2 === 0 ? winPalette[i / 2] : losePalette[(i - 1) / 2]
-)
+const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a29bfe', '#fd79a8', '#fdcb6e']
 const segmentSize = 360 / segments.length
 const JACKPOT_INDEX = segments.indexOf('🏆')
 
@@ -25,9 +18,15 @@ export default function RochellesSpinnerBoard() {
   const [showConfetti, setShowConfetti] = useState(false)
   const [confettiCount, setConfettiCount] = useState(60)
   const [rotation, setRotation] = useState(0)
+  const [pickedSegment, setPickedSegment] = useState(null)
+
+  const handlePick = (index) => {
+    if (isSpinning) return
+    setPickedSegment(index)
+  }
 
   const handleSpin = () => {
-    if (isSpinning) return
+    if (isSpinning || pickedSegment === null) return
 
     setIsSpinning(true)
     setResult(null)
@@ -53,8 +52,8 @@ export default function RochellesSpinnerBoard() {
     setTimeout(() => {
       setResult(randomSegment)
 
-      const isWin = randomSegment % 2 === 0
-      const isJackpot = randomSegment === JACKPOT_INDEX
+      const isWin = randomSegment === pickedSegment
+      const isJackpot = isWin && randomSegment === JACKPOT_INDEX
 
       if (isWin) {
         const nextStreak = currentStreak + 1
@@ -64,16 +63,16 @@ export default function RochellesSpinnerBoard() {
         setConfettiCount(isJackpot ? 150 : 60)
         setMessage(
           isJackpot
-            ? '🏆 JACKPOT! Amazing spin!'
+            ? `🏆 JACKPOT! You called the ${segments[randomSegment]} and got it!`
             : nextStreak >= 3
-            ? `🎉 You won! 🔥 ${nextStreak} in a row!`
-            : '🎉 You won!'
+            ? `🎉 It landed on ${segments[randomSegment]} — you called it! 🔥 ${nextStreak} in a row!`
+            : `🎉 It landed on ${segments[randomSegment]} — you called it!`
         )
         setShowConfetti(true)
       } else {
         setLosses((l) => l + 1)
         setStreak(0)
-        setMessage('❌ Try again!')
+        setMessage(`❌ It landed on ${segments[randomSegment]}, not your pick. Try again!`)
       }
 
       setIsSpinning(false)
@@ -84,6 +83,7 @@ export default function RochellesSpinnerBoard() {
     setResult(null)
     setMessage('')
     setShowConfetti(false)
+    setPickedSegment(null)
   }
 
   const handleNewGame = () => {
@@ -95,9 +95,10 @@ export default function RochellesSpinnerBoard() {
     setMessage('')
     setShowConfetti(false)
     setRotation(0)
+    setPickedSegment(null)
   }
 
-  const isJackpotResult = result === JACKPOT_INDEX
+  const isJackpotResult = result !== null && result === pickedSegment && result === JACKPOT_INDEX
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -113,29 +114,8 @@ export default function RochellesSpinnerBoard() {
           className="text-sm"
           style={{ color: 'var(--label-secondary)' }}
         >
-          Spin the wheel and try your luck!
+          Pick an emoji, then spin to see if you called it!
         </p>
-      </div>
-
-      {/* Legend */}
-      <div
-        className="flex items-center justify-center gap-4 text-xs mb-4"
-        style={{ color: 'var(--label-secondary)' }}
-      >
-        <span className="flex items-center gap-1.5">
-          <span
-            className="w-2.5 h-2.5 rounded-full"
-            style={{ backgroundColor: winPalette[1] }}
-          />
-          Gold & green win
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span
-            className="w-2.5 h-2.5 rounded-full"
-            style={{ backgroundColor: losePalette[1] }}
-          />
-          Red loses
-        </span>
       </div>
 
       {/* Score */}
@@ -150,6 +130,36 @@ export default function RochellesSpinnerBoard() {
         </p>
       </div>
 
+      {/* Emoji Picker */}
+      <div className="mb-8">
+        <p
+          className="text-sm font-semibold text-center mb-3"
+          style={{ color: 'var(--label-primary)' }}
+        >
+          {pickedSegment === null ? 'Pick your emoji' : `Your pick: ${segments[pickedSegment]}`}
+        </p>
+        <div className="grid grid-cols-4 gap-2">
+          {segments.map((emoji, index) => (
+            <button
+              key={emoji}
+              type="button"
+              onClick={() => handlePick(index)}
+              disabled={isSpinning}
+              className="aspect-square rounded-lg flex items-center justify-center text-2xl transition-transform disabled:opacity-50"
+              style={{
+                backgroundColor: pickedSegment === index ? colors[index] : 'var(--fill-tertiary)',
+                border: pickedSegment === index ? '2px solid var(--label-primary)' : '2px solid transparent',
+                transform: pickedSegment === index ? 'scale(1.05)' : 'scale(1)',
+              }}
+              aria-pressed={pickedSegment === index}
+              aria-label={`Pick ${emoji}`}
+            >
+              {emoji}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Spinner */}
       <div className="flex justify-center mb-8">
         <div
@@ -158,7 +168,7 @@ export default function RochellesSpinnerBoard() {
             boxShadow:
               result === null
                 ? 'none'
-                : result % 2 === 0
+                : result === pickedSegment
                 ? '0 0 0 6px rgba(34,197,94,0.5), 0 0 30px rgba(34,197,94,0.35)'
                 : '0 0 0 6px rgba(239,68,68,0.5), 0 0 30px rgba(239,68,68,0.35)',
             transition: 'box-shadow 0.4s ease',
@@ -254,11 +264,11 @@ export default function RochellesSpinnerBoard() {
       {/* Spin Button */}
       <button
         onClick={handleSpin}
-        disabled={isSpinning}
+        disabled={isSpinning || pickedSegment === null}
         className="w-full px-6 py-3 rounded-lg font-semibold text-white transition-opacity disabled:opacity-50 mb-6"
         style={{ backgroundColor: 'var(--accent)' }}
       >
-        {isSpinning ? 'Spinning...' : 'Spin the Wheel'}
+        {isSpinning ? 'Spinning...' : pickedSegment === null ? 'Pick an emoji first' : 'Spin the Wheel'}
       </button>
 
       {/* Action Buttons */}
