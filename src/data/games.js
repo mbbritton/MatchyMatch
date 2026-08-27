@@ -306,6 +306,15 @@ export const GAMES = [
     isNew: true,
     createdAt: '2026-08-27T16:00:00Z',
   },
+  {
+    id: 'victorsvortex',
+    name: "Victor's Vortex",
+    description: 'Click the spirals before they reach the center!',
+    tag: 'Reflex',
+    builder: 'Victor',
+    isNew: true,
+    createdAt: '2026-08-27T17:00:00Z',
+  },
 ]
 
 export const GAME_IDS = GAMES.map((g) => g.id)
