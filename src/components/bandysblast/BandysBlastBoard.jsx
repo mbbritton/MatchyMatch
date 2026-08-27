@@ -11,7 +11,7 @@ export default function BandysBlastBoard() {
   const [message, setMessage] = useState('')
   const [showConfetti, setShowConfetti] = useState(false)
 
-  // Initialize targets
+  // Spawn targets
   useEffect(() => {
     if (!gameActive) return
 
@@ -34,17 +34,33 @@ export default function BandysBlastBoard() {
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
-        if (prev <= 1) {
+        const newTime = prev - 1
+        if (newTime <= 0) {
           setGameActive(false)
           setGameOver(true)
-          return 0
         }
-        return prev - 1
+        return Math.max(0, newTime)
       })
     }, 1000)
 
     return () => clearInterval(timer)
   }, [gameActive])
+
+  // Show end-game message
+  useEffect(() => {
+    if (gameOver) {
+      if (score > 20) {
+        setMessage(`🌟 Incredible! ${score} blasts!`)
+        setShowConfetti(true)
+      } else if (score > 10) {
+        setMessage(`🎉 Great job! ${score} blasts!`)
+      } else if (score > 0) {
+        setMessage(`👍 Not bad! ${score} blasts.`)
+      } else {
+        setMessage('Try again!')
+      }
+    }
+  }, [gameOver, score])
 
   const handleStartGame = () => {
     setScore(0)
@@ -76,21 +92,6 @@ export default function BandysBlastBoard() {
     setMessage('')
     setShowConfetti(false)
   }
-
-  useEffect(() => {
-    if (gameOver) {
-      if (score > 20) {
-        setMessage(`🌟 Incredible! ${score} blasts!`)
-        setShowConfetti(true)
-      } else if (score > 10) {
-        setMessage(`🎉 Great job! ${score} blasts!`)
-      } else if (score > 0) {
-        setMessage(`👍 Not bad! ${score} blasts.`)
-      } else {
-        setMessage('Try again!')
-      }
-    }
-  }, [gameOver, score])
 
   return (
     <div className="w-full max-w-2xl mx-auto">
@@ -152,23 +153,22 @@ export default function BandysBlastBoard() {
           </div>
         )}
 
-        {gameActive &&
-          targets.map((target) => (
-            <button
-              key={target.id}
-              onClick={() => handleTargetClick(target.id)}
-              className="absolute w-12 h-12 rounded-full text-2xl transition-transform hover:scale-110 focus:outline-none"
-              style={{
-                left: `${target.x}%`,
-                top: `${target.y}%`,
-                transform: 'translate(-50%, -50%)',
-                backgroundColor: 'var(--accent)',
-              }}
-              title="Tap to blast!"
-            >
-              🎯
-            </button>
-          ))}
+        {gameActive && targets.map((target) => (
+          <button
+            key={target.id}
+            onClick={() => handleTargetClick(target.id)}
+            className="absolute w-12 h-12 rounded-full text-2xl transition-transform hover:scale-110 focus:outline-none"
+            style={{
+              left: `${target.x}%`,
+              top: `${target.y}%`,
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: 'var(--accent)',
+            }}
+            title="Tap to blast!"
+          >
+            🎯
+          </button>
+        ))}
 
         {gameOver && (
           <div className="absolute inset-0 flex flex-col items-center justify-center">
