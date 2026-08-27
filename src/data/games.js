@@ -1,4 +1,3 @@
-// src/data/games.js
 export const GAMES = [
   {
     id: 'matchy',

@@ -1,4 +1,3 @@
-// src/components/jimmiesjam/JimmiesJamBoard.jsx
 import { useState, useEffect } from 'react'
 import Toast from '../Toast'
 import Confetti from '../Confetti'
@@ -107,7 +106,7 @@ export default function JimmiesJamBoard() {
           className="text-3xl font-bold tracking-tight mb-2"
           style={{ color: 'var(--label-primary)' }}
         >
-          Jimmie's Jam
+          Jimmie&apos;s Jam
         </h2>
         <p
           className="text-sm"
