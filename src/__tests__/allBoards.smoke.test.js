@@ -46,6 +46,9 @@ import SamIAmBoard from '../components/samiam/SamIAmBoard';
 import GabbysGiftBoard from '../components/gabbysgift/GabbysGiftBoard';
 import { puzzles } from '../data/puzzles';
 
+import JeremeysJeopardyBoard from '../components/jeremysjeopardy/JeremeysJeopardyBoard';
+import IvysIconsBoard from '../components/ivysicons/IvysIconsBoard';
+import BandysBlastBoard from '../components/bandysblast/BandysBlastBoard';
 // Boards reachable from App.jsx's game switch, keyed by the same id used in
 // GamePicker's GAMES list / App.jsx's activeGame value.
 const BOARDS = [
@@ -88,6 +91,9 @@ const BOARDS = [
   ['greatwall', () => <GreatWallBoard />],
   ['samiam', () => <SamIAmBoard />],
   ['gabbysgift', () => <GabbysGiftBoard />],
+  ['jeremysjeopardy', () => <JeremeysJeopardyBoard />],
+  ['ivysicons', () => <IvysIconsBoard />],
+  ['bandysblast', () => <BandysBlastBoard />],
 ];
 
 describe('game board smoke tests', () => {
