@@ -44,6 +44,9 @@ import GeoffsGeometryBoard from '../components/geoffsgeometry/GeoffsGeometryBoar
 import GreatWallBoard from '../components/greatwall/GreatWallBoard';
 import SamIAmBoard from '../components/samiam/SamIAmBoard';
 import GabbysGiftBoard from '../components/gabbysgift/GabbysGiftBoard';
+import JeremeysJeopardyBoard from '../components/jeremysjeopardy/JeremeysJeopardyBoard';
+import IvysIconsBoard from '../components/ivysicons/IvysIconsBoard';
+import BandysBlastBoard from '../components/bandysblast/BandysBlastBoard';
 import { puzzles } from '../data/puzzles';
 
 // Boards reachable from App.jsx's game switch, keyed by the same id used in
@@ -88,6 +91,9 @@ const BOARDS = [
   ['greatwall', () => <GreatWallBoard />],
   ['samiam', () => <SamIAmBoard />],
   ['gabbysgift', () => <GabbysGiftBoard />],
+  ['jeremysjeopardy', () => <JeremeysJeopardyBoard />],
+  ['ivysicons', () => <IvysIconsBoard />],
+  ['bandysblast', () => <BandysBlastBoard />],
 ];
 
 describe('game board smoke tests', () => {
