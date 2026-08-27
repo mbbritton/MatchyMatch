@@ -162,12 +162,12 @@ export const GAMES = [
     description: "Tap Greg's eggs before they hatch — timing is everything!",
     tag: 'Reflex',
     builder: 'Greg',
-    createdAt: '2026-06-04T17:25:51Z',
+    createdAt: '2026-06-04T17:15:00Z',
   },
   {
     id: 'nathanielninja',
     name: 'Nathaniel Ninja',
-    description: 'Slice the fruit, dodge the bombs!',
+    description: 'Dodge obstacles as a stealthy ninja!',
     tag: 'Reflex',
     builder: 'Nathaniel',
     createdAt: '2026-06-04T18:03:19Z',
@@ -323,6 +323,15 @@ export const GAMES = [
     builder: 'Mize',
     isNew: true,
     createdAt: '2026-08-27T18:00:00Z',
+  },
+  {
+    id: 'derricksderrictive',
+    name: "Derrick's Derrictive",
+    description: "Crack the case — deduce Derrick's mystery word from clues!",
+    tag: 'Puzzle',
+    builder: 'Derrick',
+    isNew: true,
+    createdAt: '2026-08-27T19:00:00Z',
   },
 ]
 
