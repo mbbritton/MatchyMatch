@@ -297,6 +297,15 @@ export const GAMES = [
     isNew: true,
     createdAt: '2026-08-27T15:00:00Z',
   },
+  {
+    id: 'bandysblast',
+    name: "Bandy's Blast",
+    description: 'Tap the targets before time runs out!',
+    tag: 'Reflex',
+    builder: 'Bandy',
+    isNew: true,
+    createdAt: '2026-08-27T16:00:00Z',
+  },
 ]
 
 export const GAME_IDS = GAMES.map((g) => g.id)
