@@ -52,22 +52,6 @@ export default function BandysBlastBoard() {
     return () => clearInterval(timer)
   }, [gameActive])
 
-  // Show end-game message
-  useEffect(() => {
-    if (gameOver) {
-      if (score > 20) {
-        setMessage(`🌟 Incredible! ${score} blasts!`)
-        setShowConfetti(true)
-      } else if (score > 10) {
-        setMessage(`🎉 Great job! ${score} blasts!`)
-      } else if (score > 0) {
-        setMessage(`👍 Not bad! ${score} blasts.`)
-      } else {
-        setMessage('Try again!')
-      }
-    }
-  }, [gameOver, score])
-
   const handleStartGame = () => {
     setScore(0)
     setTargets([])
@@ -98,6 +82,16 @@ export default function BandysBlastBoard() {
     setMessage('')
     setShowConfetti(false)
   }
+
+  // Calculate end-game message based on current state
+  const getEndGameMessage = () => {
+    if (score > 20) return `🌟 Incredible! ${score} blasts!`
+    if (score > 10) return `🎉 Great job! ${score} blasts!`
+    if (score > 0) return `👍 Not bad! ${score} blasts.`
+    return 'Try again!'
+  }
+
+  const shouldShowConfetti = gameOver && score > 20
 
   return (
     <div className="w-full max-w-2xl mx-auto">
@@ -222,9 +216,10 @@ export default function BandysBlastBoard() {
 
       {/* Message */}
       {message && <Toast message={message} />}
+      {gameOver && !message && <Toast message={getEndGameMessage()} />}
 
       {/* Confetti */}
-      {showConfetti && <Confetti />}
+      {shouldShowConfetti && <Confetti />}
     </div>
   )
 }
