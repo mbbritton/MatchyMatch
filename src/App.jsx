@@ -43,6 +43,7 @@ import SamIAmBoard from './components/samiam/SamIAmBoard'
 import JeremeysJeopardyBoard from './components/jeremysjeopardy/JeremeysJeopardyBoard'
 import IvysIconsBoard from './components/ivysicons/IvysIconsBoard'
 import BandysBlastBoard from './components/bandysblast/BandysBlastBoard'
+import GabbysGiftBoard from './components/gabbysgift/GabbysGiftBoard'
 import { puzzles } from './data/puzzles'
 import { GAME_IDS } from './data/games'
 
@@ -182,6 +183,8 @@ function App() {
           <IvysIconsBoard key={`ivysicons-${gameKey}`} />
         ) : activeGame === 'bandysblast' ? (
           <BandysBlastBoard key={`bandysblast-${gameKey}`} />
+        ) : activeGame === 'gabbysgift' ? (
+          <GabbysGiftBoard key={`gabbysgift-${gameKey}`} />
         ) : (
           <SudokuBoard key={`sudoku-${gameKey}`} />
         )}
