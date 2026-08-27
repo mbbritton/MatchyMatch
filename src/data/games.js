@@ -342,6 +342,15 @@ export const GAMES = [
     isNew: true,
     createdAt: '2026-08-27T20:00:00Z',
   },
+  {
+    id: 'victorsvictuals',
+    name: "Victor's Victuals",
+    description: 'Match the food pairs and satisfy your appetite!',
+    tag: 'Memory',
+    builder: 'Victor',
+    isNew: true,
+    createdAt: '2026-08-27T21:00:00Z',
+  },
 ]
 
 export const GAME_IDS = GAMES.map((g) => g.id)

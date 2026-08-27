@@ -46,6 +46,7 @@ import BandysBlastBoard from './components/bandysblast/BandysBlastBoard'
 import GabbysGiftBoard from './components/gabbysgift/GabbysGiftBoard'
 import MizeWellBoard from './components/mizewell/MizeWellBoard'
 import DerricksDerrictiveBoard from './components/derricksderrictive/DerricksDerrictiveBoard'
+import VictorsVictualsBoard from './components/victorsvictuals/VictorsVictualsBoard'
 import { puzzles } from './data/puzzles'
 import { GAME_IDS } from './data/games'
 
@@ -183,6 +184,8 @@ function App() {
           <MizeWellBoard key={`mizewell-${gameKey}`} />
         ) : activeGame === 'derricksderrictive' ? (
           <DerricksDerrictiveBoard key={`derricksderrictive-${gameKey}`} />
+        ) : activeGame === 'victorsvictuals' ? (
+          <VictorsVictualsBoard key={`victorsvictuals-${gameKey}`} />
         ) : (
           <SudokuBoard key={`sudoku-${gameKey}`} />
         )}
