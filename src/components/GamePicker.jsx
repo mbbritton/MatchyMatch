@@ -28,12 +28,22 @@ const CATEGORIES = ['All', ...Array.from(new Set(GAMES.map((g) => g.tag))).sort(
 
 const FAVORITES_KEY = 'matchy.favorites'
 const RECENTS_KEY = 'matchy.recents'
+const SORT_KEY = 'matchy.sort'
 const MAX_RECENTS = 5
+const SORTS = ['newest', 'oldest', 'az']
+const DEFAULT_SORT = 'newest'
 
 export default function GamePicker({ onGameSelect }) {
   const [query, setQuery] = useState('')
   const [tag, setTag] = useState('All')
-  const [sort, setSort] = useState('default')
+  const [sort, setSort] = useState(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem(SORT_KEY) || `"${DEFAULT_SORT}"`)
+      return SORTS.includes(stored) ? stored : DEFAULT_SORT
+    } catch {
+      return DEFAULT_SORT
+    }
+  })
   const [favOnly, setFavOnly] = useState(false)
   const [openId, setOpenId] = useState(null)
   const [favorites, setFavorites] = useState(() => {
@@ -73,6 +83,10 @@ export default function GamePicker({ onGameSelect }) {
   useEffect(() => {
     localStorage.setItem(RECENTS_KEY, JSON.stringify(recents))
   }, [recents])
+
+  useEffect(() => {
+    localStorage.setItem(SORT_KEY, JSON.stringify(sort))
+  }, [sort])
 
   useEffect(() => {
     if (!openId) return
@@ -169,10 +183,10 @@ export default function GamePicker({ onGameSelect }) {
     })
     if (sort === 'az') {
       list = [...list].sort((a, b) => a.name.localeCompare(b.name))
-    } else if (sort === 'newest') {
-      list = [...list].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     } else if (sort === 'oldest') {
       list = [...list].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+    } else {
+      list = [...list].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     }
     return list
   }, [query, tag, favOnly, favorites, sort])
@@ -303,10 +317,9 @@ export default function GamePicker({ onGameSelect }) {
                 onChange={(e) => setSort(e.target.value)}
                 className="arcade-select"
               >
-                <option value="default">Default order</option>
-                <option value="az">A – Z</option>
                 <option value="newest">Newest first</option>
                 <option value="oldest">Oldest first</option>
+                <option value="az">A – Z</option>
               </select>
 
               <button onClick={handleSurprise} className="arcade-btn arcade-btn--primary arcade-btn--dice">
