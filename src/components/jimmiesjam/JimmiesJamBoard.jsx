@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Toast from '../Toast'
 import Confetti from '../Confetti'
 
@@ -22,80 +22,100 @@ function shuffleArray(array) {
   return shuffled
 }
 
-export default function JimmiesJamBoard() {
-  const [cards, setCards] = useState([])
-  const [flipped, setFlipped] = useState([])
-  const [matched, setMatched] = useState([])
-  const [moves, setMoves] = useState(0)
-  const [message, setMessage] = useState('')
-  const [showConfetti, setShowConfetti] = useState(false)
-  const [isChecking, setIsChecking] = useState(false)
-
-  useEffect(() => {
-    initializeGame()
-  }, [])
-
-  const initializeGame = () => {
-    // Create pairs of cards
-    const pairs = MUSIC_PAIRS.flatMap((item) => [
-      { ...item, uniqueId: `${item.id}-a` },
-      { ...item, uniqueId: `${item.id}-b` },
-    ])
-    setCards(shuffleArray(pairs))
-    setFlipped([])
-    setMatched([])
-    setMoves(0)
-    setMessage('')
-    setShowConfetti(false)
+function initializeGame() {
+  const pairs = MUSIC_PAIRS.flatMap((item) => [
+    { ...item, uniqueId: `${item.id}-a` },
+    { ...item, uniqueId: `${item.id}-b` },
+  ])
+  return {
+    cards: shuffleArray(pairs),
+    flipped: [],
+    matched: [],
+    moves: 0,
+    message: '',
+    showConfetti: false,
+    isChecking: false,
   }
+}
+
+export default function JimmiesJamBoard() {
+  const [state, setState] = useState(initializeGame)
 
   const handleCardClick = (uniqueId) => {
-    if (isChecking || flipped.includes(uniqueId) || matched.includes(uniqueId)) {
-      return
-    }
-
-    const newFlipped = [...flipped, uniqueId]
-    setFlipped(newFlipped)
-
-    if (newFlipped.length === 2) {
-      setIsChecking(true)
-      setMoves(moves + 1)
-
-      const [first, second] = newFlipped
-      const firstCard = cards.find((c) => c.uniqueId === first)
-      const secondCard = cards.find((c) => c.uniqueId === second)
-
-      if (firstCard.id === secondCard.id) {
-        // Match found!
-        setTimeout(() => {
-          setMatched([...matched, first, second])
-          setFlipped([])
-          setMessage('🎵 Perfect match! Keep jamming!')
-          setIsChecking(false)
-
-          // Check if game is complete
-          if (matched.length + 2 === cards.length) {
-            setShowConfetti(true)
-            setMessage(`🎉 You won in ${moves + 1} moves! That's a jam session!`)
-          }
-        }, 500)
-      } else {
-        // No match
-        setTimeout(() => {
-          setFlipped([])
-          setMessage('❌ Not a match. Try again!')
-          setIsChecking(false)
-        }, 1000)
+    setState((prev) => {
+      if (prev.isChecking || prev.flipped.includes(uniqueId) || prev.matched.includes(uniqueId)) {
+        return prev
       }
-    }
+
+      const newFlipped = [...prev.flipped, uniqueId]
+
+      if (newFlipped.length === 2) {
+        const [first, second] = newFlipped
+        const firstCard = prev.cards.find((c) => c.uniqueId === first)
+        const secondCard = prev.cards.find((c) => c.uniqueId === second)
+
+        if (firstCard.id === secondCard.id) {
+          // Match found!
+          const newMatched = [...prev.matched, first, second]
+          const newMoves = prev.moves + 1
+          
+          setTimeout(() => {
+            setState((s) => ({
+              ...s,
+              matched: newMatched,
+              flipped: [],
+              message: '🎵 Perfect match! Keep jamming!',
+              isChecking: false,
+              showConfetti: newMatched.length === prev.cards.length,
+              ...(newMatched.length === prev.cards.length && {
+                message: `🎉 You won in ${newMoves} moves! That's a jam session!`
+              })
+            }))
+          }, 500)
+
+          return {
+            ...prev,
+            flipped: newFlipped,
+            moves: newMoves,
+            isChecking: true,
+          }
+        } else {
+          // No match
+          setTimeout(() => {
+            setState((s) => ({
+              ...s,
+              flipped: [],
+              message: '❌ Not a match. Try again!',
+              isChecking: false,
+            }))
+          }, 1000)
+
+          return {
+            ...prev,
+            flipped: newFlipped,
+            moves: prev.moves + 1,
+            isChecking: true,
+          }
+        }
+      }
+
+      return {
+        ...prev,
+        flipped: newFlipped,
+      }
+    })
   }
 
   const isCardFlipped = (uniqueId) => {
-    return flipped.includes(uniqueId) || matched.includes(uniqueId)
+    return state.flipped.includes(uniqueId) || state.matched.includes(uniqueId)
   }
 
   const isCardMatched = (uniqueId) => {
-    return matched.includes(uniqueId)
+    return state.matched.includes(uniqueId)
+  }
+
+  const handleNewGame = () => {
+    setState(initializeGame())
   }
 
   return (
@@ -121,19 +141,19 @@ export default function JimmiesJamBoard() {
         className="text-center p-4 rounded-lg mb-6 font-semibold"
         style={{ backgroundColor: 'var(--fill-tertiary)', color: 'var(--label-primary)' }}
       >
-        <p>Moves: {moves}</p>
+        <p>Moves: {state.moves}</p>
         <p className="text-sm mt-1" style={{ color: 'var(--label-secondary)' }}>
-          Matched: {matched.length / 2} / {MUSIC_PAIRS.length}
+          Matched: {state.matched.length / 2} / {MUSIC_PAIRS.length}
         </p>
       </div>
 
       {/* Game Board */}
       <div className="grid grid-cols-4 gap-3 mb-6">
-        {cards.map((card) => (
+        {state.cards.map((card) => (
           <button
             key={card.uniqueId}
             onClick={() => handleCardClick(card.uniqueId)}
-            disabled={isChecking || isCardFlipped(card.uniqueId)}
+            disabled={state.isChecking || isCardFlipped(card.uniqueId)}
             className="aspect-square rounded-lg font-bold text-4xl transition-all transform hover:scale-105 disabled:cursor-not-allowed"
             style={{
               backgroundColor: isCardFlipped(card.uniqueId)
@@ -152,7 +172,7 @@ export default function JimmiesJamBoard() {
 
       {/* New Game Button */}
       <button
-        onClick={initializeGame}
+        onClick={handleNewGame}
         className="w-full px-6 py-3 rounded-lg font-semibold text-white transition-opacity hover:opacity-90"
         style={{ backgroundColor: 'var(--accent)' }}
       >
@@ -160,10 +180,10 @@ export default function JimmiesJamBoard() {
       </button>
 
       {/* Toast Message */}
-      {message && <Toast message={message} />}
+      {state.message && <Toast message={state.message} />}
 
       {/* Confetti */}
-      {showConfetti && <Confetti />}
+      {state.showConfetti && <Confetti />}
     </div>
   )
 }
