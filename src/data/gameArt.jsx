@@ -72,306 +72,301 @@ export const GAME_ART = {
       <text {...label} x="37" y="83.5" fontSize="16" fill={INK}>2</text>
       <rect className="aa-pop" style={{ '--i': 1 }} x="60" y="66" width="34" height="34" rx="7" fill={W} />
       <text {...label} x="77" y="83.5" fontSize="16" fill={INK}>4</text>
-      <rect className="aa-pop" style={{ '--i': 2 }} x="40" y="24" width="42" height="36" rx="8" fill={W} />
-      <text {...label} x="61" y="42" fontSize="18" fill={INK}>8</text>
-      <path className="aa-rise" d="M61 66V62" stroke={W6} strokeWidth="3" strokeLinecap="round" />
+      <rect className="aa-pop" style={{ '--i': 2 }} x="20" y="26" width="74" height="34" rx="7" fill={W} />
+      <text {...label} x="57" y="43.5" fontSize="22" fill={INK}>2048</text>
     </g>
   ),
   minesweeper: (
     <g>
-      <rect x="14" y="14" width="92" height="92" rx="10" fill="none" stroke={W3} strokeWidth="3" />
-      <path d="M45.3 14v92M74.7 14v92M14 45.3h92M14 74.7h92" stroke={W3} strokeWidth="2" />
-      <g className="aa-swing">
-        <path d="M32 84V32" stroke={W} strokeWidth="4" strokeLinecap="round" />
-        <path d="M32 34l20 8-20 8z" fill={W} />
-      </g>
-      <circle className="aa-pulse" cx="80" cy="76" r="14" fill={W} />
-      <g stroke={W} strokeWidth="4" strokeLinecap="round">
-        <path d="M80 54v8M80 90v8M58 76h8M94 76h8M66 62l6 6M94 88l-6-6M66 90l6-6M94 64l-6 6" />
-      </g>
+      <rect x="18" y="18" width="84" height="84" rx="10" fill="none" stroke={W6} strokeWidth="3" />
+      <path d="M18 44h84M18 70h84M44 18v84M70 18v84" stroke={W3} strokeWidth="2" />
+      <circle className="aa-pop" style={{ '--i': 0 }} cx="31" cy="31" r="8" fill={W} />
+      <circle className="aa-pop" style={{ '--i': 1 }} cx="57" cy="57" r="8" fill={W} />
+      <circle className="aa-pop" style={{ '--i': 2 }} cx="83" cy="31" r="8" fill={W} />
+      <path d="M57 49v-8M57 73v-8M49 57h-8M73 57h-8M51.3 51.3l-5.7-5.7M62.7 62.7l5.7 5.7M62.7 51.3l5.7-5.7M51.3 62.7l-5.7 5.7" stroke={W6} strokeWidth="2.5" strokeLinecap="round" />
     </g>
   ),
   // ---- Word ---------------------------------------------------------
   wordle: (
     <g>
-      <rect x="12" y="46" width="26" height="28" rx="5" fill={W} />
-      <text {...label} x="25" y="60.5" fontSize="15" fill={INK}>W</text>
-      <g className="aa-flip">
-        <rect x="42" y="46" width="26" height="28" rx="5" fill={W} />
-        <text {...label} x="55" y="60.5" fontSize="15" fill={INK}>O</text>
-      </g>
-      <rect x="72" y="46" width="26" height="28" rx="5" fill="none" stroke={W6} strokeWidth="3" />
-      <text {...label} x="85" y="60.5" fontSize="15" fill={W}>?</text>
-      <rect x="12" y="82" width="86" height="7" rx="3.5" fill={W3} />
-      <rect x="12" y="30" width="60" height="7" rx="3.5" fill={W3} />
+      {[0, 1, 2, 3, 4].map((col) => (
+        <rect
+          key={col}
+          className="aa-pop"
+          style={{ '--i': col }}
+          x={14 + col * 19}
+          y="38"
+          width="14"
+          height="14"
+          rx="3"
+          fill={col < 2 ? W : col === 2 ? W6 : W3}
+        />
+      ))}
+      {[0, 1, 2, 3, 4].map((col) => (
+        <rect key={col} x={14 + col * 19} y="58" width="14" height="14" rx="3" fill="none" stroke={W3} strokeWidth="2" />
+      ))}
+      {[0, 1, 2, 3, 4].map((col) => (
+        <rect key={col} x={14 + col * 19} y="78" width="14" height="14" rx="3" fill="none" stroke={W3} strokeWidth="2" />
+      ))}
     </g>
   ),
   cross: (
     <g>
-      <rect x="16" y="16" width="88" height="88" rx="8" fill="none" stroke={W} strokeWidth="3.5" />
-      <path d="M38 16v88M60 16v88M82 16v88M16 38h88M16 60h88M16 82h88" stroke={W6} strokeWidth="2.4" />
-      <rect x="16" y="38" width="22" height="22" fill={INK} opacity="0.45" />
-      <rect x="60" y="60" width="22" height="22" fill={INK} opacity="0.45" />
-      <rect className="aa-pop" style={{ '--i': 0 }} x="38" y="16" width="22" height="22" fill={W} />
-      <rect className="aa-pop" style={{ '--i': 1 }} x="38" y="38" width="22" height="22" fill={W} />
-      <rect className="aa-pop" style={{ '--i': 2 }} x="38" y="60" width="22" height="22" fill={W} />
-      <text {...label} x="21" y="21" fontSize="9" fill={W6}>1</text>
-      <text {...label} x="87" y="21" fontSize="9" fill={W6}>2</text>
+      <rect x="38" y="14" width="14" height="92" rx="4" fill={W6} />
+      <rect x="14" y="38" width="92" height="14" rx="4" fill={W6} />
+      <rect className="aa-pop" style={{ '--i': 0 }} x="38" y="14" width="14" height="28" rx="4" fill={W} />
+      <rect className="aa-pop" style={{ '--i': 1 }} x="66" y="38" width="40" height="14" rx="4" fill={W} />
+      <rect className="aa-pop" style={{ '--i': 2 }} x="38" y="78" width="14" height="28" rx="4" fill={W} />
     </g>
   ),
   chain: (
-    <g fill="none" stroke={W} strokeWidth="5" strokeLinecap="round">
-      <rect className="aa-pop" style={{ '--i': 0 }} x="10" y="48" width="40" height="26" rx="13" />
-      <rect className="aa-pop" style={{ '--i': 1 }} x="40" y="30" width="40" height="26" rx="13" stroke={W6} />
-      <rect className="aa-pop" style={{ '--i': 2 }} x="70" y="48" width="40" height="26" rx="13" />
-      <path d="M26 90h68" stroke={W3} strokeWidth="4" />
+    <g>
+      <circle cx="26" cy="60" r="14" fill="none" stroke={W} strokeWidth="5" />
+      <circle className="aa-pop" style={{ '--i': 0 }} cx="60" cy="60" r="14" fill="none" stroke={W} strokeWidth="5" />
+      <circle cx="94" cy="60" r="14" fill="none" stroke={W6} strokeWidth="5" />
+      <path d="M40 60h6M74 60h6" stroke={W} strokeWidth="5" strokeLinecap="round" />
     </g>
   ),
   scramble: (
-    <g fill={W}>
-      <g className="aa-jitter" style={{ '--i': 0 }}>
-        <rect x="14" y="52" width="28" height="30" rx="6" transform="rotate(-14 28 67)" />
-        <text {...label} x="28" y="67" fontSize="16" fill={INK} transform="rotate(-14 28 67)">A</text>
-      </g>
-      <g className="aa-jitter" style={{ '--i': 1 }}>
-        <rect x="46" y="34" width="28" height="30" rx="6" transform="rotate(9 60 49)" />
-        <text {...label} x="60" y="49" fontSize="16" fill={INK} transform="rotate(9 60 49)">C</text>
-      </g>
-      <g className="aa-jitter" style={{ '--i': 2 }}>
-        <rect x="76" y="56" width="28" height="30" rx="6" transform="rotate(18 90 71)" />
-        <text {...label} x="90" y="71" fontSize="16" fill={INK} transform="rotate(18 90 71)">B</text>
-      </g>
+    <g>
+      <text {...label} className="aa-pop" style={{ '--i': 0 }} x="30" y="46" fontSize="32" fill={W}>S</text>
+      <text {...label} className="aa-pop" style={{ '--i': 1 }} x="60" y="72" fontSize="32" fill={W}>C</text>
+      <text {...label} className="aa-pop" style={{ '--i': 2 }} x="90" y="46" fontSize="32" fill={W}>R</text>
+      <path d="M18 90h84" stroke={W3} strokeWidth="3" strokeLinecap="round" strokeDasharray="6 6" />
     </g>
   ),
   anagram: (
     <g>
-      <rect x="14" y="46" width="32" height="34" rx="7" fill={W} />
-      <text {...label} x="30" y="63" fontSize="18" fill={INK}>A</text>
-      <rect x="74" y="46" width="32" height="34" rx="7" fill={W} />
-      <text {...label} x="90" y="63" fontSize="18" fill={INK}>Z</text>
-      <g className="aa-shift" fill="none" stroke={W} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M46 36c8-10 20-10 28 0" />
-        <path d="M68 34l6 2-1 6" />
-        <path d="M74 90c-8 10-20 10-28 0" />
-        <path d="M52 92l-6-2 1-6" />
-      </g>
-    </g>
-  ),
-  wordsearch: (
-    <g>
-      <g transform="rotate(35 60 60)">
-        <rect className="aa-sweep" x="20" y="47" width="80" height="26" rx="13" fill={W3} />
-      </g>
-      {[0, 1, 2, 3].map((r) =>
-        [0, 1, 2, 3].map((c) => (
-          <text
-            key={`${r}-${c}`}
-            {...label}
-            x={26 + c * 23}
-            y={26 + r * 23}
-            fontSize="14"
-            fill={r === c ? W : W6}
-          >
-            {'FINDWORDSHERENOW'[r * 4 + c]}
-          </text>
-        ))
-      )}
+      <text {...label} x="60" y="52" fontSize="44" fill={W6}>?</text>
+      <text {...label} className="aa-pop" style={{ '--i': 0 }} x="28" y="86" fontSize="22" fill={W}>A</text>
+      <text {...label} className="aa-pop" style={{ '--i': 1 }} x="60" y="86" fontSize="22" fill={W}>→</text>
+      <text {...label} className="aa-pop" style={{ '--i': 2 }} x="92" y="86" fontSize="22" fill={W}>Z</text>
     </g>
   ),
   hangman: (
-    <g fill="none" stroke={W} strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 100h34M28 100V20h40M68 20v14" />
-      <circle className="aa-pop" style={{ '--i': 0 }} cx="68" cy="44" r="10" />
-      <path className="aa-pop" style={{ '--i': 1 }} d="M68 54v22M68 60l-12 8M68 60l12 8M68 76l-10 14M68 76l10 14" />
-      <path d="M84 100h18" stroke={W3} />
+    <g>
+      <path d="M20 100h80" stroke={W} strokeWidth="5" strokeLinecap="round" />
+      <path d="M40 100V20h40" stroke={W} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M80 20v14" stroke={W} strokeWidth="5" strokeLinecap="round" />
+      <circle className="aa-bobble" cx="80" cy="44" r="10" fill="none" stroke={W} strokeWidth="4" />
+      <path d="M80 54v22M70 62l10 6 10-6" stroke={W6} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
     </g>
   ),
   spellingbee: (
     <g>
-      <polygon className="aa-pop" style={{ '--i': 0 }} points={hex(60, 60, 17)} fill={W} />
-      <text {...label} x="60" y="60" fontSize="16" fill={INK}>B</text>
-      <g fill="none" stroke={W6} strokeWidth="3">
-        <polygon points={hex(89, 60, 17)} />
-        <polygon points={hex(31, 60, 17)} />
-        <polygon points={hex(74.7, 34.5, 17)} />
-        <polygon points={hex(45.3, 34.5, 17)} />
-        <polygon points={hex(74.7, 85.5, 17)} />
-        <polygon points={hex(45.3, 85.5, 17)} />
-      </g>
+      <polygon points={hex(60, 60, 32)} fill={W} />
+      <polygon points={hex(60, 60, 22)} fill={INK} opacity="0.3" />
+      <text {...label} className="aa-bobble" x="60" y="61" fontSize="26" fill={W}>B</text>
+      <polygon points={hex(60, 14, 12)} fill={W6} />
+      <polygon points={hex(60, 106, 12)} fill={W6} />
+      <polygon points={hex(19, 37, 12)} fill={W3} />
+      <polygon points={hex(101, 37, 12)} fill={W3} />
+      <polygon points={hex(19, 83, 12)} fill={W3} />
+      <polygon points={hex(101, 83, 12)} fill={W3} />
     </g>
   ),
-  barrysblitz: (
+  wordsearch: (
     <g>
-      <rect x="16" y="70" width="88" height="10" rx="5" fill={W3} />
-      <rect x="16" y="88" width="60" height="10" rx="5" fill={W3} />
-      <path className="aa-zap" d="M68 8L34 62h20l-8 42 38-58H62z" fill={W} />
+      {Array.from({ length: 5 }, (_, r) =>
+        Array.from({ length: 5 }, (_, c) => (
+          <text key={`${r}-${c}`} {...label} x={22 + c * 20} y={24 + r * 20} fontSize="11" fill={r === 1 && c >= 1 && c <= 3 ? W : W3}>
+            {r === 1 && c === 1 ? 'W' : r === 1 && c === 2 ? 'O' : r === 1 && c === 3 ? 'R' : String.fromCharCode(65 + ((r * 5 + c * 3) % 26))}
+          </text>
+        ))
+      )}
+      <rect x="28" y="16" width="54" height="16" rx="4" fill="none" stroke={W6} strokeWidth="2" />
+    </g>
+  ),
+  typerace: (
+    <g>
+      <rect x="14" y="52" width="92" height="36" rx="8" fill="none" stroke={W6} strokeWidth="3" />
+      <path className="aa-pop" style={{ '--i': 0 }} d="M24 70h28" stroke={W} strokeWidth="5" strokeLinecap="round" />
+      <path className="aa-pop" style={{ '--i': 1 }} d="M58 70h38" stroke={W3} strokeWidth="5" strokeLinecap="round" />
+      <path d="M60 52V36" stroke={W6} strokeWidth="3" strokeLinecap="round" />
+      <path className="aa-pop" style={{ '--i': 2 }} d="M48 28l12-12 12 12" stroke={W} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
     </g>
   ),
   manjual: (
     <g>
-      <path d="M60 30c-10-8-24-10-38-8v58c14-2 28 0 38 8 10-8 24-10 38-8V22c-14-2-28 0-38 8z" fill={W} />
-      <path d="M60 30v58" stroke={INK} strokeWidth="3" opacity="0.5" />
-      <g stroke={INK} strokeWidth="2.6" strokeLinecap="round" opacity="0.45">
-        <path className="aa-pop" style={{ '--i': 0 }} d="M32 44h18M32 56h18M32 68h12" />
-        <path className="aa-pop" style={{ '--i': 1 }} d="M70 44h18M70 56h18M70 68h12" />
-      </g>
+      <text {...label} x="60" y="52" fontSize="42" fill={W}>M</text>
+      <rect x="20" y="74" width="80" height="14" rx="7" fill={W6} />
+      <rect className="aa-pop" style={{ '--i': 0 }} x="20" y="74" width="50" height="14" rx="7" fill={W} />
     </g>
   ),
   samiam: (
     <g>
-      <g className="aa-bobble">
-        <path d="M42 20h36v66H42z" fill={W} />
-        <g fill={INK} opacity="0.42">
-          <rect x="42" y="30" width="36" height="11" />
-          <rect x="42" y="52" width="36" height="11" />
-          <rect x="42" y="74" width="36" height="11" />
-        </g>
-        <ellipse cx="60" cy="86" rx="34" ry="9" fill={W} />
-      </g>
-      <path d="M20 102h80" stroke={W3} strokeWidth="5" strokeLinecap="round" />
+      <text {...label} x="60" y="48" fontSize="38" fill={W}>S</text>
+      <text {...label} className="aa-pop" style={{ '--i': 0 }} x="36" y="82" fontSize="22" fill={W6}>A</text>
+      <text {...label} className="aa-pop" style={{ '--i': 1 }} x="60" y="82" fontSize="22" fill={W}>M</text>
+      <text {...label} className="aa-pop" style={{ '--i': 2 }} x="84" y="82" fontSize="22" fill={W6}>!</text>
     </g>
   ),
   // ---- Trivia -------------------------------------------------------
   trivia: (
     <g>
-      <path d="M22 24h76a8 8 0 018 8v42a8 8 0 01-8 8H62l-18 16v-16H22a8 8 0 01-8-8V32a8 8 0 018-8z" fill={W} />
-      <text {...label} className="aa-bobble" x="60" y="53" fontSize="42" fill={INK}>?</text>
+      <circle cx="60" cy="52" r="28" fill="none" stroke={W6} strokeWidth="4" />
+      <text {...label} className="aa-bobble" x="60" y="53" fontSize="36" fill={W}>?</text>
+      <circle cx="60" cy="92" r="5" fill={W} />
+    </g>
+  ),
+  jeremysjeopardy: (
+    <g>
+      <rect x="14" y="24" width="92" height="56" rx="8" fill="none" stroke={W6} strokeWidth="3" />
+      <text {...label} className="aa-pop" style={{ '--i': 0 }} x="60" y="52" fontSize="32" fill={W}>J!</text>
+      <rect x="14" y="88" width="92" height="12" rx="6" fill={W3} />
+      <rect className="aa-pop" style={{ '--i': 1 }} x="14" y="88" width="60" height="12" rx="6" fill={W6} />
     </g>
   ),
   // ---- Memory -------------------------------------------------------
   memory: (
     <g>
-      <rect x="10" y="34" width="30" height="44" rx="6" fill={W6} transform="rotate(-8 25 56)" />
-      <rect x="80" y="34" width="30" height="44" rx="6" fill={W6} transform="rotate(8 95 56)" />
-      <g className="aa-flip">
-        <rect x="43" y="30" width="34" height="52" rx="7" fill={W} />
-        <path d="M60 42l4.6 9.4L75 53l-7.5 7.3 1.8 10.3L60 65.8 50.7 70.6l1.8-10.3L45 53l10.4-1.6z" fill={INK} opacity="0.5" />
-      </g>
+      {[0, 1, 2, 3].map((i) => (
+        <rect
+          key={i}
+          className="aa-pop"
+          style={{ '--i': i }}
+          x={16 + (i % 2) * 48}
+          y={16 + Math.floor(i / 2) * 48}
+          width="36"
+          height="36"
+          rx="8"
+          fill={i % 2 === 0 ? W : W6}
+        />
+      ))}
+      {[4, 5, 6, 7].map((i) => (
+        <rect
+          key={i}
+          x={16 + ((i - 4) % 2) * 48}
+          y={16 + Math.floor((i - 4) / 2) * 48 + 48}
+          width="36"
+          height="36"
+          rx="8"
+          fill="none"
+          stroke={W3}
+          strokeWidth="3"
+        />
+      ))}
     </g>
   ),
   puppyfetch: (
     <g>
-      <g className="aa-swing">
-        <path d="M30 34a9 9 0 0113-8h34a9 9 0 1113 8 9 9 0 11-13 8H43a9 9 0 01-13-8z" fill={W} />
-      </g>
-      <g className="aa-pop" style={{ '--i': 1 }} fill={W6}>
-        <ellipse cx="60" cy="92" rx="14" ry="11" />
-        <ellipse cx="40" cy="76" rx="6" ry="8" />
-        <ellipse cx="53" cy="68" rx="6" ry="8" />
-        <ellipse cx="67" cy="68" rx="6" ry="8" />
-        <ellipse cx="80" cy="76" rx="6" ry="8" />
-      </g>
+      <text {...label} className="aa-bobble" x="60" y="52" fontSize="52" fill={W}>🐾</text>
+      <rect x="20" y="84" width="80" height="14" rx="7" fill={W3} />
+      <rect className="aa-pop" style={{ '--i': 0 }} x="20" y="84" width="44" height="14" rx="7" fill={W6} />
     </g>
   ),
   catmatch: (
     <g>
-      <path d="M30 40l-4-22 20 12a44 44 0 0128 0l20-12-4 22a34 34 0 11-60 0z" fill={W} />
-      <circle className="aa-blink" cx="46" cy="58" r="4.5" fill={INK} />
-      <circle className="aa-blink" style={{ '--i': 1 }} cx="74" cy="58" r="4.5" fill={INK} />
-      <path d="M60 70l-5 4h10z" fill={INK} opacity="0.7" />
-      <g stroke={INK} strokeWidth="2.4" strokeLinecap="round" opacity="0.45">
-        <path d="M34 68h-14M34 76l-12 5M86 68h14M86 76l12 5" />
-      </g>
+      <text {...label} className="aa-bobble" x="60" y="52" fontSize="52" fill={W}>🐱</text>
+      <rect x="20" y="84" width="80" height="14" rx="7" fill={W3} />
+      <rect className="aa-pop" style={{ '--i': 0 }} x="20" y="84" width="56" height="14" rx="7" fill={W6} />
     </g>
   ),
   flipflop: (
     <g>
-      <g className="aa-flip">
-        <rect x="18" y="38" width="38" height="46" rx="8" fill={W} />
-      </g>
-      <g className="aa-flip" style={{ '--i': 1 }}>
-        <rect x="64" y="38" width="38" height="46" rx="8" fill={W6} />
-      </g>
-      <path className="aa-shift" d="M40 26c14-8 30-8 42 2" fill="none" stroke={W} strokeWidth="3.5" strokeLinecap="round" />
-      <path className="aa-shift" d="M78 22l6 6-8 4" fill="none" stroke={W} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+      <rect className="aa-pop" style={{ '--i': 0 }} x="16" y="30" width="38" height="52" rx="8" fill={W} />
+      <rect className="aa-pop" style={{ '--i': 1 }} x="66" y="30" width="38" height="52" rx="8" fill={W6} />
+      <text {...label} x="35" y="57" fontSize="22" fill={INK}>?</text>
+      <text {...label} x="85" y="57" fontSize="22" fill={INK}>★</text>
     </g>
   ),
   martinimatch: (
     <g>
-      <path d="M20 26h80L64 66v26h14a4 4 0 010 8H42a4 4 0 010-8h14V66z" fill={W} />
-      <circle className="aa-bobble" cx="72" cy="40" r="7" fill={INK} opacity="0.5" />
-      <path className="aa-rise" d="M84 20V8" stroke={W6} strokeWidth="3.5" strokeLinecap="round" />
+      <path className="aa-bobble" d="M36 28l24 32 24-32z" fill={W} />
+      <rect x="56" y="60" width="8" height="24" rx="4" fill={W} />
+      <ellipse cx="60" cy="88" rx="18" ry="6" fill={W6} />
+      <circle className="aa-pop" style={{ '--i': 0 }} cx="88" cy="36" r="8" fill={W6} />
+      <circle className="aa-pop" style={{ '--i': 1 }} cx="32" cy="80" r="6" fill={W3} />
+    </g>
+  ),
+  gabbysgift: (
+    <g>
+      <rect x="22" y="38" width="76" height="60" rx="10" fill={W6} />
+      <rect className="aa-pop" style={{ '--i': 0 }} x="22" y="28" width="76" height="18" rx="9" fill={W} />
+      <path d="M60 28v70" stroke={W} strokeWidth="4" strokeLinecap="round" />
+      <path className="aa-pop" style={{ '--i': 1 }} d="M60 28c0-14-18-14-18 0s18 0 18 0" fill={W} />
+      <path className="aa-pop" style={{ '--i': 2 }} d="M60 28c0-14 18-14 18 0s-18 0-18 0" fill={W6} />
+    </g>
+  ),
+  ivysicons: (
+    <g>
+      <text {...label} className="aa-pop" style={{ '--i': 0 }} x="32" y="42" fontSize="28" fill={W}>★</text>
+      <text {...label} className="aa-pop" style={{ '--i': 1 }} x="88" y="42" fontSize="28" fill={W6}>●</text>
+      <text {...label} className="aa-pop" style={{ '--i': 2 }} x="32" y="82" fontSize="28" fill={W6}>▲</text>
+      <text {...label} className="aa-pop" style={{ '--i': 3 }} x="88" y="82" fontSize="28" fill={W}>♦</text>
     </g>
   ),
   // ---- Reflex -------------------------------------------------------
-  typerace: (
+  barrysblitz: (
     <g>
-      <g fill={W}>
-        <rect className="aa-press" style={{ '--i': 0 }} x="18" y="44" width="26" height="26" rx="6" />
-        <rect className="aa-press" style={{ '--i': 1 }} x="48" y="44" width="26" height="26" rx="6" />
-        <rect className="aa-press" style={{ '--i': 2 }} x="78" y="44" width="26" height="26" rx="6" />
-      </g>
-      <rect x="30" y="76" width="62" height="16" rx="5" fill={W6} />
-      <g stroke={W3} strokeWidth="4" strokeLinecap="round">
-        <path d="M12 26h44M12 36h26" />
-      </g>
+      <path className="aa-pop" style={{ '--i': 0 }} d="M50 16l-18 40h22l-16 48 42-56H56z" fill={W} />
     </g>
   ),
   gregsegg: (
     <g>
-      <path className="aa-bobble" d="M60 14c18 0 32 26 32 46a32 32 0 11-64 0c0-20 14-46 32-46z" fill={W} />
-      <path d="M42 56l12-6-4 12 14-6-6 12 12-4" fill="none" stroke={INK} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.55" />
+      <ellipse className="aa-bobble" cx="60" cy="62" rx="26" ry="32" fill={W} />
+      <ellipse cx="60" cy="62" rx="16" ry="20" fill="none" stroke={INK} strokeWidth="3" opacity="0.3" />
     </g>
   ),
   nathanielninja: (
     <g>
-      <g className="aa-spin">
-        <path d="M60 12l12 36 36 12-36 12-12 36-12-36-36-12 36-12z" fill={W} />
-        <circle cx="60" cy="60" r="9" fill={INK} opacity="0.45" />
-      </g>
-      <text {...label} x="60" y="60" fontSize="14" fill={W}>7</text>
+      <circle cx="60" cy="44" r="20" fill={W} />
+      <rect x="28" y="60" width="64" height="36" rx="10" fill={W6} />
+      <rect x="38" y="38" width="44" height="12" rx="6" fill={INK} opacity="0.4" />
+      <path className="aa-pop" style={{ '--i': 0 }} d="M22 80l16-10M98 80l-16-10" stroke={W} strokeWidth="5" strokeLinecap="round" />
     </g>
   ),
   nickofttime: (
     <g>
-      <circle cx="60" cy="66" r="34" fill="none" stroke={W} strokeWidth="5" />
-      <rect x="50" y="12" width="20" height="10" rx="4" fill={W} />
-      <path d="M60 22v10" stroke={W} strokeWidth="5" strokeLinecap="round" />
-      <path className="aa-tick" d="M60 66V44" stroke={W} strokeWidth="5" strokeLinecap="round" />
-      <path d="M60 66l16 10" stroke={W6} strokeWidth="4" strokeLinecap="round" />
-      <circle cx="60" cy="66" r="4" fill={W} />
+      <circle cx="60" cy="58" r="34" fill="none" stroke={W6} strokeWidth="5" />
+      <path className="aa-pop" style={{ '--i': 0 }} d="M60 30v28l18 10" stroke={W} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="60" cy="58" r="4" fill={W} />
+      <path d="M60 24v-8M60 100v-8M24 58h-8M104 58h-8" stroke={W6} strokeWidth="3" strokeLinecap="round" />
     </g>
   ),
   colourclash: (
     <g>
-      <circle className="aa-pop" style={{ '--i': 0 }} cx="44" cy="48" r="26" fill={W} opacity="0.85" />
-      <circle className="aa-pop" style={{ '--i': 1 }} cx="76" cy="48" r="26" fill={W} opacity="0.45" />
-      <circle className="aa-pop" style={{ '--i': 2 }} cx="60" cy="78" r="26" fill={W} opacity="0.62" />
+      <rect className="aa-pop" style={{ '--i': 0 }} x="14" y="30" width="40" height="22" rx="11" fill={W} />
+      <rect className="aa-pop" style={{ '--i': 1 }} x="66" y="30" width="40" height="22" rx="11" fill={W6} />
+      <rect x="14" y="68" width="40" height="22" rx="11" fill={W3} />
+      <rect x="66" y="68" width="40" height="22" rx="11" fill={W3} />
+      <path d="M54 41h12M54 79h12" stroke={W6} strokeWidth="3" strokeLinecap="round" />
     </g>
   ),
   latcham: (
     <g>
-      <path className="aa-shackle" d="M40 52V38a20 20 0 0140 0v14" fill="none" stroke={W} strokeWidth="6" strokeLinecap="round" />
-      <rect x="26" y="50" width="68" height="52" rx="12" fill={W} />
-      <circle cx="60" cy="70" r="7" fill={INK} opacity="0.5" />
-      <path d="M60 77v12" stroke={INK} strokeWidth="5" strokeLinecap="round" opacity="0.5" />
+      <rect x="34" y="44" width="52" height="44" rx="8" fill={W6} />
+      <path className="aa-bobble" d="M44 44V32a16 16 0 0132 0v12" fill="none" stroke={W} strokeWidth="6" strokeLinecap="round" />
+      <circle cx="60" cy="66" r="8" fill={W} />
+      <rect x="56" y="66" width="8" height="14" rx="4" fill={W} />
     </g>
   ),
   geoffsgeometry: (
-    <g fill="none" stroke={W} strokeWidth="5" strokeLinejoin="round">
-      <circle className="aa-pop" style={{ '--i': 0 }} cx="34" cy="34" r="20" />
-      <rect className="aa-pop" style={{ '--i': 1 }} x="66" y="14" width="40" height="40" rx="6" stroke={W6} />
-      <path className="aa-pop" style={{ '--i': 2 }} d="M60 64l26 40H34z" fill={W} stroke="none" />
+    <g>
+      <polygon className="aa-pop" style={{ '--i': 0 }} points="60,18 100,82 20,82" fill="none" stroke={W} strokeWidth="5" strokeLinejoin="round" />
+      <circle className="aa-pop" style={{ '--i': 1 }} cx="60" cy="60" r="20" fill="none" stroke={W6} strokeWidth="4" />
+      <rect className="aa-pop" style={{ '--i': 2 }} x="42" y="42" width="36" height="36" rx="4" fill="none" stroke={W3} strokeWidth="3" />
+    </g>
+  ),
+  bandysblast: (
+    <g>
+      <circle className="aa-pulse" cx="60" cy="52" r="22" fill={W} />
+      <circle cx="60" cy="52" r="14" fill="none" stroke={INK} strokeWidth="3" opacity="0.3" />
+      <circle cx="60" cy="52" r="5" fill={INK} opacity="0.4" />
+      <path className="aa-pop" style={{ '--i': 0 }} d="M22 90l16-16M98 90L82 74" stroke={W6} strokeWidth="4" strokeLinecap="round" />
     </g>
   ),
   // ---- Chaos --------------------------------------------------------
   diceroll: (
     <g>
-      <g className="aa-tumble">
-        <rect x="14" y="42" width="48" height="48" rx="10" fill={W} transform="rotate(-10 38 66)" />
-        <g fill={INK} opacity="0.6">
-          <circle cx="27" cy="55" r="4" />
-          <circle cx="38" cy="66" r="4" />
-          <circle cx="49" cy="77" r="4" />
-        </g>
-      </g>
-      <g className="aa-tumble" style={{ '--i': 1 }}>
-        <rect x="62" y="26" width="42" height="42" rx="9" fill={W6} transform="rotate(12 83 47)" />
-        <g fill={INK} opacity="0.5">
-          <circle cx="74" cy="38" r="3.6" />
-          <circle cx="92" cy="56" r="3.6" />
-        </g>
-      </g>
+      <rect className="aa-pop" style={{ '--i': 0 }} x="14" y="30" width="44" height="44" rx="10" fill={W} />
+      <rect className="aa-pop" style={{ '--i': 1 }} x="62" y="46" width="44" height="44" rx="10" fill={W6} />
+      <circle cx="30" cy="46" r="4" fill={INK} opacity="0.5" />
+      <circle cx="44" cy="60" r="4" fill={INK} opacity="0.5" />
+      <circle cx="30" cy="60" r="4" fill={INK} opacity="0.5" />
+      <circle cx="44" cy="46" r="4" fill={INK} opacity="0.5" />
+      <circle cx="78" cy="62" r="4" fill={INK} opacity="0.5" />
+      <circle cx="92" cy="76" r="4" fill={INK} opacity="0.5" />
     </g>
   ),
   flipcoin: (
@@ -410,6 +405,14 @@ export const GAME_ART = {
       <path d="M60 16l9 16H51z" fill={W} />
     </g>
   ),
+  mizewell: (
+    <g>
+      <circle cx="60" cy="52" r="28" fill="none" stroke={W6} strokeWidth="4" />
+      <text {...label} x="60" y="53" fontSize="32" fill={W}>🔮</text>
+      <path className="aa-pop" style={{ '--i': 0 }} d="M36 88h48" stroke={W} strokeWidth="5" strokeLinecap="round" />
+      <path className="aa-pop" style={{ '--i': 1 }} d="M44 96h32" stroke={W6} strokeWidth="4" strokeLinecap="round" />
+    </g>
+  ),
   // ---- Strategy -----------------------------------------------------
   tictactoe: (
     <g>
@@ -445,6 +448,19 @@ export const GAME_ART = {
       </g>
       <circle className="aa-rise" cx="60" cy="66" r="7" fill={W} />
       <rect x="38" y="92" width="46" height="10" rx="5" fill={W} />
+    </g>
+  ),
+  // ---- Derrick's Derrictive -----------------------------------------
+  derricksderrictive: (
+    <g>
+      {/* Magnifying glass */}
+      <circle className="aa-bobble" cx="52" cy="50" r="22" fill="none" stroke={W} strokeWidth="6" />
+      <circle cx="52" cy="50" r="13" fill={W3} />
+      <path className="aa-pop" style={{ '--i': 0 }} d="M68 66l18 18" stroke={W} strokeWidth="7" strokeLinecap="round" />
+      {/* Clue dots */}
+      <circle className="aa-pop" style={{ '--i': 1 }} cx="28" cy="88" r="5" fill={W} />
+      <circle className="aa-pop" style={{ '--i': 2 }} cx="44" cy="94" r="5" fill={W6} />
+      <circle className="aa-pop" style={{ '--i': 3 }} cx="60" cy="96" r="5" fill={W3} />
     </g>
   ),
 }
