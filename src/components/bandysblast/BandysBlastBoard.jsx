@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Toast from '../Toast'
 import Confetti from '../Confetti'
 
@@ -10,6 +10,12 @@ export default function BandysBlastBoard() {
   const [gameOver, setGameOver] = useState(false)
   const [message, setMessage] = useState('')
   const [showConfetti, setShowConfetti] = useState(false)
+
+  const gameActiveRef = useRef(false)
+
+  useEffect(() => {
+    gameActiveRef.current = gameActive
+  }, [gameActive])
 
   // Spawn targets
   useEffect(() => {
@@ -73,7 +79,7 @@ export default function BandysBlastBoard() {
   }
 
   const handleTargetClick = (id) => {
-    if (!gameActive) return
+    if (!gameActiveRef.current) return
     setTargets((prev) => prev.filter((t) => t.id !== id))
     setScore((prev) => prev + 1)
     setMessage('💥 Blasted!')
