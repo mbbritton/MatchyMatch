@@ -1,3 +1,4 @@
+// src/App.jsx
 import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -46,6 +47,7 @@ import BandysBlastBoard from './components/bandysblast/BandysBlastBoard'
 import GabbysGiftBoard from './components/gabbysgift/GabbysGiftBoard'
 import MizeWellBoard from './components/mizewell/MizeWellBoard'
 import DerricksDerrictiveBoard from './components/derricksderrictive/DerricksDerrictiveBoard'
+import JimmiesJamBoard from './components/jimmiesjam/JimmiesJamBoard'
 import { puzzles } from './data/puzzles'
 import { GAME_IDS } from './data/games'
 
@@ -183,6 +185,8 @@ function App() {
           <MizeWellBoard key={`mizewell-${gameKey}`} />
         ) : activeGame === 'derricksderrictive' ? (
           <DerricksDerrictiveBoard key={`derricksderrictive-${gameKey}`} />
+        ) : activeGame === 'jimmiesjam' ? (
+          <JimmiesJamBoard key={`jimmiesjam-${gameKey}`} />
         ) : (
           <SudokuBoard key={`sudoku-${gameKey}`} />
         )}

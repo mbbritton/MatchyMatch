@@ -1,3 +1,4 @@
+// src/data/games.js
 export const GAMES = [
   {
     id: 'matchy',
@@ -341,6 +342,15 @@ export const GAMES = [
     builder: 'Sullivan',
     isNew: true,
     createdAt: '2026-08-27T20:00:00Z',
+  },
+  {
+    id: 'jimmiesjam',
+    name: "Jimmie's Jam",
+    description: 'Match the musical instruments and jam out!',
+    tag: 'Memory',
+    builder: 'Jimmie',
+    isNew: true,
+    createdAt: '2026-08-27T21:00:00Z',
   },
 ]
 
