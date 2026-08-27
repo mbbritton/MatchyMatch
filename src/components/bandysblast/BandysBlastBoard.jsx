@@ -9,7 +9,6 @@ export default function BandysBlastBoard() {
   const [timeLeft, setTimeLeft] = useState(30)
   const [gameOver, setGameOver] = useState(false)
   const [message, setMessage] = useState('')
-  const [showConfetti, setShowConfetti] = useState(false)
 
   const gameActiveRef = useRef(false)
 
@@ -59,7 +58,6 @@ export default function BandysBlastBoard() {
     setTimeLeft(30)
     setGameOver(false)
     setMessage('')
-    setShowConfetti(false)
   }
 
   const handleTargetClick = (id) => {
@@ -80,7 +78,6 @@ export default function BandysBlastBoard() {
     setTimeLeft(30)
     setGameOver(false)
     setMessage('')
-    setShowConfetti(false)
   }
 
   // Calculate end-game message based on current state
