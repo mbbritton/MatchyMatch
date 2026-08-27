@@ -41,6 +41,7 @@ import GeoffsGeometryBoard from './components/geoffsgeometry/GeoffsGeometryBoard
 import GreatWallBoard from './components/greatwall/GreatWallBoard'
 import SamIAmBoard from './components/samiam/SamIAmBoard'
 import JeremeysJeopardyBoard from './components/jeremysjeopardy/JeremeysJeopardyBoard'
+import IvysIconsBoard from './components/ivysicons/IvysIconsBoard'
 import { puzzles } from './data/puzzles'
 import { GAME_IDS } from './data/games'
 
@@ -176,6 +177,8 @@ function App() {
           <SamIAmBoard key={`samiam-${gameKey}`} />
         ) : activeGame === 'jeremysjeopardy' ? (
           <JeremeysJeopardyBoard key={gameKey} />
+        ) : activeGame === 'ivysicons' ? (
+          <IvysIconsBoard key={`ivysicons-${gameKey}`} />
         ) : (
           <SudokuBoard key={`sudoku-${gameKey}`} />
         )}
