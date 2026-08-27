@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Toast from '../Toast'
 import Confetti from '../Confetti'
 
@@ -41,50 +41,76 @@ export default function IanCredibleBoard() {
   const [gameState, setGameState] = useState('playing') // 'playing' | 'won'
   const [toastMsg, setToastMsg] = useState('')
   const [showConfetti, setShowConfetti] = useState(false)
-  const [startTime] = useState(Date.now())
-  const [endTime, setEndTime] = useState(null)
+  const [elapsedSeconds, setElapsedSeconds] = useState(0)
+  const timerRef = useRef(null)
+  const startTimeRef = useRef(null)
 
-  const showToast = (msg) => {
+  // Initialize start time on mount
+  useEffect(() => {
+    if (startTimeRef.current === null) {
+      startTimeRef.current = Date.now()
+    }
+  }, [])
+
+  const showToast = useCallback((msg) => {
     setToastMsg(msg)
-  }
+  }, [])
 
+  // Timer effect - updates elapsed seconds
   useEffect(() => {
-    if (flipped.length === 2) {
-      const [first, second] = flipped
-      const firstCard = cards.find((c) => c.uniqueId === first)
-      const secondCard = cards.find((c) => c.uniqueId === second)
-
-      if (firstCard.id === secondCard.id) {
-        // Match!
-        setMatched((m) => [...m, firstCard.id])
-        setFlipped([])
-        showToast('Ian-credible match! 🎉')
-      } else {
-        // No match
-        setTimeout(() => {
-          setFlipped([])
-        }, 1000)
-      }
-      setMoves((m) => m + 1)
+    if (gameState !== 'playing' || startTimeRef.current === null) {
+      clearInterval(timerRef.current)
+      return
     }
-  }, [flipped, cards])
 
-  useEffect(() => {
-    if (matched.length === PAIRS.length && gameState === 'playing') {
-      setGameState('won')
-      setShowConfetti(true)
-      setEndTime(Date.now())
-    }
-  }, [matched, gameState])
+    timerRef.current = setInterval(() => {
+      setElapsedSeconds(Math.floor((Date.now() - startTimeRef.current) / 1000))
+    }, 1000)
 
-  const handleCardClick = (uniqueId) => {
+    return () => clearInterval(timerRef.current)
+  }, [gameState])
+
+  const handleCardClick = useCallback((uniqueId) => {
     if (gameState !== 'playing') return
     if (flipped.length === 2) return
     if (flipped.includes(uniqueId)) return
     if (matched.includes(cards.find((c) => c.uniqueId === uniqueId).id)) return
 
-    setFlipped((f) => [...f, uniqueId])
-  }
+    const newFlipped = [...flipped, uniqueId]
+    setFlipped(newFlipped)
+
+    if (newFlipped.length === 2) {
+      const [first, second] = newFlipped
+      const firstCard = cards.find((c) => c.uniqueId === first)
+      const secondCard = cards.find((c) => c.uniqueId === second)
+
+      setMoves((m) => m + 1)
+
+      if (firstCard.id === secondCard.id) {
+        // Match!
+        setTimeout(() => {
+          const newMatched = [...matched, firstCard.id]
+          setMatched(newMatched)
+          setFlipped([])
+          showToast('Ian-credible match! 🎉')
+          
+          // Check for win condition
+          if (newMatched.length === PAIRS.length) {
+            setGameState('won')
+            setShowConfetti(true)
+            if (startTimeRef.current !== null) {
+              setElapsedSeconds(Math.floor((Date.now() - startTimeRef.current) / 1000))
+            }
+          }
+        }, 500)
+      } else {
+        // No match - flip back after delay
+        setTimeout(() => {
+          setFlipped([])
+        }, 1000)
+      }
+    }
+  }, [gameState, flipped, matched, cards, showToast])
 
   const handlePlayAgain = () => {
     setCards(createDeck())
@@ -94,15 +120,12 @@ export default function IanCredibleBoard() {
     setGameState('playing')
     setShowConfetti(false)
     setToastMsg('')
-    setEndTime(null)
+    setElapsedSeconds(0)
+    startTimeRef.current = Date.now()
   }
 
   const isFlipped = (uniqueId) => flipped.includes(uniqueId)
   const isMatched = (card) => matched.includes(card.id)
-
-  const elapsedSeconds = endTime
-    ? Math.floor((endTime - startTime) / 1000)
-    : Math.floor((Date.now() - startTime) / 1000)
 
   return (
     <div className="w-full max-w-2xl mx-auto">
