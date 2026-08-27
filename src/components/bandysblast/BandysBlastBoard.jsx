@@ -16,7 +16,6 @@ export default function BandysBlastBoard() {
     if (!gameActive) return
 
     const spawnTarget = () => {
-      if (!gameActive) return
       const newTarget = {
         id: Math.random(),
         x: Math.random() * 80 + 10,
