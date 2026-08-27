@@ -333,6 +333,15 @@ export const GAMES = [
     isNew: true,
     createdAt: '2026-08-27T19:00:00Z',
   },
+  {
+    id: 'sullivanssully',
+    name: "Sullivan's Sully",
+    description: 'Splash paint and create colorful patterns!',
+    tag: 'Arcade',
+    builder: 'Sullivan',
+    isNew: true,
+    createdAt: '2026-08-27T20:00:00Z',
+  },
 ]
 
 export const GAME_IDS = GAMES.map((g) => g.id)
