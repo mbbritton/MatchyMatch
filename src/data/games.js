@@ -315,6 +315,15 @@ export const GAMES = [
     isNew: true,
     createdAt: '2026-08-27T17:00:00Z',
   },
+  {
+    id: 'mizewell',
+    name: 'Mize Well',
+    description: 'Make predictions and test your luck — you mize well try!',
+    tag: 'Chaos',
+    builder: 'Mize',
+    isNew: true,
+    createdAt: '2026-08-27T18:00:00Z',
+  },
 ]
 
 export const GAME_IDS = GAMES.map((g) => g.id)
