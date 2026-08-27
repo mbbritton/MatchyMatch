@@ -580,12 +580,27 @@ select:focus-visible,
   top: calc(100% + 8px);
   right: 0;
   z-index: 50;
-  min-width: 168px;
+  min-width: 208px;
   padding: 6px;
   border-radius: var(--radius-md);
   background: var(--bg-elevated);
   border: 0.5px solid var(--separator);
   box-shadow: var(--shadow-lg);
+}
+
+.theme-menu__section-label {
+  padding: 8px 10px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--label-tertiary);
+}
+
+.theme-menu__divider {
+  height: 0.5px;
+  margin: 4px 6px;
+  background: var(--separator);
 }
 
 .theme-menu__item {
@@ -615,7 +630,16 @@ select:focus-visible,
 }
 .theme-menu__item-icon {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
   flex-shrink: 0;
+}
+.theme-menu__item-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
 }
 .theme-menu__item-check {
   margin-left: auto;
@@ -797,84 +821,6 @@ select:focus-visible,
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--arcade-text-faint);
-}
-
-/* ── Palette switcher ────────────────────────────────────────────── */
-.arcade-settings-btn {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  border: 1px solid var(--arcade-border);
-  background: var(--arcade-surface);
-  color: var(--arcade-text-muted);
-  transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease, color 0.15s ease;
-}
-.arcade-settings-btn:hover {
-  border-color: var(--arcade-border-hover);
-  transform: rotate(30deg);
-}
-.arcade-settings-btn--open {
-  background: var(--arcade-bg-subtle);
-  color: var(--arcade-text);
-  border-color: var(--arcade-border-hover);
-}
-
-.arcade-settings-panel {
-  position: absolute;
-  top: 48px;
-  right: 0;
-  z-index: 50;
-  width: 260px;
-  background: var(--arcade-surface);
-  border: 1px solid var(--arcade-border);
-  border-radius: var(--radius-md);
-  box-shadow: -16px 16px 32px rgba(28,0,135,0.16), -8px 8px 24px rgba(0,0,0,0.05);
-  padding: 14px;
-}
-.arcade-settings-panel__label {
-  font-family: var(--font-mono-display);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--arcade-text-faint);
-  padding: 4px 6px 10px;
-}
-.arcade-settings-panel__row {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 8px;
-  border: none;
-  border-radius: 8px;
-  background: transparent;
-  cursor: pointer;
-  text-align: left;
-  font-family: var(--font-system);
-  transition: background 0.12s ease;
-}
-.arcade-settings-panel__row:hover {
-  background: var(--arcade-bg-subtle);
-}
-.arcade-settings-panel__row--active {
-  background: var(--arcade-bg-subtle);
-}
-.arcade-settings-panel__dot {
-  flex: none;
-  width: 12px;
-  height: 12px;
-  border-radius: var(--radius-full);
-}
-.arcade-settings-panel__label-text {
-  flex: 1;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--arcade-text);
 }
 
 .arcade-toolbar {

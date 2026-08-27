@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Sun, Moon, MoonStar, Monitor, Check } from 'lucide-react'
 import { useTheme } from '../contexts/ThemeContext'
+import { useArcadePalette } from '../contexts/ArcadePaletteContext'
+import { PALETTES, PALETTE_ORDER } from '../data/arcadePalettes'
 
-const OPTIONS = [
+const MODE_OPTIONS = [
   { value: 'system', label: 'System', Icon: Monitor },
   { value: 'light', label: 'Light', Icon: Sun },
   { value: 'dark', label: 'Dark', Icon: Moon },
@@ -16,7 +18,7 @@ const TRIGGER_ICON = {
   midnight: MoonStar,
 }
 
-function ThemeOption(props) {
+function ModeOption(props) {
   const { value, label, Icon, active, onSelect } = props
   return (
     <button
@@ -39,8 +41,32 @@ function ThemeOption(props) {
   )
 }
 
+function PaletteOption(props) {
+  const { label, dotColor, active, onSelect } = props
+  return (
+    <button
+      type="button"
+      role="menuitemradio"
+      aria-checked={active}
+      className={`theme-menu__item${active ? ' theme-menu__item--active' : ''}`}
+      onClick={onSelect}
+    >
+      <span className="theme-menu__item-icon">
+        <span className="theme-menu__item-dot" style={{ background: dotColor }} />
+      </span>
+      {label}
+      {active && (
+        <span className="theme-menu__item-check">
+          <Check size={14} strokeWidth={2.5} />
+        </span>
+      )}
+    </button>
+  )
+}
+
 export default function ThemeMenu() {
   const { theme, setTheme } = useTheme()
+  const { palette, setPalette } = useArcadePalette()
   const [open, setOpen] = useState(false)
   const rootRef = useRef(null)
 
@@ -70,23 +96,40 @@ export default function ThemeMenu() {
         type="button"
         className="theme-menu__trigger"
         onClick={() => setOpen((o) => !o)}
-        aria-label="Choose theme"
+        aria-label="Appearance settings"
         aria-haspopup="menu"
         aria-expanded={open}
-        title="Theme"
+        title="Appearance"
       >
         <TriggerIcon size={16} strokeWidth={2} />
       </button>
 
       {open && (
-        <div className="theme-menu__panel slide-down" role="menu" aria-label="Theme">
-          {OPTIONS.map((option) => (
-            <ThemeOption
+        <div className="theme-menu__panel slide-down" role="menu" aria-label="Appearance">
+          <div className="theme-menu__section-label">Mode</div>
+          {MODE_OPTIONS.map((option) => (
+            <ModeOption
               key={option.value}
               {...option}
               active={theme === option.value}
               onSelect={(value) => {
                 setTheme(value)
+                setOpen(false)
+              }}
+            />
+          ))}
+
+          <div className="theme-menu__divider" />
+
+          <div className="theme-menu__section-label">Arcade palette</div>
+          {PALETTE_ORDER.map((key) => (
+            <PaletteOption
+              key={key}
+              label={PALETTES[key].label}
+              dotColor={PALETTES[key].primary}
+              active={palette === key}
+              onSelect={() => {
+                setPalette(key)
                 setOpen(false)
               }}
             />

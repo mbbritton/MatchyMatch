@@ -92,22 +92,6 @@ export default function Header({ activeGame, onGoHome }) {
               opacity="0.7"
             />
           </svg>
-
-          {/* Wordmark text */}
-          <h1
-            className="select-none leading-none"
-            style={{
-              fontSize: "clamp(1.1rem, 3.5vw, 1.3rem)",
-              fontWeight: 800,
-              letterSpacing: "-0.03em",
-              background: "linear-gradient(135deg, #5e5ce6 0%, #007aff 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            The Arcade
-          </h1>
         </button>
 
         {/* Right: share (in a game) + theme menu (always visible) */}
