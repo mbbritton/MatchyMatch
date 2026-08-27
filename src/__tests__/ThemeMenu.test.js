@@ -1,11 +1,14 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import ThemeMenu from '../components/ThemeMenu';
 import { ThemeProvider } from '../contexts/ThemeContext';
+import { ArcadePaletteProvider } from '../contexts/ArcadePaletteContext';
 
 function renderMenu() {
   return render(
     <ThemeProvider>
-      <ThemeMenu />
+      <ArcadePaletteProvider>
+        <ThemeMenu />
+      </ArcadePaletteProvider>
     </ThemeProvider>
   );
 }
@@ -19,12 +22,12 @@ describe('ThemeMenu', () => {
 
   it('should render a trigger button', () => {
     renderMenu();
-    expect(screen.getByRole('button', { name: 'Choose theme' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Appearance settings' })).toBeInTheDocument();
   });
 
   it('should open a menu with all theme options when clicked', () => {
     renderMenu();
-    fireEvent.click(screen.getByRole('button', { name: 'Choose theme' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Appearance settings' }));
 
     expect(screen.getByRole('menu')).toBeInTheDocument();
     ['System', 'Light', 'Dark', 'Midnight'].forEach((label) => {
@@ -35,7 +38,7 @@ describe('ThemeMenu', () => {
   it('should mark the active theme as checked', () => {
     localStorage.setItem('puzzlr-theme', 'dark');
     renderMenu();
-    fireEvent.click(screen.getByRole('button', { name: 'Choose theme' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Appearance settings' }));
 
     expect(screen.getByRole('menuitemradio', { name: /Dark/ })).toHaveAttribute('aria-checked', 'true');
     expect(screen.getByRole('menuitemradio', { name: /Light/ })).toHaveAttribute('aria-checked', 'false');
@@ -43,7 +46,7 @@ describe('ThemeMenu', () => {
 
   it('should switch themes and close the menu on selection', () => {
     renderMenu();
-    fireEvent.click(screen.getByRole('button', { name: 'Choose theme' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Appearance settings' }));
     fireEvent.click(screen.getByRole('menuitemradio', { name: /Midnight/ }));
 
     expect(screen.queryByRole('menu')).not.toBeInTheDocument();
@@ -53,7 +56,7 @@ describe('ThemeMenu', () => {
 
   it('should close the menu when clicking outside', () => {
     renderMenu();
-    fireEvent.click(screen.getByRole('button', { name: 'Choose theme' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Appearance settings' }));
     expect(screen.getByRole('menu')).toBeInTheDocument();
 
     fireEvent.mouseDown(document.body);

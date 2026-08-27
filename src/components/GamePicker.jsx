@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Settings, Check } from 'lucide-react'
 import { GAMES } from '../data/games'
-import { PALETTES, PALETTE_ORDER, DEFAULT_PALETTE } from '../data/arcadePalettes'
+import { useArcadePalette } from '../contexts/ArcadePaletteContext'
 import Confetti from './Confetti'
 
 const ARCADE_LETTERS = 'Arcade'.split('')
@@ -29,7 +28,6 @@ const CATEGORIES = ['All', ...Array.from(new Set(GAMES.map((g) => g.tag))).sort(
 
 const FAVORITES_KEY = 'matchy.favorites'
 const RECENTS_KEY = 'matchy.recents'
-const PALETTE_KEY = 'matchy.palette'
 const MAX_RECENTS = 5
 
 export default function GamePicker({ onGameSelect }) {
@@ -54,29 +52,19 @@ export default function GamePicker({ onGameSelect }) {
       return []
     }
   })
-  const [palette, setPaletteState] = useState(() => {
-    try {
-      const stored = JSON.parse(localStorage.getItem(PALETTE_KEY) || `"${DEFAULT_PALETTE}"`)
-      return PALETTES[stored] ? stored : DEFAULT_PALETTE
-    } catch {
-      return DEFAULT_PALETTE
-    }
-  })
-  const [settingsOpen, setSettingsOpen] = useState(false)
   const [chipBounce, setChipBounce] = useState(null)
   const [bounceId, setBounceId] = useState(null)
   const [secretTaps, setSecretTaps] = useState(0)
   const [secretOn, setSecretOn] = useState(false)
   const [confetti, setConfetti] = useState(null)
 
-  const settingsRef = useRef(null)
   const chipTimeoutRef = useRef(null)
   const bounceTimeoutRef = useRef(null)
   const secretTimeoutRef = useRef(null)
   const confettiTimeoutRef = useRef(null)
   const confettiKeyRef = useRef(0)
 
-  const theme = PALETTES[palette] ?? PALETTES[DEFAULT_PALETTE]
+  const { theme } = useArcadePalette()
 
   useEffect(() => {
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites))
@@ -96,22 +84,6 @@ export default function GamePicker({ onGameSelect }) {
   }, [openId])
 
   useEffect(() => {
-    if (!settingsOpen) return undefined
-    const onPointerDown = (e) => {
-      if (settingsRef.current && !settingsRef.current.contains(e.target)) setSettingsOpen(false)
-    }
-    const onKey = (e) => {
-      if (e.key === 'Escape') setSettingsOpen(false)
-    }
-    document.addEventListener('mousedown', onPointerDown)
-    document.addEventListener('keydown', onKey)
-    return () => {
-      document.removeEventListener('mousedown', onPointerDown)
-      document.removeEventListener('keydown', onKey)
-    }
-  }, [settingsOpen])
-
-  useEffect(() => {
     return () => {
       clearTimeout(chipTimeoutRef.current)
       clearTimeout(bounceTimeoutRef.current)
@@ -125,15 +97,6 @@ export default function GamePicker({ onGameSelect }) {
     setConfetti({ key: confettiKeyRef.current, count })
     clearTimeout(confettiTimeoutRef.current)
     confettiTimeoutRef.current = setTimeout(() => setConfetti(null), 2600)
-  }
-
-  const setPalette = (key) => {
-    setPaletteState(key)
-    try {
-      localStorage.setItem(PALETTE_KEY, JSON.stringify(key))
-    } catch {
-      // ignore write failures (private browsing, storage full, etc.)
-    }
   }
 
   const GAME_BY_ID = useMemo(
@@ -289,47 +252,7 @@ export default function GamePicker({ onGameSelect }) {
               {GAMES.length} tiny games, zero instructions, mandatory puns.
             </p>
           </div>
-          <div className="flex gap-4 relative">
-            <div className="absolute -top-14 right-0" ref={settingsRef}>
-              <button
-                type="button"
-                onClick={() => setSettingsOpen((o) => !o)}
-                aria-label="Choose palette"
-                aria-haspopup="menu"
-                aria-expanded={settingsOpen}
-                title="Palette"
-                className={`arcade-settings-btn ${settingsOpen ? 'arcade-settings-btn--open' : ''}`}
-              >
-                <Settings size={17} strokeWidth={2} />
-              </button>
-
-              {settingsOpen && (
-                <div className="arcade-settings-panel slide-down" role="menu" aria-label="Palette">
-                  <div className="arcade-settings-panel__label">Palette</div>
-                  {PALETTE_ORDER.map((key) => {
-                    const p = PALETTES[key]
-                    const active = palette === key
-                    return (
-                      <button
-                        key={key}
-                        type="button"
-                        role="menuitemradio"
-                        aria-checked={active}
-                        onClick={() => {
-                          setPalette(key)
-                          setSettingsOpen(false)
-                        }}
-                        className={`arcade-settings-panel__row ${active ? 'arcade-settings-panel__row--active' : ''}`}
-                      >
-                        <span className="arcade-settings-panel__dot" style={{ background: p.primary }} />
-                        <span className="arcade-settings-panel__label-text">{p.label}</span>
-                        {active && <Check size={15} strokeWidth={2.5} color={p.primary} />}
-                      </button>
-                    )
-                  })}
-                </div>
-              )}
-            </div>
+          <div className="flex gap-4">
             <div className="arcade-stat">
               <div className="arcade-stat__num" style={{ color: 'var(--arcade-blue)' }}>{GAMES.length}</div>
               <div className="arcade-stat__label">games</div>
