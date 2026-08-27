@@ -296,6 +296,16 @@ export const GAME_ART = {
       <text {...label} className="aa-pop" style={{ '--i': 3 }} x="88" y="82" fontSize="28" fill={W}>♦</text>
     </g>
   ),
+  jimmiesjam: (
+    <g>
+      {/* Musical notes */}
+      <text {...label} className="aa-bobble" x="60" y="52" fontSize="48" fill={W}>🎵</text>
+      {/* Instrument icons */}
+      <text {...label} className="aa-pop" style={{ '--i': 0 }} x="28" y="88" fontSize="20" fill={W6}>🎸</text>
+      <text {...label} className="aa-pop" style={{ '--i': 1 }} x="60" y="88" fontSize="20" fill={W}>🎹</text>
+      <text {...label} className="aa-pop" style={{ '--i': 2 }} x="92" y="88" fontSize="20" fill={W6}>🥁</text>
+    </g>
+  ),
   // ---- Reflex -------------------------------------------------------
   barrysblitz: (
     <g>
