@@ -1,7 +1,7 @@
 import ThemeMenu from './ThemeMenu'
 import ShareButton from './ShareButton'
 
-export default function Header({ activeGame, onGoHome }) {
+export default function Header({ activeGame, onHome }) {
   const shareUrl = activeGame
     ? `${window.location.origin}${window.location.pathname}?game=${activeGame}`
     : null
@@ -25,7 +25,7 @@ export default function Header({ activeGame, onGoHome }) {
         <div className="w-32 flex items-center">
           {activeGame ? (
             <button
-              onClick={onGoHome}
+              onClick={onHome}
               className="btn-ghost flex items-center gap-1.5 px-3 py-1.5 text-sm"
               aria-label="Back to game picker"
             >
@@ -40,7 +40,7 @@ export default function Header({ activeGame, onGoHome }) {
 
         {/* Centre: Wordmark */}
         <button
-          onClick={onGoHome}
+          onClick={onHome}
           className="flex items-center gap-2.5 shrink-0 min-w-0 bg-transparent border-none cursor-pointer"
           aria-label="Go to game picker"
         >
