@@ -351,6 +351,15 @@ export const GAMES = [
     isNew: true,
     createdAt: '2026-08-27T21:00:00Z',
   },
+  {
+    id: 'iancredible',
+    name: 'Ian Credible',
+    description: 'Match all the incredible pairs in this memory challenge!',
+    tag: 'Memory',
+    builder: 'Ian',
+    isNew: true,
+    createdAt: '2026-08-27T22:00:00Z',
+  },
 ]
 
 export const GAME_IDS = GAMES.map((g) => g.id)

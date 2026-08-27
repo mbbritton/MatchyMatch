@@ -47,6 +47,7 @@ import GabbysGiftBoard from './components/gabbysgift/GabbysGiftBoard'
 import MizeWellBoard from './components/mizewell/MizeWellBoard'
 import DerricksDerrictiveBoard from './components/derricksderrictive/DerricksDerrictiveBoard'
 import JimmiesJamBoard from './components/jimmiesjam/JimmiesJamBoard'
+import IanCredibleBoard from './components/iancredible/IanCredibleBoard'
 import { puzzles } from './data/puzzles'
 import { GAME_IDS } from './data/games'
 
@@ -186,6 +187,8 @@ function App() {
           <DerricksDerrictiveBoard key={`derricksderrictive-${gameKey}`} />
         ) : activeGame === 'jimmiesjam' ? (
           <JimmiesJamBoard key={`jimmiesjam-${gameKey}`} />
+        ) : activeGame === 'iancredible' ? (
+          <IanCredibleBoard key={`iancredible-${gameKey}`} />
         ) : (
           <SudokuBoard key={`sudoku-${gameKey}`} />
         )}

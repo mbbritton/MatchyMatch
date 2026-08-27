@@ -48,6 +48,7 @@ import JeremeysJeopardyBoard from '../components/jeremysjeopardy/JeremeysJeopard
 import IvysIconsBoard from '../components/ivysicons/IvysIconsBoard';
 import BandysBlastBoard from '../components/bandysblast/BandysBlastBoard';
 import DerricksDerrictiveBoard from '../components/derricksderrictive/DerricksDerrictiveBoard';
+import IanCredibleBoard from '../components/iancredible/IanCredibleBoard';
 import { puzzles } from '../data/puzzles';
 
 // Boards reachable from App.jsx's game switch, keyed by the same id used in
@@ -96,6 +97,7 @@ const BOARDS = [
   ['ivysicons', () => <IvysIconsBoard />],
   ['bandysblast', () => <BandysBlastBoard />],
   ['derricksderrictive', () => <DerricksDerrictiveBoard />],
+  ['iancredible', () => <IanCredibleBoard />],
 ];
 
 describe('game board smoke tests', () => {

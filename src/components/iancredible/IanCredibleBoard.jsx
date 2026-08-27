@@ -1,0 +1,232 @@
+import { useState, useEffect } from 'react'
+import Toast from '../Toast'
+import Confetti from '../Confetti'
+
+// Incredible pairs - each pair has a theme
+const PAIRS = [
+  { id: 1, emoji: '🦸', name: 'Superhero' },
+  { id: 2, emoji: '🚀', name: 'Rocket' },
+  { id: 3, emoji: '🌟', name: 'Star' },
+  { id: 4, emoji: '🎯', name: 'Target' },
+  { id: 5, emoji: '🏆', name: 'Trophy' },
+  { id: 6, emoji: '💎', name: 'Diamond' },
+  { id: 7, emoji: '🔥', name: 'Fire' },
+  { id: 8, emoji: '⚡', name: 'Lightning' },
+]
+
+function shuffleArray(array) {
+  const arr = [...array]
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[arr[i], arr[j]] = [arr[j], arr[i]]
+  }
+  return arr
+}
+
+function createDeck() {
+  // Create pairs (2 of each card)
+  const deck = []
+  PAIRS.forEach((pair) => {
+    deck.push({ ...pair, uniqueId: `${pair.id}-a` })
+    deck.push({ ...pair, uniqueId: `${pair.id}-b` })
+  })
+  return shuffleArray(deck)
+}
+
+export default function IanCredibleBoard() {
+  const [cards, setCards] = useState(() => createDeck())
+  const [flipped, setFlipped] = useState([])
+  const [matched, setMatched] = useState([])
+  const [moves, setMoves] = useState(0)
+  const [gameState, setGameState] = useState('playing') // 'playing' | 'won'
+  const [toastMsg, setToastMsg] = useState('')
+  const [showConfetti, setShowConfetti] = useState(false)
+  const [startTime] = useState(Date.now())
+  const [endTime, setEndTime] = useState(null)
+
+  const showToast = (msg) => {
+    setToastMsg(msg)
+  }
+
+  useEffect(() => {
+    if (flipped.length === 2) {
+      const [first, second] = flipped
+      const firstCard = cards.find((c) => c.uniqueId === first)
+      const secondCard = cards.find((c) => c.uniqueId === second)
+
+      if (firstCard.id === secondCard.id) {
+        // Match!
+        setMatched((m) => [...m, firstCard.id])
+        setFlipped([])
+        showToast('Ian-credible match! 🎉')
+      } else {
+        // No match
+        setTimeout(() => {
+          setFlipped([])
+        }, 1000)
+      }
+      setMoves((m) => m + 1)
+    }
+  }, [flipped, cards])
+
+  useEffect(() => {
+    if (matched.length === PAIRS.length && gameState === 'playing') {
+      setGameState('won')
+      setShowConfetti(true)
+      setEndTime(Date.now())
+    }
+  }, [matched, gameState])
+
+  const handleCardClick = (uniqueId) => {
+    if (gameState !== 'playing') return
+    if (flipped.length === 2) return
+    if (flipped.includes(uniqueId)) return
+    if (matched.includes(cards.find((c) => c.uniqueId === uniqueId).id)) return
+
+    setFlipped((f) => [...f, uniqueId])
+  }
+
+  const handlePlayAgain = () => {
+    setCards(createDeck())
+    setFlipped([])
+    setMatched([])
+    setMoves(0)
+    setGameState('playing')
+    setShowConfetti(false)
+    setToastMsg('')
+    setEndTime(null)
+  }
+
+  const isFlipped = (uniqueId) => flipped.includes(uniqueId)
+  const isMatched = (card) => matched.includes(card.id)
+
+  const elapsedSeconds = endTime
+    ? Math.floor((endTime - startTime) / 1000)
+    : Math.floor((Date.now() - startTime) / 1000)
+
+  return (
+    <div className="w-full max-w-2xl mx-auto">
+      {/* Title */}
+      <div className="text-center mb-6">
+        <h2
+          className="text-3xl font-bold tracking-tight mb-1"
+          style={{ color: 'var(--label-primary)' }}
+        >
+          Ian Credible 🦸
+        </h2>
+        <p className="text-sm" style={{ color: 'var(--label-secondary)' }}>
+          Match all the incredible pairs!
+        </p>
+      </div>
+
+      {/* Stats */}
+      <div
+        className="rounded-xl p-4 mb-5 flex justify-around"
+        style={{ backgroundColor: 'var(--fill-secondary)' }}
+      >
+        <div className="text-center">
+          <p
+            className="text-xs font-semibold uppercase tracking-wide mb-1"
+            style={{ color: 'var(--label-tertiary)' }}
+          >
+            Moves
+          </p>
+          <p
+            className="text-2xl font-bold"
+            style={{ color: 'var(--label-primary)' }}
+          >
+            {moves}
+          </p>
+        </div>
+        <div className="text-center">
+          <p
+            className="text-xs font-semibold uppercase tracking-wide mb-1"
+            style={{ color: 'var(--label-tertiary)' }}
+          >
+            Matched
+          </p>
+          <p
+            className="text-2xl font-bold"
+            style={{ color: 'var(--label-primary)' }}
+          >
+            {matched.length}/{PAIRS.length}
+          </p>
+        </div>
+        <div className="text-center">
+          <p
+            className="text-xs font-semibold uppercase tracking-wide mb-1"
+            style={{ color: 'var(--label-tertiary)' }}
+          >
+            Time
+          </p>
+          <p
+            className="text-2xl font-bold"
+            style={{ color: 'var(--label-primary)' }}
+          >
+            {elapsedSeconds}s
+          </p>
+        </div>
+      </div>
+
+      {/* Game Grid */}
+      <div className="grid grid-cols-4 gap-3 mb-6">
+        {cards.map((card) => {
+          const flippedState = isFlipped(card.uniqueId) || isMatched(card)
+          return (
+            <button
+              key={card.uniqueId}
+              onClick={() => handleCardClick(card.uniqueId)}
+              disabled={flippedState || flipped.length === 2}
+              className="aspect-square rounded-xl font-bold text-4xl transition-all duration-300 transform hover:scale-105 disabled:cursor-default"
+              style={{
+                backgroundColor: flippedState
+                  ? isMatched(card)
+                    ? '#34c759'
+                    : 'var(--accent)'
+                  : 'var(--fill-tertiary)',
+                color: flippedState ? 'white' : 'transparent',
+                border: '2px solid var(--label-tertiary)',
+                opacity: isMatched(card) ? 0.6 : 1,
+              }}
+            >
+              {flippedState ? card.emoji : '?'}
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Win state */}
+      {gameState === 'won' && (
+        <div
+          className="rounded-xl p-5 mb-6 text-center"
+          style={{ backgroundColor: '#34c75920' }}
+        >
+          <p className="text-4xl mb-2">🎉</p>
+          <p className="text-xl font-bold mb-1" style={{ color: '#34c759' }}>
+            Ian-credible work!
+          </p>
+          <p className="text-sm" style={{ color: 'var(--label-secondary)' }}>
+            You matched all pairs in {moves} moves and {elapsedSeconds} seconds!
+          </p>
+        </div>
+      )}
+
+      {/* Play Again */}
+      {gameState === 'won' && (
+        <button
+          onClick={handlePlayAgain}
+          className="w-full px-6 py-3 rounded-lg font-semibold text-white"
+          style={{ backgroundColor: 'var(--accent)' }}
+        >
+          Play Again
+        </button>
+      )}
+
+      {/* Toast */}
+      {toastMsg && <Toast message={toastMsg} onDone={() => setToastMsg('')} />}
+
+      {/* Confetti */}
+      {showConfetti && <Confetti />}
+    </div>
+  )
+}
