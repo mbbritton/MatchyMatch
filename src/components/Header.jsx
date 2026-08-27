@@ -13,8 +13,11 @@ export default function Header({ activeGame, onGoHome }) {
         backdropFilter: "blur(24px) saturate(180%)",
         WebkitBackdropFilter: "blur(24px) saturate(180%)",
         borderBottom: "0.5px solid var(--separator)",
+        // Above the full-screen result overlays some games render (z-50), so
+        // the back button is never trapped behind a "Game over" card.
+        zIndex: 60,
       }}
-      className="w-full sticky top-0 z-40"
+      className="w-full sticky top-0"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between gap-4">
 
