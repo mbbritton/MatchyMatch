@@ -1030,15 +1030,39 @@ select:focus-visible,
   background-size: 14px 14px;
   opacity: 0.7;
 }
-.arcade-card__initials {
+.arcade-card__art {
   position: relative;
-  font-size: 58px;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  color: rgba(255,255,255,0.96);
-  text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 3px 10px rgba(0,0,0,0.22));
   animation: arc-bob 2600ms ease-in-out infinite;
   animation-delay: var(--card-delay, 0ms);
+  transition: transform 0.25s cubic-bezier(0.2,0,0,1);
+}
+.arcade-card:hover .arcade-card__art {
+  transform: scale(1.08);
+}
+
+/* Light sweeping across the tile on hover. */
+.arcade-card__sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 38%,
+    rgba(255,255,255,0.34) 50%,
+    transparent 62%
+  );
+  transform: translateX(-120%);
+}
+.arcade-card:hover .arcade-card__sheen {
+  animation: arc-sheen 900ms cubic-bezier(0.2,0,0,1);
+}
+@keyframes arc-sheen {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
 }
 .arcade-card__tag {
   position: absolute;
@@ -1150,8 +1174,6 @@ select:focus-visible,
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-  font-weight: 900;
   color: #ffffff;
 }
 
@@ -1191,12 +1213,12 @@ select:focus-visible,
   align-items: center;
   justify-content: center;
 }
-.arcade-modal__initials {
-  font-size: 84px;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  color: rgba(255,255,255,0.96);
-  text-shadow: 0 2px 16px rgba(0,0,0,0.2);
+.arcade-modal__art-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,0.24));
+  animation: arc-bob 2600ms ease-in-out infinite;
 }
 .arcade-modal__close {
   position: absolute;
@@ -1317,3 +1339,147 @@ select:focus-visible,
 }
 
 .pulse-text { animation: pulse-text 0.6s ease-in-out infinite; }
+
+/* ── Tile art ─────────────────────────────────────────────────────────
+   Per-game illustrations (see data/gameArt.jsx). Art sits still at rest so
+   a full grid stays readable; the `aa-*` classes come alive while a card is
+   hovered, and run continuously inside the preview modal. */
+.arcade-art {
+  overflow: visible;
+}
+.arcade-art [class*="aa-"] {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.arcade-card:hover .aa-pop,
+.arcade-modal__art .aa-pop { animation: aa-pop 620ms cubic-bezier(0.2,0,0,1) both; animation-delay: calc(var(--i, 0) * 90ms); }
+.arcade-card:hover .aa-flip,
+.arcade-modal__art .aa-flip { animation: aa-flip 900ms cubic-bezier(0.4,0,0.2,1); animation-delay: calc(var(--i, 0) * 140ms); }
+.arcade-card:hover .aa-spin,
+.arcade-modal__art .aa-spin { animation: aa-spin 1600ms cubic-bezier(0.3,0,0.2,1); }
+.arcade-card:hover .aa-bobble,
+.arcade-modal__art .aa-bobble { animation: aa-bobble 900ms ease-in-out; }
+.arcade-card:hover .aa-pulse,
+.arcade-modal__art .aa-pulse { animation: aa-pulse 900ms ease-in-out infinite; }
+.arcade-card:hover .aa-blink,
+.arcade-modal__art .aa-blink { animation: aa-blink 2200ms ease-in-out infinite; animation-delay: calc(var(--i, 0) * 80ms); }
+.arcade-card:hover .aa-swing,
+.arcade-modal__art .aa-swing { animation: aa-swing 1100ms ease-in-out; }
+.arcade-card:hover .aa-jitter,
+.arcade-modal__art .aa-jitter { animation: aa-jitter 700ms ease-in-out; animation-delay: calc(var(--i, 0) * 90ms); }
+.arcade-card:hover .aa-shift,
+.arcade-modal__art .aa-shift { animation: aa-shift 1000ms ease-in-out; }
+.arcade-card:hover .aa-press,
+.arcade-modal__art .aa-press { animation: aa-press 640ms ease-in-out infinite; animation-delay: calc(var(--i, 0) * 130ms); }
+.arcade-card:hover .aa-tick,
+.arcade-modal__art .aa-tick { animation: aa-tick 1200ms steps(6, end) infinite; }
+.arcade-card:hover .aa-crawl,
+.arcade-modal__art .aa-crawl { animation: aa-crawl 1400ms ease-in-out infinite; }
+.arcade-card:hover .aa-rise,
+.arcade-modal__art .aa-rise { animation: aa-rise 1100ms ease-in-out infinite; }
+.arcade-card:hover .aa-zap,
+.arcade-modal__art .aa-zap { animation: aa-zap 900ms ease-out; }
+.arcade-card:hover .aa-tumble,
+.arcade-modal__art .aa-tumble { animation: aa-tumble 900ms cubic-bezier(0.3,0,0.2,1); animation-delay: calc(var(--i, 0) * 120ms); }
+.arcade-card:hover .aa-sweep,
+.arcade-modal__art .aa-sweep { animation: aa-sweep 1200ms cubic-bezier(0.2,0,0,1); }
+.arcade-card:hover .aa-arc,
+.arcade-modal__art .aa-arc { animation: aa-arc 1200ms linear infinite; }
+.arcade-card:hover .aa-shackle,
+.arcade-modal__art .aa-shackle { animation: aa-shackle 900ms cubic-bezier(0.3,0,0.2,1); }
+
+@keyframes aa-pop {
+  0%   { transform: scale(0.4); opacity: 0; }
+  60%  { transform: scale(1.14); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes aa-flip {
+  0%   { transform: rotateY(0deg); }
+  50%  { transform: rotateY(180deg) scaleX(-1); }
+  100% { transform: rotateY(360deg); }
+}
+@keyframes aa-spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes aa-bobble {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25%      { transform: translateY(-7px) rotate(-6deg); }
+  60%      { transform: translateY(2px) rotate(5deg); }
+}
+@keyframes aa-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.22); opacity: 0.8; }
+}
+@keyframes aa-blink {
+  0%, 88%, 100% { transform: scaleY(1); }
+  93%           { transform: scaleY(0.1); }
+}
+@keyframes aa-swing {
+  0%, 100% { transform: rotate(0deg); }
+  30%      { transform: rotate(-16deg); }
+  65%      { transform: rotate(12deg); }
+}
+@keyframes aa-jitter {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25%      { transform: translate(-3px, -5px) rotate(-9deg); }
+  60%      { transform: translate(3px, 3px) rotate(8deg); }
+}
+@keyframes aa-shift {
+  0%, 100% { transform: translateX(0); }
+  40%      { transform: translateX(7px); }
+  70%      { transform: translateX(-4px); }
+}
+@keyframes aa-press {
+  0%, 100% { transform: translateY(0); }
+  45%      { transform: translateY(5px) scaleY(0.9); }
+}
+@keyframes aa-tick {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes aa-crawl {
+  0%, 100% { transform: translateX(-4px); }
+  50%      { transform: translateX(4px); }
+}
+@keyframes aa-rise {
+  0%   { transform: translateY(6px); opacity: 0.3; }
+  50%  { opacity: 1; }
+  100% { transform: translateY(-10px); opacity: 0; }
+}
+@keyframes aa-zap {
+  0%   { transform: scale(0.6) rotate(-12deg); opacity: 0; }
+  35%  { transform: scale(1.18) rotate(4deg); opacity: 1; }
+  55%  { opacity: 0.45; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes aa-tumble {
+  0%   { transform: translateY(-16px) rotate(-40deg); }
+  70%  { transform: translateY(3px) rotate(12deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+@keyframes aa-sweep {
+  0%   { transform: translateX(-70px); opacity: 0; }
+  30%  { opacity: 1; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+@keyframes aa-arc {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -24; }
+}
+@keyframes aa-shackle {
+  0%   { transform: translateY(0); }
+  45%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arcade-card,
+  .arcade-card__art,
+  .arcade-modal__art-inner,
+  .arcade-card:hover .arcade-card__sheen,
+  .arcade-art [class*="aa-"] {
+    animation: none !important;
+  }
+}

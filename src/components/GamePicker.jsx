@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { GAMES } from '../data/games'
 import { useArcadePalette } from '../contexts/ArcadePaletteContext'
+import { artFor } from '../data/gameArt'
 import Confetti from './Confetti'
 
 const ARCADE_LETTERS = 'Arcade'.split('')
@@ -9,13 +10,20 @@ const ARCADE_LETTERS = 'Arcade'.split('')
 // hover. Adapted from the Arcade design spec's ROTS values.
 const ROTS = ['-1.1deg', '0.8deg', '-0.5deg', '1.2deg', '-0.9deg', '0.4deg', '1deg', '-1.4deg']
 
-function initialsFor(name) {
-  return name
-    .split(/[\s-]+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0].toUpperCase())
-    .join('')
+// Every game gets its own illustration on the tile — see data/gameArt.
+function GameArt({ id, size, className = '' }) {
+  return (
+    <svg
+      className={`arcade-art ${className}`}
+      viewBox="0 0 120 120"
+      width={size}
+      height={size}
+      aria-hidden="true"
+      focusable="false"
+    >
+      {artFor(id)}
+    </svg>
+  )
 }
 
 // Stagger for card entrance/sway/initials-bob, capped so a big grid doesn't
@@ -359,7 +367,7 @@ export default function GamePicker({ onGameSelect }) {
               return (
                 <button key={id} onClick={() => setOpenId(id)} className="arcade-recent">
                   <span className="arcade-recent__avatar" style={{ background: g.tile }}>
-                    {initialsFor(g.name)}
+                    <GameArt id={g.id} size={20} />
                   </span>
                   {g.name}
                 </button>
@@ -403,9 +411,10 @@ export default function GamePicker({ onGameSelect }) {
                   style={{ '--rot': g.rot, '--card-delay': delay }}
                 >
                   <div className="arcade-card__tile" style={{ background: g.tile }}>
-                    <span className="arcade-card__initials" style={{ '--card-delay': delay }}>
-                      {initialsFor(game.name)}
+                    <span className="arcade-card__art" style={{ '--card-delay': delay }}>
+                      <GameArt id={game.id} size={110} />
                     </span>
+                    <span className="arcade-card__sheen" />
                     <span className="arcade-card__tag">{game.tag}</span>
                   </div>
 
@@ -451,7 +460,9 @@ export default function GamePicker({ onGameSelect }) {
         >
           <div onClick={(e) => e.stopPropagation()} className="arcade-modal">
             <div className="arcade-modal__art" style={{ background: GAME_BY_ID[openId].tile }}>
-              <span className="arcade-modal__initials">{initialsFor(GAME_BY_ID[openId].name)}</span>
+              <span className="arcade-modal__art-inner">
+                <GameArt id={openId} size={150} />
+              </span>
               <button
                 onClick={() => setOpenId(null)}
                 aria-label="Close"
