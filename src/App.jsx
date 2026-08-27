@@ -45,6 +45,7 @@ import IvysIconsBoard from './components/ivysicons/IvysIconsBoard'
 import BandysBlastBoard from './components/bandysblast/BandysBlastBoard'
 import GabbysGiftBoard from './components/gabbysgift/GabbysGiftBoard'
 import MizeWellBoard from './components/mizewell/MizeWellBoard'
+import DerricksDerrictiveBoard from './components/derricksderrictive/DerricksDerrictiveBoard'
 import { puzzles } from './data/puzzles'
 import { GAME_IDS } from './data/games'
 
@@ -75,37 +76,29 @@ function App() {
     setGameKey((k) => k + 1)
   }
 
-  const handleGameSelect = (game) => {
-    setActiveGame(game)
+  const handleGameSelect = (id) => {
+    setActiveGame(id)
     setGameKey((k) => k + 1)
-    const url = new URL(window.location.href)
-    url.searchParams.set('game', game)
-    window.history.pushState(null, '', url)
+    const url = new URL(window.location)
+    url.searchParams.set('game', id)
+    window.history.pushState({}, '', url)
   }
 
-  const handleGoHome = () => {
+  const handleHome = () => {
     setActiveGame(null)
-    const url = new URL(window.location.href)
+    const url = new URL(window.location)
     url.searchParams.delete('game')
-    window.history.pushState(null, '', url)
+    window.history.pushState({}, '', url)
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header
-        activeGame={activeGame}
-        onGameChange={handleGameSelect}
-        onGoHome={handleGoHome}
-      />
-      <main className="flex-1 flex flex-col items-center pt-6 pb-10 px-4 sm:px-6">
-        {!activeGame ? (
+    <div className="app-shell">
+      <Header onHome={handleHome} onNewGame={handleNewGame} activeGame={activeGame} />
+      <main className="app-main">
+        {activeGame === null ? (
           <GamePicker onGameSelect={handleGameSelect} />
         ) : activeGame === 'matchy' ? (
-          <GameBoard
-            key={`matchy-${gameKey}`}
-            puzzle={puzzles[PUZZLE_INDEX]}
-            onNewGame={handleNewGame}
-          />
+          <GameBoard key={`matchy-${gameKey}`} puzzle={puzzles[PUZZLE_INDEX]} onNewGame={handleNewGame} />
         ) : activeGame === 'wordle' ? (
           <WordleBoard key={`wordle-${gameKey}`} />
         ) : activeGame === 'crunch' ? (
@@ -188,6 +181,8 @@ function App() {
           <GabbysGiftBoard key={`gabbysgift-${gameKey}`} />
         ) : activeGame === 'mizewell' ? (
           <MizeWellBoard key={`mizewell-${gameKey}`} />
+        ) : activeGame === 'derricksderrictive' ? (
+          <DerricksDerrictiveBoard key={`derricksderrictive-${gameKey}`} />
         ) : (
           <SudokuBoard key={`sudoku-${gameKey}`} />
         )}
