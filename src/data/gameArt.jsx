@@ -473,6 +473,26 @@ export const GAME_ART = {
       <circle className="aa-pop" style={{ '--i': 3 }} cx="60" cy="96" r="5" fill={W3} />
     </g>
   ),
+  // ---- Pretzel's Twist ----------------------------------------------
+  pretzeltwist: (
+    <g>
+      {/* Twisted pretzel shape */}
+      <path 
+        className="aa-spin" 
+        d="M60 25 Q70 35 70 45 Q70 55 60 55 Q50 55 50 45 Q50 35 40 35 Q30 35 30 45 Q30 60 45 65 L55 65 Q70 65 70 80 Q70 95 55 95 Q45 95 45 85 M60 25 Q50 35 50 45 Q50 55 60 55 Q70 55 70 45 Q70 35 80 35 Q90 35 90 45 Q90 60 75 65 L65 65 Q50 65 50 80 Q50 95 65 95 Q75 95 75 85" 
+        fill="none" 
+        stroke={W} 
+        strokeWidth="6" 
+        strokeLinecap="round"
+      />
+      {/* Salt dots */}
+      <circle className="aa-pop" style={{ '--i': 0 }} cx="45" cy="50" r="3" fill={W6} />
+      <circle className="aa-pop" style={{ '--i': 1 }} cx="60" cy="48" r="3" fill={W6} />
+      <circle className="aa-pop" style={{ '--i': 2 }} cx="75" cy="52" r="3" fill={W6} />
+      <circle className="aa-pop" style={{ '--i': 3 }} cx="55" cy="75" r="3" fill={W6} />
+      <circle className="aa-pop" style={{ '--i': 4 }} cx="65" cy="78" r="3" fill={W6} />
+    </g>
+  ),
 }
 
 // Anything without bespoke art falls back to a joystick — still art, never

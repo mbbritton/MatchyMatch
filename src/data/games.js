@@ -360,6 +360,15 @@ export const GAMES = [
     isNew: true,
     createdAt: '2026-08-27T22:00:00Z',
   },
+  {
+    id: 'pretzeltwist',
+    name: "Pretzel's Twist",
+    description: 'Match twisted pairs as cards rotate — get in a twist!',
+    tag: 'Memory',
+    builder: 'Pretzel',
+    isNew: true,
+    createdAt: '2026-08-27T23:00:00Z',
+  },
 ]
 
 export const GAME_IDS = GAMES.map((g) => g.id)
