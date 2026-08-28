@@ -48,6 +48,7 @@ import MizeWellBoard from './components/mizewell/MizeWellBoard'
 import DerricksDerrictiveBoard from './components/derricksderrictive/DerricksDerrictiveBoard'
 import JimmiesJamBoard from './components/jimmiesjam/JimmiesJamBoard'
 import IanCredibleBoard from './components/iancredible/IanCredibleBoard'
+import PretzelTwistBoard from './components/pretzeltwist/PretzelTwistBoard'
 import { puzzles } from './data/puzzles'
 import { GAME_IDS } from './data/games'
 
@@ -189,6 +190,8 @@ function App() {
           <JimmiesJamBoard key={`jimmiesjam-${gameKey}`} />
         ) : activeGame === 'iancredible' ? (
           <IanCredibleBoard key={`iancredible-${gameKey}`} />
+        ) : activeGame === 'pretzeltwist' ? (
+          <PretzelTwistBoard key={`pretzeltwist-${gameKey}`} />
         ) : (
           <SudokuBoard key={`sudoku-${gameKey}`} />
         )}
